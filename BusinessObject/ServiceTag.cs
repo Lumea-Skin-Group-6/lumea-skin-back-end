@@ -8,19 +8,22 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("ServiceTag")]
+    [Table("service_tags")]
     public class ServiceTag
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
+
+        [Column("service_id")]
         public int ServiceId { get; set; }
+
+        [Column("tag_id")]
         public int TagId { get; set; }
 
-        //[ForeignKey(nameof(ServiceId))]
         public Service Service { get; set; }
-
-        //[ForeignKey(nameof(TagId))]
         public Tag Tag { get; set; }
     }
+
 }

@@ -26,136 +26,167 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("address");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date_of_birth");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("email");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("full_name");
 
                     b.Property<bool>("Gender")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("gender");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password_hash");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("phone_number");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("role_id");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("account_status");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Account");
+                    b.ToTable("accounts");
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccountId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("account_id");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("amount");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("appointment_date");
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("note");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("status");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Appointment");
+                    b.ToTable("appointments");
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AppointmentId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("appointment_id");
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
 
                     b.Property<TimeSpan>("Duration")
-                        .HasColumnType("interval");
+                        .HasColumnType("interval")
+                        .HasColumnName("duration");
 
                     b.Property<DateTime>("EndTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("end_time");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("price");
 
                     b.Property<decimal>("Rating")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("rating");
 
                     b.Property<int>("ServiceId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("service_id");
 
                     b.Property<DateTime>("StartTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("start_time");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("status");
 
                     b.Property<int>("TherapistId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("therapist_id");
 
                     b.Property<string>("TherapistNote")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("therapist_note");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("service_type");
 
                     b.HasKey("Id");
 
@@ -165,217 +196,264 @@ namespace DAL.Migrations
 
                     b.HasIndex("TherapistId");
 
-                    b.ToTable("AppointmentDetail");
+                    b.ToTable("appointment_details");
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetailDate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AppointmentDetailId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("appointment_detail_id");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date");
+
+                    b.Property<int>("appointment_detail_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppointmentDetailId");
+                    b.HasIndex("appointment_detail_id");
 
-                    b.ToTable("AppointmentDetailDate");
+                    b.ToTable("appointment_detail_dates", t =>
+                        {
+                            t.Property("appointment_detail_id")
+                                .HasColumnName("appointment_detail_id1");
+                        });
                 });
 
             modelBuilder.Entity("BusinessObject.DailyReport", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("CancellationFees")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("cancellation_fees");
 
                     b.Property<int>("CancelledBookings")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("cancelled_bookings");
 
                     b.Property<int>("CompletedBookings")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("completed_bookings");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date");
 
                     b.Property<decimal>("DiscountsApplied")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("discounts_applied");
 
                     b.Property<decimal>("NetRevenue")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("net_revenue");
 
                     b.Property<int>("TotalBookings")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("total_bookings");
 
                     b.Property<decimal>("TotalRevenue")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_revenue");
 
                     b.HasKey("Id");
 
-                    b.ToTable("DailyReport");
+                    b.ToTable("daily_reports");
                 });
 
             modelBuilder.Entity("BusinessObject.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccountId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("account_id");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("role_type");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Employee");
+                    b.ToTable("employees");
                 });
 
             modelBuilder.Entity("BusinessObject.Expertise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ExpertiseName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("expertise_name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Expertise");
+                    b.ToTable("expertises");
                 });
 
             modelBuilder.Entity("BusinessObject.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<bool>("IsMultipleChoice")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_multiple_choice");
 
                     b.Property<int>("Order")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("display_order");
 
                     b.Property<string>("QuestionContent")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("question_content");
 
                     b.Property<string>("ServiceType")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("service_type");
 
                     b.Property<int>("SurveyId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("survey_id");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Question");
+                    b.ToTable("questions");
                 });
 
             modelBuilder.Entity("BusinessObject.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("role_name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("roles");
                 });
 
             modelBuilder.Entity("BusinessObject.Service", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<TimeSpan>("Duration")
-                        .HasColumnType("interval");
+                        .HasColumnType("interval")
+                        .HasColumnName("duration");
 
                     b.Property<string>("ExperienceRequired")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("experience_required");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("service_name");
 
                     b.Property<int>("NumberOfTreatment")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("number_of_treatments");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("price");
 
                     b.Property<DateTime>("RecommendedPeriodEndTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("recommended_end_time");
 
                     b.Property<DateTime>("RecommendedPeriodStartTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("recommended_start_time");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("service_type");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Service");
+                    b.ToTable("services");
                 });
 
             modelBuilder.Entity("BusinessObject.ServiceExpertise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ExpertiseId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("expertise_id");
 
                     b.Property<int>("ServiceId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("service_id");
 
                     b.HasKey("Id");
 
@@ -383,22 +461,25 @@ namespace DAL.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("ServiceExpertise");
+                    b.ToTable("service_expertises");
                 });
 
             modelBuilder.Entity("BusinessObject.ServiceTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ServiceId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("service_id");
 
                     b.Property<int>("TagId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("tag_id");
 
                     b.HasKey("Id");
 
@@ -406,139 +487,164 @@ namespace DAL.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ServiceTag");
+                    b.ToTable("service_tags");
                 });
 
             modelBuilder.Entity("BusinessObject.Shift", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("shift_date");
 
                     b.Property<DateTime>("EndTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("end_time");
 
                     b.Property<int>("MaxStaff")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("max_staff");
 
                     b.Property<int>("MinStaff")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("min_staff");
 
                     b.Property<DateTime>("StartTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("start_time");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("status");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shift");
+                    b.ToTable("shifts");
                 });
 
             modelBuilder.Entity("BusinessObject.Slot", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("slot_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("slot_id"));
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("employeeId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Status")
+                    b.Property<int>("employee_id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("status")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Time")
+                    b.Property<string>("time")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("slot_id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("employeeId");
 
-                    b.ToTable("Slot");
+                    b.ToTable("slot");
                 });
 
             modelBuilder.Entity("BusinessObject.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("tag_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("tag_id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("QuestionId")
+                    b.Property<int>("questionId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("question_id")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("QuestionId");
+                    b.HasKey("tag_id");
 
-                    b.ToTable("Tag");
+                    b.HasIndex("questionId");
+
+                    b.ToTable("tag");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("therapist_expertise_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_expertise_id"));
 
-                    b.Property<int>("Experience")
+                    b.Property<int>("experience")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ExpertiseId")
+                    b.Property<int>("expertiseId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TherapistId")
+                    b.Property<int>("expertise_id")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("therapistId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("ExpertiseId");
+                    b.Property<int>("therapist_id")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("TherapistId");
+                    b.HasKey("therapist_expertise_id");
 
-                    b.ToTable("TherapistExpertise");
+                    b.HasIndex("expertiseId");
+
+                    b.HasIndex("therapistId");
+
+                    b.ToTable("therapist_expertise");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("therapist_shift_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_shift_id"));
 
-                    b.Property<int>("ShiftId")
+                    b.Property<int>("shiftId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TherapistId")
+                    b.Property<int>("shift_id")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("therapistId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("ShiftId");
+                    b.Property<int>("therapist_id")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("TherapistId");
+                    b.HasKey("therapist_shift_id");
 
-                    b.ToTable("TherapistShift");
+                    b.HasIndex("shiftId");
+
+                    b.HasIndex("therapistId");
+
+                    b.ToTable("therapist_shift");
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>
@@ -594,7 +700,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("BusinessObject.AppointmentDetail", "AppointmentDetail")
                         .WithMany("AppointmentDetailDates")
-                        .HasForeignKey("AppointmentDetailId")
+                        .HasForeignKey("appointment_detail_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -652,62 +758,62 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.Slot", b =>
                 {
-                    b.HasOne("BusinessObject.Employee", "Employee")
+                    b.HasOne("BusinessObject.Employee", "employee")
                         .WithMany("Slots")
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("employeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Employee");
+                    b.Navigation("employee");
                 });
 
             modelBuilder.Entity("BusinessObject.Tag", b =>
                 {
-                    b.HasOne("BusinessObject.Question", "Question")
+                    b.HasOne("BusinessObject.Question", "question")
                         .WithMany()
-                        .HasForeignKey("QuestionId")
+                        .HasForeignKey("questionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Question");
+                    b.Navigation("question");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.HasOne("BusinessObject.Expertise", "Expertise")
+                    b.HasOne("BusinessObject.Expertise", "expertise")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("ExpertiseId")
+                        .HasForeignKey("expertiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Employee", "Therapist")
+                    b.HasOne("BusinessObject.Employee", "therapist")
                         .WithMany()
-                        .HasForeignKey("TherapistId")
+                        .HasForeignKey("therapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Expertise");
+                    b.Navigation("expertise");
 
-                    b.Navigation("Therapist");
+                    b.Navigation("therapist");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>
                 {
-                    b.HasOne("BusinessObject.Shift", "Shift")
+                    b.HasOne("BusinessObject.Shift", "shift")
                         .WithMany("TherapistShifts")
-                        .HasForeignKey("ShiftId")
+                        .HasForeignKey("shiftId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Employee", "Therapist")
+                    b.HasOne("BusinessObject.Employee", "therapist")
                         .WithMany()
-                        .HasForeignKey("TherapistId")
+                        .HasForeignKey("therapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Shift");
+                    b.Navigation("shift");
 
-                    b.Navigation("Therapist");
+                    b.Navigation("therapist");
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>

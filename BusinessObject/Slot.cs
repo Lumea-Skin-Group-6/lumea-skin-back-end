@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("Slot")]
+    [Table("slot")]
     public class Slot
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public int EmployeeId { get; set; }
+        public int slot_id { get; set; }
 
-        //[ForeignKey(nameof(EmployeeId))]
-        public Employee Employee { get; set; }
-        public string Time { get; set; }
-        public string Status { get; set; }
-        public DateTime Date { get; set; }
+        public int employee_id { get; set; }
+
+        //[ForeignKey(nameof(employee_id))]
+        public Employee employee { get; set; }
+        public string time { get; set; }
+        public string status { get; set; }
+        public DateTime date { get; set; }
     }
 }

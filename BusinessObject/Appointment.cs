@@ -8,19 +8,24 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("Appointment")]
+    [Table("appointments")]
     public class Appointment
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
-        public int AccountId { get; set; }
-        public DateTime Date { get; set; }
-        public string Note { get; set; }
-        public decimal Amount { get; set; }
-        public string Status { get; set; }
 
-        //[ForeignKey(nameof(AccountId))]
+        [Column("account_id")] public int AccountId { get; set; }
+
+        [Column("appointment_date")] public DateTime Date { get; set; }
+
+        [Column("note")] public string Note { get; set; }
+
+        [Column("amount")] public decimal Amount { get; set; }
+
+        [Column("status")] public string Status { get; set; }
+
         public Account Account { get; set; }
         public ICollection<AppointmentDetail> AppointmentDetails { get; set; }
     }
