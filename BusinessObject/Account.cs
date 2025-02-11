@@ -9,25 +9,36 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("Account")]
+    [Table("accounts")]
     public class Account
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string ImageUrl { get; set; }
-        public bool Gender { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public int RoleId { get; set; }
-        public string Status { get; set; }
-        public bool IsDeleted { get; set; } = false;
 
-        //[ForeignKey(nameof(RoleId))]
+        [Column("full_name")] public string FullName { get; set; }
+
+        [Column("email")] public string Email { get; set; }
+
+        [Column("password_hash")] public string Password { get; set; }
+
+        [Column("date_of_birth")] public DateTime DateOfBirth { get; set; }
+
+        [Column("image_url")] public string ImageUrl { get; set; }
+
+        [Column("gender")] public bool Gender { get; set; }
+
+        [Column("phone_number")] public string Phone { get; set; }
+
+        [Column("address")] public string Address { get; set; }
+
+        [Column("role_id")] public int RoleId { get; set; }
+
+        [Column("account_status")] public string Status { get; set; }
+
+        [Column("is_deleted")] public bool IsDeleted { get; set; }
+
         public Role Role { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
     }

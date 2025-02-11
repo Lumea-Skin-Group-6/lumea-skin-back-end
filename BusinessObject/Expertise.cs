@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("Expertise")]
+    [Table("expertises")]
     public class Expertise
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
-        public string ExpertiseName { get; set; }
+
+        [Column("expertise_name")] public string ExpertiseName { get; set; }
 
         public ICollection<TherapistExpertise> TherapistExpertises { get; set; }
     }
-
 }
