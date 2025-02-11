@@ -155,3 +155,8 @@ C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.pdb
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.genruntimeconfig.cache
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\ref\SkincareBookingApp.dll
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.AspNetCore.OData.dll
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.OData.Core.dll
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.OData.Edm.dll
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.OData.ModelBuilder.dll
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Spatial.dll
