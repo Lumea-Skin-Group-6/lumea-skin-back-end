@@ -1,4 +1,6 @@
 ﻿using BusinessObject;
+using DAL.DTO.Shift;
+using DAL.DTO.ShiftDTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Service;
@@ -24,7 +26,11 @@ namespace SkincareBookingApp.Controllers
             var shift = _shiftService.GetAllShift();
             return Ok(shift);
         }
+        [HttpPost(Name = "add-shift")]
+        public ShiftResponseDTO addShift(ShiftRequestDTO shiftRequest)
+        {
+            return _shiftService.AddAsync(shiftRequest);
+        }
         
-    
     }
 }

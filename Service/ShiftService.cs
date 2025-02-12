@@ -1,4 +1,6 @@
 ﻿using BusinessObject;
+using DAL.DTO.Shift;
+using DAL.DTO.ShiftDTO;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -18,9 +20,62 @@ namespace Service
             _shiftRepo = shiftRepo;
         }
 
-        public void AddAsync(Shift shift)
+        public ShiftResponseDTO AddAsync(ShiftRequestDTO shiftRequest)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (shiftRequest.Date < DateTime.Today)
+                {
+                    throw new ArgumentException("Date cannot be before the current date.");
+                }
+                if (shiftRequest.EndTime < shiftRequest.StartTime)
+                {
+                    throw new ArgumentException("EndTime cannot be before StartTime.");
+                }
+                if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
+                {
+                    throw new ArgumentException("MaxStaff cannot be less than MinStaff.");
+                }
+                if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
+                {
+                    throw new ArgumentException("MaxTherapist cannot be less than MinTherapist.");
+                }
+
+                Shift shift = new Shift
+                {
+                    Date = shiftRequest.Date,
+                    StartTime = shiftRequest.StartTime,
+                    EndTime = shiftRequest.EndTime,
+                    MinStaff = shiftRequest.MinStaff,
+                    MaxStaff = shiftRequest.MaxStaff,
+                    MinTherapist = shiftRequest.MinTherapist,
+                    MaxTherapist = shiftRequest.MaxTherapist,
+                    Status = shiftRequest.Status
+                };
+
+                _shiftRepo.AddAsync(shift);
+
+                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                responseDTO.Date = shift.Date;
+                responseDTO.StartTime = shift.StartTime;
+                responseDTO.EndTime = shift.EndTime;
+                responseDTO.MinStaff = shift.MinStaff;
+                responseDTO.MaxStaff = shift.MaxStaff;
+                responseDTO.MinTherapist = shift.MinTherapist;
+                responseDTO.MaxStaff = shift.MaxStaff;
+                responseDTO.Status = shift.Status;
+                return responseDTO;
+
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine("Validation error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected error: " + ex.Message);
+                throw new Exception("An unexpected error occurred while adding shift.", ex);
+            }
         }
 
         public void DeleteAsync(int id)
