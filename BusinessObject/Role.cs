@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("Role")]
+    [Table("roles")]
     public class Role
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
-        public string Name { get; set; }
+
+        [Column("role_name")] public string Name { get; set; }
+
         public ICollection<Account> Accounts { get; set; }
     }
 }

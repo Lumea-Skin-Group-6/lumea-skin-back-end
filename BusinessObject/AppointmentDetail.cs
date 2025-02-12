@@ -8,34 +8,41 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("AppointmentDetail")]
+    [Table("appointment_details")]
     public class AppointmentDetail
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
-        public int AppointmentId { get; set; }
-        public int ServiceId { get; set; }
-        public int TherapistId { get; set; }
-        public decimal Price { get; set; }
-        public string Type { get; set; }
-        public decimal Rating { get; set; }
-        public string Comment { get; set; }
-        public TimeSpan Duration { get; set; }
-        public string Status { get; set; }
-        public string TherapistNote { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
 
-        //[ForeignKey(nameof(AppointmentId))]
+        [Column("appointment_id")] public int AppointmentId { get; set; }
+
+        [Column("service_id")] public int ServiceId { get; set; }
+
+        [Column("therapist_id")] public int TherapistId { get; set; }
+
+        [Column("price")] public decimal Price { get; set; }
+
+        [Column("service_type")] public string Type { get; set; }
+
+        [Column("rating")] public decimal Rating { get; set; }
+
+        [Column("comment")] public string Comment { get; set; }
+
+        [Column("duration")] public TimeSpan Duration { get; set; }
+
+        [Column("status")] public string Status { get; set; }
+
+        [Column("therapist_note")] public string TherapistNote { get; set; }
+
+        [Column("start_time")] public DateTime StartTime { get; set; }
+
+        [Column("end_time")] public DateTime EndTime { get; set; }
+
         public Appointment Appointment { get; set; }
-
-        //[ForeignKey(nameof(ServiceId))]
         public Service Service { get; set; }
-
-        //[ForeignKey(nameof(TherapistId))]
         public Employee Therapist { get; set; }
-
         public ICollection<AppointmentDetailDate> AppointmentDetailDates { get; set; }
     }
 }

@@ -8,20 +8,21 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    [Table("TherapistExpertise")]
+    [Table("therapist_expertise")]
     public class TherapistExpertise
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public int TherapistId { get; set; }
-        public int ExpertiseId { get; set; }
+        public int therapist_expertise_id { get; set; }
 
-        //[ForeignKey(nameof(TherapistId))]
-        public Employee Therapist { get; set; }
+        public int therapist_id { get; set; }
+        public int expertise_id { get; set; }
 
-        //[ForeignKey(nameof(ExpertiseId))]
-        public Expertise Expertise { get; set; }
-        public int Experience { get; set; }
+        //[ForeignKey(nameof(therapist_id))]
+        public Employee therapist { get; set; }
+
+        //[ForeignKey(nameof(expertise_id))]
+        public Expertise expertise { get; set; }
+        public int experience { get; set; }
     }
 }
