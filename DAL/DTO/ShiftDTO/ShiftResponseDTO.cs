@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace DAL.DTO.ShiftDTO
+{
+
+   
+    public class ShiftResponseDTO
+    {
+        public DateTime Date { get; set; }
+
+
+        public DateTime StartTime { get; set; }
+
+
+        public DateTime EndTime { get; set; }
+
+
+        public int MinStaff { get; set; }
+
+
+        public int MaxStaff { get; set; }
+
+
+        public int MinTherapist { get; set; }
+
+
+        public int MaxTherapist { get; set; }
+
+
+        public string Status { get; set; }
+
+
+        public int ErrorCode {  get; set; }
+
+
+        public String Message {  get; set; }
+        
+
+        public ShiftResponseDTO(DateTime date, DateTime startTime, DateTime endTime, int minStaff, int maxStaff, int minTherapist, int maxTherapist, string status)
+        {
+            Date = date;
+            StartTime = startTime;
+            EndTime = endTime;
+            MinStaff = minStaff;
+            MaxStaff = maxStaff;
+            MinTherapist = minTherapist;
+            MaxTherapist = maxTherapist;
+            Status = status;
+        }
+
+        public ShiftResponseDTO()
+        {
+        }
+
+        public ShiftResponseDTO(int errorCode, string message)
+        {
+            ErrorCode = errorCode;
+            Message = message;
+        }
+    }
+}

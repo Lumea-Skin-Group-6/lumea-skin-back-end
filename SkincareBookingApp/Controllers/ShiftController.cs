@@ -26,11 +26,15 @@ namespace SkincareBookingApp.Controllers
             var shift = _shiftService.GetAllShift();
             return Ok(shift);
         }
+
+
         [HttpPost(Name = "add-shift")]
-        public ShiftResponseDTO addShift(ShiftRequestDTO shiftRequest)
+        public IActionResult AddShift([FromBody]ShiftRequestDTO shiftRequest)
         {
-            return _shiftService.AddAsync(shiftRequest);
+            var response = _shiftService.AddShift(shiftRequest);
+
+            return StatusCode(response.StatusCode, response.Data); // Trả về HTTP status code và dữ liệu
         }
-        
+
     }
 }
