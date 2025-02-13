@@ -31,10 +31,9 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
+                    b.Property<string>("ActivationCode")
                         .HasColumnType("text")
-                        .HasColumnName("address");
+                        .HasColumnName("activation_code");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone")
@@ -55,13 +54,16 @@ namespace DAL.Migrations
                         .HasColumnName("gender");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
+
+                    b.Property<bool>("IsLoggedIn")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_logged_in");
 
                     b.Property<string>("Password")
                         .IsRequired()
