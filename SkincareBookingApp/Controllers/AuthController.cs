@@ -1,9 +1,6 @@
 ﻿using System.Net;
-using Azure;
-using DAL.DTO;
-using Microsoft.AspNetCore.Authorization;
+using DAL.DTO.RequestModel;
 using Microsoft.AspNetCore.Mvc;
-using Repository.Interfaces;
 using Service.Interfaces;
 using SkincareBookingApp.Helpers;
 
@@ -30,10 +27,17 @@ public class AuthController : Controller
 
 
     [HttpPost("register")]
-    public IActionResult Register(UserRegistrationRequestModel userDto)
+    public async Task<IActionResult> Register(UserRegistrationRequestModel userDto)
     {
-        _authService.Register(userDto);
+        await _authService.Register(userDto);
         return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.Accepted, "Successfully Register",
             "Please check your email for account verification.");
+    }
+
+    [HttpPost("verify-otp")]
+    public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpRequestModel request)
+    {
+        await _authService.VerifyOtp(request.Email, request.Otp);
+        return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "OTP Verified", "Your account is now active.");
     }
 }
