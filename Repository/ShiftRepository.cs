@@ -24,14 +24,12 @@ namespace Repository
             _context.SaveChangesAsync();
         }
 
-        public void DeleteAsync(int id)
+        public void DeleteAsync(Shift shift)
         {
-            Shift shift =  GetShiftById(id);
-            if (shift != null)
-            {
+            
                 _context.Shifts.Remove(shift);
                 _context.SaveChangesAsync();
-            }
+            
         }
 
         public List<Shift> GetAllShift()
@@ -45,18 +43,9 @@ namespace Repository
         }
 
         public void UpdateAsync(Shift shift)
-        {
-            Shift exisShift = GetShiftById(shift.Id);
-            if (shift != null)
-            {
-                exisShift.Date = shift.Date;
-                exisShift.StartTime = shift.StartTime;
-                exisShift.EndTime = shift.EndTime;
-                exisShift.MaxStaff = shift.MaxStaff;
-                exisShift.MaxStaff = shift.MaxStaff;
-                exisShift.Status = shift.Status;
-                _context.SaveChangesAsync();
-            }
+        {      
+               _context.Shifts.Update(shift);
+                _context.SaveChangesAsync();         
         }
     }
 }

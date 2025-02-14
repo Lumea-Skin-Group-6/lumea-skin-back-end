@@ -12,9 +12,9 @@ namespace Service
     public interface IShiftService
     {
         List<Shift> GetAllShift();
-        Shift GetShiftById(int id);
+        ResponseDTO GetShiftById(int id);
         public ResponseDTO AddShift(ShiftRequestDTO shift);
-        void UpdateAsync(Shift shift);
-        void DeleteAsync(int id);
+        public ResponseDTO UpdateAsync(int id, ShiftRequestDTO shift);
+        public ResponseDTO DeleteAsync(int id);
     }
 }

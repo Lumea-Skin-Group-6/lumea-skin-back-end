@@ -14,6 +14,6 @@ namespace Repository
         Shift GetShiftById(int id);
         void AddAsync(Shift shift);
         void UpdateAsync(Shift shift);
-        void DeleteAsync(int id);
+        void DeleteAsync(Shift shift);
     }
 }

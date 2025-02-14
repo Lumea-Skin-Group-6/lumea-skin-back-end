@@ -9,7 +9,7 @@ namespace DAL.DTO.Shift
 {
     public class ShiftRequestDTO
     {
-
+        public string Name { get; set; }
         public DateTime Date { get; set; }
 
 

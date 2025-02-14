@@ -19,6 +19,9 @@ namespace BusinessObject
         [Column("shift_date")]
         public DateTime Date { get; set; }
 
+        [Column("name")]
+        public string Name { get; set; }
+
         [Column("start_time")]
         public DateTime StartTime { get; set; }
 

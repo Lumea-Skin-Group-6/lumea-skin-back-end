@@ -1,5 +1,8 @@
 using BusinessObject;
 using DAL.DBContext;
+using DAL.DTO.ShiftDTO;
+using Microsoft.AspNetCore.OData;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Repository;
@@ -7,6 +10,17 @@ using Service;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var modelBuilder = new ODataConventionModelBuilder();
+var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
+shiftEntity.HasKey(a => a.Name);
+
+builder.Services.AddControllers().AddOData(
+    option => option.Select().Filter().OrderBy().Expand().Count().SetMaxTop(null)
+    .AddRouteComponents(
+        routePrefix: "odata",
+        model: modelBuilder.GetEdmModel())
+    );
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

@@ -11,6 +11,8 @@ namespace DAL.DTO.ShiftDTO
    
     public class ShiftResponseDTO
     {
+
+        public string Name { get; set; }
         public DateTime Date { get; set; }
 
 
@@ -33,16 +35,11 @@ namespace DAL.DTO.ShiftDTO
 
 
         public string Status { get; set; }
+   
 
-
-        public int ErrorCode {  get; set; }
-
-
-        public String Message {  get; set; }
-        
-
-        public ShiftResponseDTO(DateTime date, DateTime startTime, DateTime endTime, int minStaff, int maxStaff, int minTherapist, int maxTherapist, string status)
+        public ShiftResponseDTO(string name, DateTime date, DateTime startTime, DateTime endTime, int minStaff, int maxStaff, int minTherapist, int maxTherapist, string status)
         {
+            Name = name;
             Date = date;
             StartTime = startTime;
             EndTime = endTime;
@@ -57,10 +54,5 @@ namespace DAL.DTO.ShiftDTO
         {
         }
 
-        public ShiftResponseDTO(int errorCode, string message)
-        {
-            ErrorCode = errorCode;
-            Message = message;
-        }
     }
 }
