@@ -1,36 +1,41 @@
-﻿using DAL.DTO.Expertise;
+﻿using BusinessObject;
+using DAL.DTO.Expertise;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Service;
 
 namespace SkincareBookingApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/expertises")]
     [ApiController]
-    public class ExpertiseController : ControllerBase
+    public class ExpertisesController : ODataController
     {
         private readonly IExpertiseService _expertiseService;
-        public ExpertiseController(IExpertiseService expertiseService)
+        public ExpertisesController(IExpertiseService expertiseService)
         {
             _expertiseService = expertiseService;
         }
 
+        [EnableQuery]
         [HttpGet]
-        public ActionResult<List<ExpertiseDTO>> GetAll()
+        public ActionResult<IEnumerable<ExpertiseDTO>> GetExpertises()
         {
             var expertises = _expertiseService.GetAll();
-            return Ok(expertises);
+            return Ok(expertises.ToList());
         }
 
+        [EnableQuery]
         [HttpGet("{expertiseId:int}")]
-        public ActionResult<ExpertiseDTO> GetById([FromRoute] int expertiseId)
+        public ActionResult<ExpertiseDTO> GetExpertise([FromRoute] int expertiseId)
         {
             var expertise = _expertiseService.GetById(expertiseId);
             if (expertise == null)
             {
                 return NotFound();
             }
-            return Ok(expertise);
+            return expertise;
         }
 
         [HttpPost]
@@ -55,7 +60,7 @@ namespace SkincareBookingApp.Controllers
         [HttpDelete("{expertiseId:int}")]
         public IActionResult Delete([FromRoute] int expertiseId)
         {
-             var expertise = _expertiseService.GetById(expertiseId);
+            var expertise = _expertiseService.GetById(expertiseId);
             if (expertise == null)
             {
                 return NotFound();
