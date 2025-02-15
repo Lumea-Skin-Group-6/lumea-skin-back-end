@@ -16,7 +16,7 @@ var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
 shiftEntity.HasKey(a => a.Name);
 
 builder.Services.AddControllers().AddOData(
-    option => option.Select().Filter().OrderBy().Expand().Count().SetMaxTop(null)
+    option => option.Select().Filter().OrderBy().Expand()
     .AddRouteComponents(
         routePrefix: "odata",
         model: modelBuilder.GetEdmModel())
@@ -37,6 +37,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseRouting();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
