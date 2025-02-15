@@ -6,11 +6,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.DTO.Expertise;
 
-namespace DAL.DTO.Service
+namespace DAL.DTOs.ResponseModel
 {
-    public class ServiceDTO
+    public class ServiceResponseModel
     {
         public int Id { get; set; }
 
@@ -34,7 +33,7 @@ namespace DAL.DTO.Service
 
         public int NumberOfTreatment { get; set; }
 
-        public IEnumerable<ServiceTagDTO> ServiceTags { get; set; } = [];
-        public IEnumerable<ExpertiseDTO> ServiceExpertises { get; set; } = [];
+        public IEnumerable<ServiceTagResponseModel> ServiceTags { get; set; } = [];
+        public IEnumerable<ExpertiseResponseModel> ServiceExpertises { get; set; } = [];
     }
 }

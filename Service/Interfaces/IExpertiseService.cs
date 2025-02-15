@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
-using DAL.DTO.Expertise;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Service
 {
     public interface IExpertiseService
     {
-        IEnumerable<ExpertiseDTO> GetAll();
-        ExpertiseDTO? GetById(int id);
-        void Add(AddExpertiseDTO expertise);
-        void Update(int id, UpdateExpertiseDTO expertise);
+        IEnumerable<ExpertiseResponseModel> GetAll();
+        ExpertiseResponseModel? GetById(int id);
+        void Add(AddExpertiseRequestModel expertise);
+        void Update(int id, UpdateExpertiseRequestModel expertise);
         void Delete(int id);
     }
 }

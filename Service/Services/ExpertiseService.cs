@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
-using DAL.DTO.Expertise;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Service
         {
             _repository = repository;
         }
-        public void Add(AddExpertiseDTO expertise)
+        public void Add(AddExpertiseRequestModel expertise)
         {
             _repository.Add(new Expertise
             {
@@ -29,30 +30,30 @@ namespace Service
             _repository.Delete(id);
         }
 
-        public IEnumerable<ExpertiseDTO> GetAll()
+        public IEnumerable<ExpertiseResponseModel> GetAll()
         {
-            return _repository.GetAll().Select(e => new ExpertiseDTO
+            return _repository.GetAll().Select(e => new ExpertiseResponseModel
             {
                 Id = e.Id,
                 ExpertiseName = e.ExpertiseName,
             });
         }
 
-        public ExpertiseDTO? GetById(int id)
+        public ExpertiseResponseModel? GetById(int id)
         {
             Expertise? expertise = _repository.GetById(id);
             if (expertise == null)
             {
                 return null;
             }
-            return new ExpertiseDTO
+            return new ExpertiseResponseModel
             {
                 Id = expertise.Id,
                 ExpertiseName = expertise.ExpertiseName,
             };
         }
 
-        public void Update(int id, UpdateExpertiseDTO expertise)
+        public void Update(int id, UpdateExpertiseRequestModel expertise)
         {
             _repository.Update(new Expertise
             {

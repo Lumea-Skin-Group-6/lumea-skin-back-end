@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.DBContext;
 
-namespace DAL.DTO.Expertise
+namespace DAL.DTOs.ResponseModel
 {
     public class UniqueNameAttribute : ValidationAttribute
     {
@@ -27,7 +27,7 @@ namespace DAL.DTO.Expertise
         }
     }
 
-    public class ExpertiseDTO
+    public class ExpertiseResponseModel
     {
         public int Id { get; set; }
 

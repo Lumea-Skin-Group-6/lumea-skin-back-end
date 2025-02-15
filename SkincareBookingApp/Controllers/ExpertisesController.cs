@@ -1,10 +1,12 @@
 ﻿using BusinessObject;
-using DAL.DTO.Expertise;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Service;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SkincareBookingApp.Controllers
 {
@@ -21,7 +23,8 @@ namespace SkincareBookingApp.Controllers
 
         [EnableQuery]
         [HttpGet]
-        public ActionResult<IEnumerable<ExpertiseDTO>> GetExpertises()
+        [SwaggerOperation(Summary = "Get all expertises")]
+        public ActionResult<IEnumerable<ExpertiseResponseModel>> GetExpertises()
         {
             var expertises = _expertiseService.GetAll();
             return Ok(expertises.ToList());
@@ -29,7 +32,8 @@ namespace SkincareBookingApp.Controllers
 
         [EnableQuery]
         [HttpGet("{expertiseId:int}")]
-        public ActionResult<ExpertiseDTO> GetExpertise([FromRoute] int expertiseId)
+        [SwaggerOperation(Summary = "Get all expertise by ID")]
+        public ActionResult<ExpertiseResponseModel> GetExpertise([FromRoute] int expertiseId)
         {
             var expertise = _expertiseService.GetById(expertiseId);
             if (expertise == null)
@@ -40,14 +44,16 @@ namespace SkincareBookingApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] AddExpertiseDTO addExpertiseDTO)
+        [SwaggerOperation(Summary = "Add a new expertise")]
+        public IActionResult Create([FromBody] AddExpertiseRequestModel addExpertiseDTO)
         {
             _expertiseService.Add(addExpertiseDTO);
             return Ok();
         }
 
         [HttpPut("{expertiseId:int}")]
-        public IActionResult Update([FromBody] UpdateExpertiseDTO updateExpertiseDTO, [FromRoute] int expertiseId)
+        [SwaggerOperation(Summary = "Update an expertise")]
+        public IActionResult Update([FromBody] UpdateExpertiseRequestModel updateExpertiseDTO, [FromRoute] int expertiseId)
         {
             var expertise = _expertiseService.GetById(expertiseId);
             if (expertise == null)
@@ -59,6 +65,7 @@ namespace SkincareBookingApp.Controllers
         }
 
         [HttpDelete("{expertiseId:int}")]
+        [SwaggerOperation(Summary = "Delete an expertise")]
         public IActionResult Delete([FromRoute] int expertiseId)
         {
             var expertise = _expertiseService.GetById(expertiseId);

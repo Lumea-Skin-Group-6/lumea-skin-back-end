@@ -1,6 +1,5 @@
 using BusinessObject;
 using DAL.DBContext;
-using DAL.DTO.Expertise;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
 using Repository;
@@ -17,10 +16,11 @@ using Service.Services;
 using SkincareBookingApp.Helpers;
 using DAL.DTO.ShiftDTO;
 using System.Text.Json.Serialization;
+using DAL.DTOs.ResponseModel;
 
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
-modelBuilder.EntitySet<ExpertiseDTO>("Expertises");
+modelBuilder.EntitySet<ExpertiseResponseModel>("Expertises");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()

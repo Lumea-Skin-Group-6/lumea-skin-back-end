@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DTO.Expertise
+namespace DAL.DTOs.RequestModel
 {
-    public class AddExpertiseDTO
+    public class AddExpertiseRequestModel
     {
         [Required(ErrorMessage = "ExpertiseName is required.")]
-        [UniqueName]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "ExpertiseName must be at least 2 characters long.")]
         public string ExpertiseName { get; set; } = "";
     }
