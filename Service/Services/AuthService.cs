@@ -2,6 +2,7 @@
 using System.Text;
 using BusinessObject;
 using DAL.DTO.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Microsoft.Extensions.Configuration;
 using Repository.Interfaces;
 using Service.Interfaces;
@@ -13,17 +14,17 @@ public class AuthService : IAuthService
     private readonly IUserRepository _userRepository;
     private readonly IRoleRepository _roleRepository;
     private readonly IMailService _mailService;
-    private readonly IConfiguration _configuration;
+    private readonly IJwtService _jwtService;
+
     private readonly string _emailSecureCharacters;
 
     public AuthService(IUserRepository userRepository, IRoleRepository roleRepository, IMailService mailService,
-        IConfiguration configuration)
+        IJwtService jwtService)
     {
         _userRepository = userRepository;
         _roleRepository = roleRepository;
         _mailService = mailService;
-        _configuration = configuration;
-        _emailSecureCharacters = _configuration["MailSettings:SecureCharacters"] ?? "";
+        _jwtService = jwtService;
     }
 
     public async Task<string> SeedRolesAsync()
@@ -73,13 +74,15 @@ public class AuthService : IAuthService
             Email = userDto.Email,
             Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
             FullName = userDto.FullName,
-            DateOfBirth = userDto.DateOfBirth,
+            DateOfBirth = userDto.DateOfBirth.ToUniversalTime(),
             Phone = userDto.Phone,
             Gender = userDto.Gender,
             Status = "inactive",
             RoleId = customerRole.Id,
             ImageUrl = null,
             ActivationCode = verificationCode,
+            RefreshTokenExpiry = null,
+            RefreshToken = null,
             IsLoggedIn = false,
             IsDeleted = false
         };
@@ -115,20 +118,72 @@ public class AuthService : IAuthService
         {
             throw new Exception("OTP cannot be empty.");
         }
+        else if (string.IsNullOrWhiteSpace(email))
+        {
+            throw new Exception("Email cannot be empty.");
+        }
 
         var user = await _userRepository.GetByEmailAsync(email);
         if (user == null)
         {
-            throw new Exception("Account not found.");
+            throw new KeyNotFoundException("Account not found.");
         }
 
         if (user.ActivationCode != otp)
         {
-            throw new Exception("Incorrect OTP. Please try again.");
+            throw new UnauthorizedAccessException("Incorrect OTP. Please try again.");
         }
 
         user.Status = "active";
         user.ActivationCode = null;
         await _userRepository.UpdateAsync(user);
+    }
+
+    public async Task<UserAuthenticationResponse> LoginAsync(string email, string password)
+    {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            throw new Exception("Email and password cannot be empty.");
+
+        var user = await _userRepository.GetByEmailAsync(email);
+        if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
+        {
+            throw new UnauthorizedAccessException("Incorrect email/password please try again.");
+        }
+
+        var accessToken = _jwtService.GenerateAccessToken(user);
+        var refreshToken = _jwtService.GenerateRefreshToken();
+        var refreshTokenExpiry = DateTime.UtcNow.AddDays(1);
+
+        user.RefreshToken = refreshToken;
+        user.RefreshTokenExpiry = refreshTokenExpiry;
+        user.IsLoggedIn = true;
+        await _userRepository.UpdateAsync(user);
+
+        return new UserAuthenticationResponse
+        {
+            AccessToken = accessToken,
+            RefreshToken = refreshToken
+        };
+    }
+
+    public async Task<UserAuthenticationResponse> RefreshTokenAsync(string refreshToken)
+    {
+        if (string.IsNullOrWhiteSpace(refreshToken))
+            throw new UnauthorizedAccessException("Refresh token is required.");
+
+        var user = await _userRepository.GetByRefreshTokenAsync(refreshToken);
+        if (user == null)
+            throw new UnauthorizedAccessException("Invalid refresh token.");
+
+        if (user.RefreshTokenExpiry == null || user.RefreshTokenExpiry <= DateTime.UtcNow)
+            throw new UnauthorizedAccessException("Refresh token expired, please log in again.");
+
+        var newAccessToken = _jwtService.GenerateAccessToken(user);
+
+        return new UserAuthenticationResponse
+        {
+            AccessToken = newAccessToken,
+            RefreshToken = user.RefreshToken
+        };
     }
 }

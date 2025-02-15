@@ -16,7 +16,9 @@ public class UserRepository : IUserRepository
 
     public async Task<Account?> GetByEmailAsync(string email)
     {
-        return await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email);
+        return await _context.Accounts
+            .Include(a => a.Role)
+            .FirstOrDefaultAsync(a => a.Email == email);
     }
 
     public async Task<Account> CreateAsync(Account account)
@@ -30,5 +32,13 @@ public class UserRepository : IUserRepository
     {
         _context.Accounts.Update(account);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<Account> GetByRefreshTokenAsync(string refreshToken)
+    {
+        var user = await _context.Accounts.Include(a => a.Role)
+            .Where(u => u.RefreshToken.Trim().ToLower() == refreshToken.Trim().ToLower())
+            .FirstOrDefaultAsync();
+        return user;
     }
 }
