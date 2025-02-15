@@ -31,6 +31,12 @@ var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
 shiftEntity.HasKey(a => a.Name);
 
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations(); 
+});
+
+
 //Configure Scoped
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
@@ -65,6 +71,10 @@ builder.Services.AddControllers()
 
             return new BadRequestObjectResult(response);
         };
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
     });
 //End
 

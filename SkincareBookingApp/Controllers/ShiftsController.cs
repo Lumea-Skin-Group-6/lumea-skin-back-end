@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.AspNetCore.OData.Routing;
 using Service;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SkincareBookingApp.Controllers
 {
     [ApiController]
-    [Route("api/shift")]
+    [Route("api/shifts")]
     [ApiExplorerSettings(GroupName = "Shifts")]
     public class ShiftsController : ODataController
     {
@@ -23,7 +24,8 @@ namespace SkincareBookingApp.Controllers
         }
 
         [EnableQuery]
-        [HttpGet("get-all-shift")]
+        [HttpGet]
+        [SwaggerOperation(Summary = "get all Shifts")]
         public IActionResult GetShifts()
         {
             var shift = _shiftService.GetAllShift();
@@ -43,7 +45,8 @@ namespace SkincareBookingApp.Controllers
             });
         }
 
-        [HttpPut("update-shift/{shiftId}")]
+        [HttpPut("{shiftId}")]
+        [SwaggerOperation(Summary = "update shift by id")]
         public IActionResult UpdateShift([FromRoute]int  shiftId, [FromBody]ShiftRequestDTO shiftRequestDTO) 
         {
             var response = _shiftService.UpdateAsync(shiftId, shiftRequestDTO);
@@ -56,7 +59,8 @@ namespace SkincareBookingApp.Controllers
 
 
         [EnableQuery]
-        [HttpGet("get-by-/{shiftId}")]
+        [HttpGet("/{shiftId}")]
+        [SwaggerOperation(Summary = "get shift by id")]
         public IActionResult GetShift([FromRoute] int shiftId)
         {
             var response = _shiftService.GetShiftById(shiftId);
@@ -67,7 +71,8 @@ namespace SkincareBookingApp.Controllers
             });
         }
 
-        [HttpDelete("delete-by-/{shiftId}")]
+        [HttpDelete("{shiftId}")]
+        [SwaggerOperation(Summary = "delete shift by id")]
         public IActionResult DeleteShift([FromRoute] int shiftId)
         {
             var response = _shiftService.DeleteAsync(shiftId);
@@ -79,7 +84,8 @@ namespace SkincareBookingApp.Controllers
         }
 
         [EnableQuery]
-        [HttpGet("odata/get-by-name")]
+        [HttpGet("odata")]
+        [SwaggerOperation(Summary = "get shifts by name")]
         public IActionResult GetShiftsByName([FromQuery] string name)
         {
             var shifts = _shiftService.GetAllShift()
