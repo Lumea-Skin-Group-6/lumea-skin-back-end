@@ -24,11 +24,12 @@ namespace Repository
         public void Delete(int id)
         {
             Expertise? expertise = _context.Expertises.FirstOrDefault(x => x.Id == id);
-            if (expertise != null)
+            if (expertise == null)
             {
-                _context.Expertises.Remove(expertise);
-                _context.SaveChangesAsync();
+                throw new InvalidOperationException("Expertise not found.");
             }
+            _context.Expertises.Remove(expertise);
+            _context.SaveChangesAsync();
         }
 
         public IEnumerable<Expertise> GetAll()
@@ -44,11 +45,13 @@ namespace Repository
         public void Update(Expertise expertise)
         {
             Expertise? existingExpertise = _context.Expertises.FirstOrDefault(x => x.Id == expertise.Id);
-            if (existingExpertise != null)
+            if (existingExpertise == null)
             {
-                existingExpertise.ExpertiseName = expertise.ExpertiseName;
-                _context.SaveChangesAsync();
+                throw new InvalidOperationException("Expertise not found.");
             }
+            existingExpertise.ExpertiseName = expertise.ExpertiseName;
+            _context.SaveChangesAsync();
+
         }
     }
 }
