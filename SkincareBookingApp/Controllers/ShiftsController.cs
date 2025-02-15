@@ -11,6 +11,7 @@ namespace SkincareBookingApp.Controllers
 {
     [ApiController]
     [Route("api/shift")]
+    [ApiExplorerSettings(GroupName = "Shifts")]
     public class ShiftsController : ODataController
     {
 

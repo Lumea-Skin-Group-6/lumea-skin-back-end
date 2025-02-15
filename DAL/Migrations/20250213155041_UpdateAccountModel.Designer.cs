@@ -3,6 +3,7 @@ using System;
 using DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250213155041_UpdateAccountModel")]
+    partial class UpdateAccountModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,15 +77,6 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("phone_number");
-
-                    b.Property<string>("RefreshToken")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("refresh_token");
-
-                    b.Property<DateTime?>("RefreshTokenExpiry")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("refresh_token_expiry");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("integer")
@@ -522,22 +516,9 @@ namespace DAL.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("max_staff");
 
-                    b.Property<int>("MaxTherapist")
-                        .HasColumnType("integer")
-                        .HasColumnName("max_therapist");
-
                     b.Property<int>("MinStaff")
                         .HasColumnType("integer")
                         .HasColumnName("min_staff");
-
-                    b.Property<int>("MinTherapist")
-                        .HasColumnType("integer")
-                        .HasColumnName("min_therapist");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp with time zone")
