@@ -22,7 +22,7 @@ namespace BusinessObject
 
         [Column("is_multiple_choice")] public bool IsMultipleChoice { get; set; }
 
-        [Column("created_at")] public DateTime CreatedAt { get; set; }
+        [Column("updated_at")] public DateTime UpdatedAt { get; set; }
 
         [Column("display_order")] public int Order { get; set; }
     }

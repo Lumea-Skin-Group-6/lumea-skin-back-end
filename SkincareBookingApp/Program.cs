@@ -13,6 +13,7 @@ using SkincareBookingApp.Helpers;
 var builder = WebApplication.CreateBuilder(args);
 
 //Configure Scoped
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();

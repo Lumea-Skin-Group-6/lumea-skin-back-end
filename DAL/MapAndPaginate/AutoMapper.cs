@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessObject;
-using DAL.DTO;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,11 @@ namespace DAL.MapAndPaginate
 
         private void QuestionProfile()
         {
-            CreateMap<Question, QuestionDTO>().ReverseMap();
+            CreateMap<QuestionCreateRequest, Question>()
+            .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.UtcNow)); // Set UpdatedAt manually
+            CreateMap<Question, QuestionResponse>().ReverseMap();
+            CreateMap<QuestionUpdateRequest, Question>()
+            .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
         }
     }
 }
