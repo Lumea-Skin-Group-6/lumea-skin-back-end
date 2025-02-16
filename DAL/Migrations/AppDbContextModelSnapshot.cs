@@ -76,7 +76,6 @@ namespace DAL.Migrations
                         .HasColumnName("phone_number");
 
                     b.Property<string>("RefreshToken")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("refresh_token");
 
