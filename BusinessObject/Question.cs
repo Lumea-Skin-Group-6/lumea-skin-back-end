@@ -18,12 +18,14 @@ namespace BusinessObject
 
         [Column("question_content")] public string QuestionContent { get; set; }
 
-        [Column("service_type")] public ServiceType ServiceType { get; set; }
+        [Column("service_type")] public string ServiceType { get; set; }
 
         [Column("is_multiple_choice")] public bool IsMultipleChoice { get; set; }
 
-        [Column("updated_at")] public DateTime UpdatedAt { get; set; }
+        [Column("created_at")] public DateTime CreatedAt { get; set; }
 
         [Column("display_order")] public int Order { get; set; }
+
+        [Column("survey_id")] public int SurveyId { get; set; }
     }
 }
