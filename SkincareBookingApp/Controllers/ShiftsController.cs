@@ -40,7 +40,7 @@ namespace SkincareBookingApp.Controllers
 
             return StatusCode(response.StatusCode, new
             {
-                message = response.Message,
+                message = response.Title,
                 data = response.Data
             });
         }
@@ -52,7 +52,7 @@ namespace SkincareBookingApp.Controllers
             var response = _shiftService.UpdateAsync(shiftId, shiftRequestDTO);
             return StatusCode(response.StatusCode, new
             {
-                message = response.Message,
+                message = response.Title,
                 data = response.Data
             });
         }
@@ -66,7 +66,7 @@ namespace SkincareBookingApp.Controllers
             var response = _shiftService.GetShiftById(shiftId);
             return StatusCode(response.StatusCode, new
             {
-                message = response.Message,
+                message = response.Title,
                 data = response.Data
             });
         }
@@ -78,7 +78,7 @@ namespace SkincareBookingApp.Controllers
             var response = _shiftService.DeleteAsync(shiftId);
             return StatusCode(response.StatusCode, new
             {
-                message = response.Message,
+                message = response.Title,
                 data = response.Data
             });
         }

@@ -35,7 +35,7 @@ namespace BusinessObject
         public int MaxStaff { get; set; }
 
         [Column("min_therapist")]
-        public int MinTherapist { get; set; }
+        public int MinTherapist {  get; set; }
 
         [Column("max_therapist")]
         public int MaxTherapist { get; set; }

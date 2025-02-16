@@ -10,13 +10,13 @@ namespace DAL.DTO
     {
         public int StatusCode { get; set; }
 
-        public string Message { get; set; }
+        public string Title { get; set; }
         public object Data { get; set; } 
 
-        public ResponseDTO(int statusCode, string message, object data)
+        public ResponseDTO(int statusCode, string title, object data)
         {
             StatusCode = statusCode;
-            Message = message;
+            Title = title;
             Data = data;
         }
     }
