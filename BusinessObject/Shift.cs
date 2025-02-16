@@ -19,6 +19,9 @@ namespace BusinessObject
         [Column("shift_date")]
         public DateTime Date { get; set; }
 
+        [Column("name")]
+        public string Name { get; set; }
+
         [Column("start_time")]
         public DateTime StartTime { get; set; }
 
@@ -30,6 +33,13 @@ namespace BusinessObject
 
         [Column("max_staff")]
         public int MaxStaff { get; set; }
+
+        [Column("min_therapist")]
+        public int MinTherapist {  get; set; }
+
+
+        [Column("max_therapist")]
+        public int MaxTherapist { get; set; }
 
         [Column("status")]
         public string Status { get; set; }

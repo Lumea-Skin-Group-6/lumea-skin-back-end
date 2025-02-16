@@ -31,10 +31,9 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
+                    b.Property<string>("ActivationCode")
                         .HasColumnType("text")
-                        .HasColumnName("address");
+                        .HasColumnName("activation_code");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone")
@@ -55,13 +54,16 @@ namespace DAL.Migrations
                         .HasColumnName("gender");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
+
+                    b.Property<bool>("IsLoggedIn")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_logged_in");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -72,6 +74,14 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("phone_number");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text")
+                        .HasColumnName("refresh_token");
+
+                    b.Property<DateTime?>("RefreshTokenExpiry")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("refresh_token_expiry");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("integer")
@@ -329,10 +339,6 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
                     b.Property<bool>("IsMultipleChoice")
                         .HasColumnType("boolean")
                         .HasColumnName("is_multiple_choice");
@@ -346,14 +352,13 @@ namespace DAL.Migrations
                         .HasColumnType("text")
                         .HasColumnName("question_content");
 
-                    b.Property<string>("ServiceType")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("ServiceType")
+                        .HasColumnType("integer")
                         .HasColumnName("service_type");
 
-                    b.Property<int>("SurveyId")
-                        .HasColumnType("integer")
-                        .HasColumnName("survey_id");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -428,9 +433,8 @@ namespace DAL.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("recommended_start_time");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("Type")
+                        .HasColumnType("integer")
                         .HasColumnName("service_type");
 
                     b.HasKey("Id");
@@ -511,9 +515,22 @@ namespace DAL.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("max_staff");
 
+                    b.Property<int>("MaxTherapist")
+                        .HasColumnType("integer")
+                        .HasColumnName("max_therapist");
+
                     b.Property<int>("MinStaff")
                         .HasColumnType("integer")
                         .HasColumnName("min_staff");
+
+                    b.Property<int>("MinTherapist")
+                        .HasColumnType("integer")
+                        .HasColumnName("min_therapist");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp with time zone")
@@ -576,7 +593,7 @@ namespace DAL.Migrations
                     b.Property<int>("questionId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("question_id")
+                    b.Property<int?>("question_id")
                         .HasColumnType("integer");
 
                     b.HasKey("tag_id");
