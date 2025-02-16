@@ -13,8 +13,8 @@ namespace Service
     {
         Task<IEnumerable<ExpertiseResponseModel>> GetAllAsync();
         Task<ExpertiseResponseModel> GetByIdAsync(int id);
-        Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel expertise);
-        Task<ExpertiseResponseModel> UpdateAsync(int id, UpdateExpertiseRequestModel expertise);
+        Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel requestModel);
+        Task<ExpertiseResponseModel> UpdateAsync(int id, UpdateExpertiseRequestModel requestModel);
         Task<ExpertiseResponseModel> DeleteAsync(int id);
     }
 }

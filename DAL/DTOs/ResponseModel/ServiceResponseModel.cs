@@ -33,7 +33,7 @@ namespace DAL.DTOs.ResponseModel
 
         public int NumberOfTreatment { get; set; }
 
-        public IEnumerable<ServiceTagResponseModel> ServiceTags { get; set; } = [];
+        public IEnumerable<TagResponseModel> ServiceTags { get; set; } = [];
         public IEnumerable<ExpertiseResponseModel> ServiceExpertises { get; set; } = [];
     }
 }

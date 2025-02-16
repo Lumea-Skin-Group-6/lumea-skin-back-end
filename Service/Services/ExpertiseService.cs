@@ -1,6 +1,7 @@
 ﻿using BusinessObject;
 using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
+using DAL.Mappers;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -17,23 +18,16 @@ namespace Service
         {
             _repository = repository;
         }
-        public async Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel expertise)
+        public async Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel requestModel)
         {
             var expertises = await _repository.GetAllAsync();
-            var existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == expertise.ExpertiseName);
+            var existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == requestModel.ExpertiseName);
             if (existingExpertise != null)
             {
                 throw new InvalidOperationException("Expertise name must be unique");
             }
-            var result = await _repository.AddAsync(new Expertise
-            {
-                ExpertiseName = expertise.ExpertiseName,
-            });
-            return new ExpertiseResponseModel
-            {
-                Id = result.Id,
-                ExpertiseName = result.ExpertiseName,
-            };
+            var result = await _repository.AddAsync(requestModel.ToExpertise());
+            return result.ToExpertiseResponseModel();
         }
 
         public async Task<ExpertiseResponseModel> DeleteAsync(int id)
@@ -44,21 +38,13 @@ namespace Service
                 throw new KeyNotFoundException("Expertise not found.");
             }
             var result = await _repository.DeleteAsync(id);
-            return new ExpertiseResponseModel
-            {
-                Id = result.Id,
-                ExpertiseName = result.ExpertiseName,
-            };
+            return result.ToExpertiseResponseModel();
         }
 
         public async Task<IEnumerable<ExpertiseResponseModel>> GetAllAsync()
         {
             var expertises = await _repository.GetAllAsync();
-            return expertises.Select(e => new ExpertiseResponseModel
-            {
-                Id = e.Id,
-                ExpertiseName = e.ExpertiseName,
-            });
+            return expertises.Select(e => e.ToExpertiseResponseModel());
         }
 
         public async Task<ExpertiseResponseModel> GetByIdAsync(int id)
@@ -68,14 +54,10 @@ namespace Service
             {
                 throw new KeyNotFoundException("Expertise not found.");
             }
-            return new ExpertiseResponseModel
-            {
-                Id = expertise.Id,
-                ExpertiseName = expertise.ExpertiseName,
-            };
+            return expertise.ToExpertiseResponseModel();
         }
 
-        public async Task<ExpertiseResponseModel> UpdateAsync(int id, UpdateExpertiseRequestModel expertise)
+        public async Task<ExpertiseResponseModel> UpdateAsync(int id, UpdateExpertiseRequestModel requestModel)
         {
             Expertise? existingExpertise = await _repository.GetByIdAsync(id);
             if (existingExpertise == null)
@@ -84,21 +66,13 @@ namespace Service
             }
             var expertises = await _repository.GetAllAsync();
 
-            existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == expertise.ExpertiseName);
+            existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == requestModel.ExpertiseName);
             if (existingExpertise != null)
             {
                 throw new InvalidOperationException("Expertise name must be unique");
             }
-            var result = await _repository.UpdateAsync(new Expertise
-            {
-                Id = id,
-                ExpertiseName = expertise.ExpertiseName
-            });
-            return new ExpertiseResponseModel
-            {
-                Id = result.Id,
-                ExpertiseName = result.ExpertiseName,
-            };
+            var result = await _repository.UpdateAsync(requestModel.ToExpertise(id));
+            return result.ToExpertiseResponseModel();
         }
     }
 }

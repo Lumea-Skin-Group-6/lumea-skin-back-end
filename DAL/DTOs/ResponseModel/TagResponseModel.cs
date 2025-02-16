@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DTOs.ResponseModel
 {
-    public class ServiceTagResponseModel
+    public class TagResponseModel
     {
         public int Id { get; set; }
 

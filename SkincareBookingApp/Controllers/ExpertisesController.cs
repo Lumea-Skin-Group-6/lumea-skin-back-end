@@ -28,15 +28,9 @@ namespace SkincareBookingApp.Controllers
         [SwaggerOperation(Summary = "Get all expertises")]
         public async Task<IActionResult> GetExpertises()
         {
-            try
-            {
-                var expertises = await _expertiseService.GetAllAsync();
-                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertise successfully",
-                expertises);
-            } catch (KeyNotFoundException ex)
-            {
-                return NotFound(new { message = ex.Message });
-            }
+            var expertises = await _expertiseService.GetAllAsync();
+            return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertise successfully",
+            expertises);
         }
 
         [EnableQuery]
@@ -82,6 +76,9 @@ namespace SkincareBookingApp.Controllers
             } catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });
+            } catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
         }
 
@@ -97,6 +94,9 @@ namespace SkincareBookingApp.Controllers
             } catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });
+            } catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
         }
     }

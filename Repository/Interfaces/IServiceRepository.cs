@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    internal interface IServiceRepository
+    public interface IServiceRepository
     {
         Task<IEnumerable<Service>> GetAllAsync();
         Task<Service?> GetByIdAsync(int id);
-        Task AddAsync(Service service);
-        Task UpdateAsync(Service service);
-        Task DeleteAsync(int id);
+        Task<Service> AddAsync(Service service);
+        Task<Service> UpdateAsync(Service service);
+        Task<Service> DeleteAsync(int id);
     }
 }

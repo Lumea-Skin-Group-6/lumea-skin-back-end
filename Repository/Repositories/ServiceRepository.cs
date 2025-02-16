@@ -16,13 +16,14 @@ namespace Repository
         {
             _context = context;
         }
-        public async Task AddAsync(Service service)
+        public async Task<Service> AddAsync(Service service)
         {
             await _context.Services.AddAsync(service);
             await _context.SaveChangesAsync();
+            return service;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Service> DeleteAsync(int id)
         {
             Service? service = await _context.Services.FirstOrDefaultAsync(x => x.Id == id);
             if (service == null)
@@ -31,24 +32,30 @@ namespace Repository
             }
             _context.Services.Remove(service);
             await _context.SaveChangesAsync();
+            return service;
         }
 
         public async Task<IEnumerable<Service>> GetAllAsync()
         {
             return await _context.Services
                 .Include(s => s.ServiceTags)
-                .Include(s => s.ServiceExpertises).ToListAsync();
+                .ThenInclude(t => t.Tag)
+                .Include(s => s.ServiceExpertises)
+                .ThenInclude(e => e.Expertise)
+                .ToListAsync();
         }
 
         public async Task<Service?> GetByIdAsync(int id)
         {
             return await _context.Services
                 .Include(s => s.ServiceTags)
+                .ThenInclude(t => t.Tag)
                 .Include(s => s.ServiceExpertises)
+                .ThenInclude(e => e.Expertise)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task UpdateAsync(Service service)
+        public async Task<Service> UpdateAsync(Service service)
         {
             Service? existingService = await _context.Services.FirstOrDefaultAsync(x => x.Id == service.Id);
             if (existingService == null)
@@ -68,6 +75,7 @@ namespace Repository
             existingService.ServiceTags = service.ServiceTags;
             existingService.ServiceExpertises = service.ServiceExpertises;
             await _context.SaveChangesAsync();
+            return existingService;
         }
     }
 }
