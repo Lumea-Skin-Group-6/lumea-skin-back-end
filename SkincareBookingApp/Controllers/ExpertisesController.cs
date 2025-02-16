@@ -29,7 +29,7 @@ namespace SkincareBookingApp.Controllers
         public async Task<IActionResult> GetExpertises()
         {
             var expertises = await _expertiseService.GetAllAsync();
-            return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertise successfully",
+            return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertises successfully",
             expertises);
         }
 
@@ -51,11 +51,11 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPost]
         [SwaggerOperation(Summary = "Add a new expertise")]
-        public async Task<IActionResult> Create([FromBody] AddExpertiseRequestModel addExpertiseDTO)
+        public async Task<IActionResult> Create([FromBody] AddExpertiseRequestModel requestModel)
         {
             try
             {
-                var expertise = await _expertiseService.AddAsync(addExpertiseDTO);
+                var expertise = await _expertiseService.AddAsync(requestModel);
                 return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.Created, "Add expertise successfully",
                 expertise);
             } catch (InvalidOperationException ex)
@@ -66,11 +66,11 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPut("{expertiseId:int}")]
         [SwaggerOperation(Summary = "Update an expertise")]
-        public async Task<IActionResult> Update([FromBody] UpdateExpertiseRequestModel updateExpertiseRequest, [FromRoute] int expertiseId)
+        public async Task<IActionResult> Update([FromBody] UpdateExpertiseRequestModel requestModel, [FromRoute] int expertiseId)
         {
             try
             {
-                var expertise = await _expertiseService.UpdateAsync(expertiseId, updateExpertiseRequest);
+                var expertise = await _expertiseService.UpdateAsync(expertiseId, requestModel);
                 return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Update expertise successfully",
                 expertise);
             } catch (InvalidOperationException ex)
@@ -89,7 +89,7 @@ namespace SkincareBookingApp.Controllers
             try
             {
                 var expertise = await _expertiseService.DeleteAsync(expertiseId);
-                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Update expertise successfully",
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Delete expertise successfully",
                 expertise);
             } catch (InvalidOperationException ex)
             {

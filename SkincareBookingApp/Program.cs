@@ -21,6 +21,7 @@ using DAL.DTOs.ResponseModel;
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
 modelBuilder.EntitySet<ExpertiseResponseModel>("Expertises");
+modelBuilder.EntitySet<ServiceResponseModel>("Services");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()
@@ -48,6 +49,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
 
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>

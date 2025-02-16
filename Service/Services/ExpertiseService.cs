@@ -66,7 +66,7 @@ namespace Service
             }
             var expertises = await _repository.GetAllAsync();
 
-            existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == requestModel.ExpertiseName);
+            existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == requestModel.ExpertiseName && x.Id != id);
             if (existingExpertise != null)
             {
                 throw new InvalidOperationException("Expertise name must be unique");
