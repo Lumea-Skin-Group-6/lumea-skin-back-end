@@ -15,7 +15,7 @@ namespace BusinessObject
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int tag_id { get; set; }
 
-        public int? question_id { get; set; }
+        public int question_id { get; set; }
         public string name { get; set; }
 
         //[ForeignKey(nameof(question_id))]
