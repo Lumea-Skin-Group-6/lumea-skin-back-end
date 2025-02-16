@@ -41,7 +41,7 @@ namespace BusinessObject
         public string ExperienceRequired { get; set; }
 
         [Column("service_type")]
-        public string Type { get; set; }
+        public ServiceType Type { get; set; }
 
         [Column("number_of_treatments")]
         public int NumberOfTreatment { get; set; }
