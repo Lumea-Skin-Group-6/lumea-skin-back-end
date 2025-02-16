@@ -186,4 +186,23 @@ public class AuthService : IAuthService
             RefreshToken = user.RefreshToken
         };
     }
+
+    public async Task LogoutAsync(string refreshToken)
+    {
+        if (string.IsNullOrWhiteSpace(refreshToken))
+            throw new UnauthorizedAccessException("Refresh token is required.");
+
+        var user = await _userRepository.GetByRefreshTokenAsync(refreshToken);
+        if (user == null)
+            throw new UnauthorizedAccessException("Invalid refresh token.");
+
+        if (user.RefreshTokenExpiry == null || user.RefreshTokenExpiry <= DateTime.UtcNow)
+            throw new UnauthorizedAccessException("Refresh token expired, please log in again.");
+
+        user.RefreshToken = null;
+        user.RefreshTokenExpiry = null;
+        user.IsLoggedIn = false;
+
+        await _userRepository.UpdateAsync(user);
+    }
 }

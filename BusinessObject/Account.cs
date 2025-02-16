@@ -39,7 +39,7 @@ namespace BusinessObject
 
         [Column("is_deleted")] public bool IsDeleted { get; set; }
 
-        [Column("refresh_token")] public string RefreshToken { get; set; }
+        [Column("refresh_token")] public string? RefreshToken { get; set; }
 
         [Column("refresh_token_expiry")] public DateTime? RefreshTokenExpiry { get; set; }
 

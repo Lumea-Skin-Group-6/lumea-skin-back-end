@@ -52,6 +52,7 @@ builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 
+//builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
