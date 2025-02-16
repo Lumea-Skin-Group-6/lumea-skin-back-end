@@ -31,6 +31,7 @@ builder.Services.AddControllers().AddOData(options =>
 var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
 shiftEntity.HasKey(a => a.Name);
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddSwaggerGen(c =>
 {
