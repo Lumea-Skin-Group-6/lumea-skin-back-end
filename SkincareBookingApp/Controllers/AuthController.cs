@@ -100,4 +100,24 @@ public class AuthController : Controller
                 new { message = "An error occurred while refreshing the token.", error = ex.Message });
         }
     }
+
+    [Authorize]
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout([FromBody] RefreshTokenRequestModel request)
+    {
+        try
+        {
+            await _authService.LogoutAsync(request.RefreshToken);
+            return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Logout successful",
+                "You have been logged out.");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "An error occurred while logging out.", error = ex.Message });
+        }
+    }
 }
