@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DTO.Service
+namespace DAL.DTOs.ResponseModel
 {
-    public class ServiceTagDTO
+    public class TagResponseModel
     {
         public int Id { get; set; }
 

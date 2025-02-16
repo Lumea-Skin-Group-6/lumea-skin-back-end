@@ -1,6 +1,5 @@
 using BusinessObject;
 using DAL.DBContext;
-using DAL.DTO.Expertise;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
 using Repository;
@@ -17,10 +16,12 @@ using Service.Services;
 using SkincareBookingApp.Helpers;
 using DAL.DTO.ShiftDTO;
 using System.Text.Json.Serialization;
+using DAL.DTOs.ResponseModel;
 
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
-modelBuilder.EntitySet<ExpertiseDTO>("Expertises");
+modelBuilder.EntitySet<ExpertiseResponseModel>("Expertises");
+modelBuilder.EntitySet<ServiceResponseModel>("Services");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()
@@ -43,6 +44,10 @@ builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
+builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -50,12 +55,13 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
-builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
+
 builder.Services.AddScoped<IShiftService, ShiftService>();
 
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {

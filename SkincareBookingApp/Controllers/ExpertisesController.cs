@@ -1,10 +1,14 @@
 ﻿using BusinessObject;
-using DAL.DTO.Expertise;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Service;
+using SkincareBookingApp.Helpers;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
 
 namespace SkincareBookingApp.Controllers
 {
@@ -21,53 +25,79 @@ namespace SkincareBookingApp.Controllers
 
         [EnableQuery]
         [HttpGet]
-        public ActionResult<IEnumerable<ExpertiseDTO>> GetExpertises()
+        [SwaggerOperation(Summary = "Get all expertises")]
+        public async Task<IActionResult> GetExpertises()
         {
-            var expertises = _expertiseService.GetAll();
-            return Ok(expertises.ToList());
+            var expertises = await _expertiseService.GetAllAsync();
+            return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertises successfully",
+            expertises);
         }
 
         [EnableQuery]
         [HttpGet("{expertiseId:int}")]
-        public ActionResult<ExpertiseDTO> GetExpertise([FromRoute] int expertiseId)
+        [SwaggerOperation(Summary = "Get all expertise by ID")]
+        public async Task<IActionResult> GetExpertise([FromRoute] int expertiseId)
         {
-            var expertise = _expertiseService.GetById(expertiseId);
-            if (expertise == null)
+            try
             {
-                return NotFound();
+                var expertise = await _expertiseService.GetByIdAsync(expertiseId);
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertise successfully",
+                expertise);
+            } catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
-            return expertise;
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] AddExpertiseDTO addExpertiseDTO)
+        [SwaggerOperation(Summary = "Add a new expertise")]
+        public async Task<IActionResult> Create([FromBody] AddExpertiseRequestModel requestModel)
         {
-            _expertiseService.Add(addExpertiseDTO);
-            return Ok();
+            try
+            {
+                var expertise = await _expertiseService.AddAsync(requestModel);
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.Created, "Add expertise successfully",
+                expertise);
+            } catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [HttpPut("{expertiseId:int}")]
-        public IActionResult Update([FromBody] UpdateExpertiseDTO updateExpertiseDTO, [FromRoute] int expertiseId)
+        [SwaggerOperation(Summary = "Update an expertise")]
+        public async Task<IActionResult> Update([FromBody] UpdateExpertiseRequestModel requestModel, [FromRoute] int expertiseId)
         {
-            var expertise = _expertiseService.GetById(expertiseId);
-            if (expertise == null)
+            try
             {
-                return NotFound();
+                var expertise = await _expertiseService.UpdateAsync(expertiseId, requestModel);
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Update expertise successfully",
+                expertise);
+            } catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            } catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
-            _expertiseService.Update(expertiseId, updateExpertiseDTO);
-            return Ok();
         }
 
         [HttpDelete("{expertiseId:int}")]
-        public IActionResult Delete([FromRoute] int expertiseId)
+        [SwaggerOperation(Summary = "Delete an expertise")]
+        public async Task<IActionResult> Delete([FromRoute] int expertiseId)
         {
-            var expertise = _expertiseService.GetById(expertiseId);
-            if (expertise == null)
+            try
             {
-                return NotFound();
+                var expertise = await _expertiseService.DeleteAsync(expertiseId);
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Delete expertise successfully",
+                expertise);
+            } catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            } catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
-            _expertiseService.Delete(expertiseId);
-            return Ok();
         }
     }
 }

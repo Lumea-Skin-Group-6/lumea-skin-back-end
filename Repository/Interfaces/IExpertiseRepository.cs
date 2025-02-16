@@ -9,10 +9,10 @@ namespace Repository
 {
     public interface IExpertiseRepository
     {
-        IEnumerable<Expertise> GetAll();
-        Expertise? GetById(int id);
-        void Add(Expertise expertise);
-        void Update(Expertise expertise);
-        void Delete(int id);
+        Task<IEnumerable<Expertise>> GetAllAsync();
+        Task<Expertise?> GetByIdAsync(int id);
+        Task<Expertise> AddAsync(Expertise expertise);
+        Task<Expertise> UpdateAsync(Expertise expertise);
+        Task<Expertise> DeleteAsync(int id);
     }
 }
