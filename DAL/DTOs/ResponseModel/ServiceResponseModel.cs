@@ -29,7 +29,7 @@ namespace DAL.DTOs.ResponseModel
 
         public string ExperienceRequired { get; set; } = "";
 
-        public string Type { get; set; } = "";
+        public string Type { get; set; }
 
         public int NumberOfTreatment { get; set; }
 

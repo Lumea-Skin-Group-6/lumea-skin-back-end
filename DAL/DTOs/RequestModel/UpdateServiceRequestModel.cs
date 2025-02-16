@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace DAL.DTOs.RequestModel
 
         [Required(ErrorMessage = "Type is required.")]
         [StringLength(50, ErrorMessage = "Type cannot be longer than 50 characters.")]
-        public string Type { get; set; } = "";
+        public string Type { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Number of Treatment must be at least 1.")]
         public int NumberOfTreatment { get; set; }
