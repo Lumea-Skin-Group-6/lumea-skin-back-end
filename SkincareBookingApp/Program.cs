@@ -13,12 +13,17 @@ using SkincareBookingApp.Helpers;
 var builder = WebApplication.CreateBuilder(args);
 
 //Configure Scoped
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
+//builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {

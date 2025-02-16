@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\SkincareBookingApp\\SkincareBookingApp.csproj": {}
+    "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\SkincareBookingApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj": {
+    "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj",
+        "projectUniqueName": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj",
         "projectName": "BusinessObject",
-        "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj",
-        "packagesPath": "C:\\Users\\xtran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\BusinessObject\\obj\\",
+        "projectPath": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj",
+        "packagesPath": "C:\\Users\\huvo2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xtran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huvo2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,21 +95,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj": {
+    "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\xtran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\obj\\",
+        "projectPath": "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\huvo2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huvo2\\source\\repos\\DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xtran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huvo2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -120,8 +128,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj": {
-                "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj"
+              "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj"
               }
             }
           }
@@ -141,6 +149,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[14.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.12, )"
@@ -168,21 +180,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj": {
+    "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\xtran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\obj\\",
+        "projectPath": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\huvo2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huvo2\\source\\repos\\Repository\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xtran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huvo2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -197,8 +213,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj"
+              "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj"
               }
             }
           }
@@ -233,21 +249,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Service\\Service.csproj": {
+    "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\xtran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Service\\obj\\",
+        "projectPath": "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\huvo2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huvo2\\source\\repos\\Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xtran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huvo2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -262,8 +282,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj"
+              "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj"
               }
             }
           }
@@ -308,21 +328,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\SkincareBookingApp\\SkincareBookingApp.csproj": {
+    "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\SkincareBookingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\SkincareBookingApp\\SkincareBookingApp.csproj",
+        "projectUniqueName": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\SkincareBookingApp.csproj",
         "projectName": "SkincareBookingApp",
-        "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\SkincareBookingApp\\SkincareBookingApp.csproj",
-        "packagesPath": "C:\\Users\\xtran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\SkincareBookingApp\\obj\\",
+        "projectPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\SkincareBookingApp.csproj",
+        "packagesPath": "C:\\Users\\huvo2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xtran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huvo2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -337,8 +361,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Service\\Service.csproj"
+              "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj"
               }
             }
           }
@@ -396,7 +420,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
