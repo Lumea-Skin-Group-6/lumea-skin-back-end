@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
 using DAL.DBContext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,14 @@ namespace Repository
         {
             _context = context;
         }
-        public void Add(Expertise expertise)
+        public async Task<Expertise> AddAsync(Expertise expertise)
         {
-            _context.Expertises.Add(expertise);
-            _context.SaveChanges();
+            await _context.Expertises.AddAsync(expertise);
+            await _context.SaveChangesAsync();
+            return expertise;
         }
 
-        public void Delete(int id)
+        public async Task<Expertise> DeleteAsync(int id)
         {
             Expertise? expertise = _context.Expertises.FirstOrDefault(x => x.Id == id);
             if (expertise == null)
@@ -29,28 +31,30 @@ namespace Repository
                 throw new InvalidOperationException("Expertise not found.");
             }
             _context.Expertises.Remove(expertise);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return expertise;
         }
 
-        public IEnumerable<Expertise> GetAll()
+        public async Task<IEnumerable<Expertise>> GetAllAsync()
         {
-            return _context.Expertises;
+            return await _context.Expertises.ToListAsync();
         }
 
-        public Expertise? GetById(int id)
+        public async Task<Expertise?> GetByIdAsync(int id)
         {
-            return _context.Expertises.FirstOrDefault(x => x.Id == id);
+            return await _context.Expertises.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public void Update(Expertise expertise)
+        public async Task<Expertise> UpdateAsync(Expertise expertise)
         {
-            Expertise? existingExpertise = _context.Expertises.FirstOrDefault(x => x.Id == expertise.Id);
+            Expertise? existingExpertise = await _context.Expertises.FirstOrDefaultAsync(x => x.Id == expertise.Id);
             if (existingExpertise == null)
             {
                 throw new InvalidOperationException("Expertise not found.");
             }
             existingExpertise.ExpertiseName = expertise.ExpertiseName;
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return existingExpertise;
 
         }
     }

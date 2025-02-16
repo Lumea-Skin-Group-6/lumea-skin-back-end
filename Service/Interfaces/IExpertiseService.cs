@@ -11,10 +11,10 @@ namespace Service
 {
     public interface IExpertiseService
     {
-        IEnumerable<ExpertiseResponseModel> GetAll();
-        ExpertiseResponseModel? GetById(int id);
-        void Add(AddExpertiseRequestModel expertise);
-        void Update(int id, UpdateExpertiseRequestModel expertise);
-        void Delete(int id);
+        Task<IEnumerable<ExpertiseResponseModel>> GetAllAsync();
+        Task<ExpertiseResponseModel> GetByIdAsync(int id);
+        Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel expertise);
+        Task<ExpertiseResponseModel> UpdateAsync(int id, UpdateExpertiseRequestModel expertise);
+        Task<ExpertiseResponseModel> DeleteAsync(int id);
     }
 }

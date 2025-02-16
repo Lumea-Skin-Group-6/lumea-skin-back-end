@@ -17,34 +17,56 @@ namespace Service
         {
             _repository = repository;
         }
-        public void Add(AddExpertiseRequestModel expertise)
+        public async Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel expertise)
         {
-            _repository.Add(new Expertise
+            var expertises = await _repository.GetAllAsync();
+            var existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == expertise.ExpertiseName);
+            if (existingExpertise != null)
+            {
+                throw new InvalidOperationException("Expertise name must be unique");
+            }
+            var result = await _repository.AddAsync(new Expertise
             {
                 ExpertiseName = expertise.ExpertiseName,
             });
+            return new ExpertiseResponseModel
+            {
+                Id = result.Id,
+                ExpertiseName = result.ExpertiseName,
+            };
         }
 
-        public void Delete(int id)
+        public async Task<ExpertiseResponseModel> DeleteAsync(int id)
         {
-            _repository.Delete(id);
+            Expertise? expertise = await _repository.GetByIdAsync(id);
+            if (expertise == null)
+            {
+                throw new KeyNotFoundException("Expertise not found.");
+            }
+            var result = await _repository.DeleteAsync(id);
+            return new ExpertiseResponseModel
+            {
+                Id = result.Id,
+                ExpertiseName = result.ExpertiseName,
+            };
         }
 
-        public IEnumerable<ExpertiseResponseModel> GetAll()
+        public async Task<IEnumerable<ExpertiseResponseModel>> GetAllAsync()
         {
-            return _repository.GetAll().Select(e => new ExpertiseResponseModel
+            var expertises = await _repository.GetAllAsync();
+            return expertises.Select(e => new ExpertiseResponseModel
             {
                 Id = e.Id,
                 ExpertiseName = e.ExpertiseName,
             });
         }
 
-        public ExpertiseResponseModel? GetById(int id)
+        public async Task<ExpertiseResponseModel> GetByIdAsync(int id)
         {
-            Expertise? expertise = _repository.GetById(id);
+            Expertise? expertise = await _repository.GetByIdAsync(id);
             if (expertise == null)
             {
-                return null;
+                throw new KeyNotFoundException("Expertise not found.");
             }
             return new ExpertiseResponseModel
             {
@@ -53,13 +75,30 @@ namespace Service
             };
         }
 
-        public void Update(int id, UpdateExpertiseRequestModel expertise)
+        public async Task<ExpertiseResponseModel> UpdateAsync(int id, UpdateExpertiseRequestModel expertise)
         {
-            _repository.Update(new Expertise
+            Expertise? existingExpertise = await _repository.GetByIdAsync(id);
+            if (existingExpertise == null)
+            {
+                throw new KeyNotFoundException("Expertise not found.");
+            }
+            var expertises = await _repository.GetAllAsync();
+
+            existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == expertise.ExpertiseName);
+            if (existingExpertise != null)
+            {
+                throw new InvalidOperationException("Expertise name must be unique");
+            }
+            var result = await _repository.UpdateAsync(new Expertise
             {
                 Id = id,
                 ExpertiseName = expertise.ExpertiseName
             });
+            return new ExpertiseResponseModel
+            {
+                Id = result.Id,
+                ExpertiseName = result.ExpertiseName,
+            };
         }
     }
 }

@@ -16,41 +16,41 @@ namespace Repository
         {
             _context = context;
         }
-        public void Add(Service service)
+        public async Task AddAsync(Service service)
         {
-            _context.Services.Add(service);
-            _context.SaveChanges();
+            await _context.Services.AddAsync(service);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            Service? service = _context.Services.FirstOrDefault(x => x.Id == id);
+            Service? service = await _context.Services.FirstOrDefaultAsync(x => x.Id == id);
             if (service == null)
             {
                 throw new InvalidOperationException("Service not found.");
             }
             _context.Services.Remove(service);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Service> GetAll()
+        public async Task<IEnumerable<Service>> GetAllAsync()
         {
-            return _context.Services
+            return await _context.Services
                 .Include(s => s.ServiceTags)
-                .Include(s => s.ServiceExpertises);
+                .Include(s => s.ServiceExpertises).ToListAsync();
         }
 
-        public Service? GetById(int id)
+        public async Task<Service?> GetByIdAsync(int id)
         {
-            return _context.Services
+            return await _context.Services
                 .Include(s => s.ServiceTags)
                 .Include(s => s.ServiceExpertises)
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public void Update(Service service)
+        public async Task UpdateAsync(Service service)
         {
-            Service? existingService = _context.Services.FirstOrDefault(x => x.Id == service.Id);
+            Service? existingService = await _context.Services.FirstOrDefaultAsync(x => x.Id == service.Id);
             if (existingService == null)
             {
                 throw new InvalidOperationException("Service not found.");
@@ -67,7 +67,7 @@ namespace Repository
             existingService.NumberOfTreatment = service.NumberOfTreatment;
             existingService.ServiceTags = service.ServiceTags;
             existingService.ServiceExpertises = service.ServiceExpertises;
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }

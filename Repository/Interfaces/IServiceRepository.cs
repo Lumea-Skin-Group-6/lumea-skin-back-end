@@ -9,10 +9,10 @@ namespace Repository
 {
     internal interface IServiceRepository
     {
-        IEnumerable<Service> GetAll();
-        Service? GetById(int id);
-        void Add(Service service);
-        void Update(Service service);
-        void Delete(int id);
+        Task<IEnumerable<Service>> GetAllAsync();
+        Task<Service?> GetByIdAsync(int id);
+        Task AddAsync(Service service);
+        Task UpdateAsync(Service service);
+        Task DeleteAsync(int id);
     }
 }
