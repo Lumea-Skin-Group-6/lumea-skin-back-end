@@ -157,20 +157,20 @@ namespace Service
                 }
                 if (shiftRequest.Date < DateTime.Today)
                 {
-                    throw new ShiftException(1002, "Date cannot be before the current date.");
+                    throw new ShiftException(404, "Date cannot be before the current date.");
                 }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
-                    throw new ShiftException(1002, "EndTime cannot be before StartTime.");
+                    throw new ShiftException(404, "EndTime cannot be before StartTime.");
                 }
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
-                    throw new ShiftException(1002, "MaxStaff cannot be less than MinStaff.");
+                    throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
                 }
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
-                    throw new ShiftException(1002, "MaxTherapist cannot be less than MinTherapist.");
+                    throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
                 shift.Name = shiftRequest.Name;
@@ -202,7 +202,7 @@ namespace Service
             catch (ShiftException ex)
             {
                 var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
-                return new ResponseDTO(1002,"Cannot Update!", errorData);
+                return new ResponseDTO(404, "Cannot Update!", errorData);
             }
             catch (Exception ex)
             {
