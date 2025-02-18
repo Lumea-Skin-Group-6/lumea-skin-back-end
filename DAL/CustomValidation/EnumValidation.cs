@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace DAL.CustomValidation
+namespace SkincareBookingApp.Helpers
 {
     public class EnumValidationAttribute : ValidationAttribute
     {
@@ -22,6 +17,7 @@ namespace DAL.CustomValidation
             {
                 return new ValidationResult(ErrorMessage ?? $"Invalid value for {_enumType.Name}");
             }
+
             return ValidationResult.Success;
         }
     }

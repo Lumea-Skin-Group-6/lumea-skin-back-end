@@ -4,11 +4,7 @@ using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Repository.Repositories
 {
@@ -31,7 +27,7 @@ namespace Repository.Repositories
         public async Task<TagResponse> GetTagByIdAsync(int tagId)
         {
             var tag = await _context.Tags.FindAsync(tagId);
-            return tag != null ? new TagResponse {tag_id = tag.tag_id, name = tag.name } : null;
+            return tag != null ? new TagResponse { tag_id = tag.tag_id, name = tag.name } : null;
         }
 
         public async Task AddTagAsync(TagCreateRequest tag)
@@ -61,5 +57,4 @@ namespace Repository.Repositories
             }
         }
     }
-
 }

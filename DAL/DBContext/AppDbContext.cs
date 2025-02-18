@@ -14,7 +14,10 @@ namespace DAL.DBContext
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext() { }
+        public AppDbContext()
+        {
+        }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
@@ -31,7 +34,7 @@ namespace DAL.DBContext
         public DbSet<AppointmentDetailDate> AppointmentDetailDates { get; set; }
         public DbSet<Expertise> Expertises { get; set; }
         public DbSet<TherapistExpertise> TherapistExpertises { get; set; }
-        public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceModel> Services { get; set; }
         public DbSet<ServiceExpertise> ServiceExpertises { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ServiceTag> ServiceTags { get; set; }
@@ -47,7 +50,7 @@ namespace DAL.DBContext
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-              => optionsBuilder.UseNpgsql(GetConnectionString());
+            => optionsBuilder.UseNpgsql(GetConnectionString());
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

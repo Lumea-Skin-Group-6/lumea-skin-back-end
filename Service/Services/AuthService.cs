@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using BusinessObject;
-using DAL.DTO.RequestModel;
+using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using Microsoft.Extensions.Configuration;
 using Repository.Interfaces;
@@ -15,16 +15,18 @@ public class AuthService : IAuthService
     private readonly IRoleRepository _roleRepository;
     private readonly IMailService _mailService;
     private readonly IJwtService _jwtService;
-
+    private readonly IConfiguration _configuration;
     private readonly string _emailSecureCharacters;
 
     public AuthService(IUserRepository userRepository, IRoleRepository roleRepository, IMailService mailService,
-        IJwtService jwtService)
+        IJwtService jwtService, IConfiguration configuration)
     {
         _userRepository = userRepository;
         _roleRepository = roleRepository;
         _mailService = mailService;
         _jwtService = jwtService;
+        _configuration = configuration;
+        _emailSecureCharacters = _configuration["MailSettings:SecureCharacters"] ?? "";
     }
 
     public async Task<string> SeedRolesAsync()

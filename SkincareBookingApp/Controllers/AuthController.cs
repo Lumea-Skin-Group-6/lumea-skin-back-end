@@ -1,6 +1,4 @@
 ﻿using System.Net;
-using DAL.DTO;
-using DAL.DTO.RequestModel;
 using DAL.DTOs.RequestModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -5,13 +5,10 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DAL.DTO.ShiftDTO
+namespace DAL.DTOs.ResponseModel
 {
-
-   
-    public class ShiftResponseDTO
+    public class ShiftResponseDto
     {
-
         public string Name { get; set; }
         public DateTime Date { get; set; }
 
@@ -35,9 +32,10 @@ namespace DAL.DTO.ShiftDTO
 
 
         public string Status { get; set; }
-   
 
-        public ShiftResponseDTO(string name, DateTime date, DateTime startTime, DateTime endTime, int minStaff, int maxStaff, int minTherapist, int maxTherapist, string status)
+
+        public ShiftResponseDto(string name, DateTime date, DateTime startTime, DateTime endTime, int minStaff,
+            int maxStaff, int minTherapist, int maxTherapist, string status)
         {
             Name = name;
             Date = date;
@@ -50,9 +48,8 @@ namespace DAL.DTO.ShiftDTO
             Status = status;
         }
 
-        public ShiftResponseDTO()
+        public ShiftResponseDto()
         {
         }
-
     }
 }

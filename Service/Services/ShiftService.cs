@@ -1,22 +1,15 @@
 ﻿using BusinessObject;
 using DAL.DTO;
-using DAL.DTO.Shift;
-using DAL.DTO.ShiftDTO;
-using Repository;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Repository.HandleException;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Repository.Interfaces;
+using Service.Interfaces;
 
-namespace Service
+namespace Service.Services
 {
     public class ShiftService : IShiftService
     {
-
         private readonly IShiftRepository _shiftRepo;
 
         public ShiftService(IShiftRepository shiftRepo)
@@ -24,7 +17,7 @@ namespace Service
             _shiftRepo = shiftRepo;
         }
 
-        public ResponseDTO AddShift(ShiftRequestDTO shiftRequest)
+        public ShiftResponseModel AddShift(ShiftRequestDTO shiftRequest)
         {
             try
             {
@@ -37,10 +30,12 @@ namespace Service
                 {
                     throw new ShiftException(404, "EndTime cannot be before StartTime.");
                 }
+
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
                     throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
                 }
+
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
                     throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
@@ -61,7 +56,7 @@ namespace Service
 
                 _shiftRepo.AddAsync(shift);
 
-                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                ShiftResponseDto responseDTO = new ShiftResponseDto();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -72,23 +67,21 @@ namespace Service
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ResponseDTO(200,"Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
-
+                return new ShiftResponseModel(200, "Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
             }
             catch (ShiftException ex)
             {
-                var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message); 
-                return new ResponseDTO(404,"Cannot Add!", errorData); 
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ShiftResponseModel(404, "Cannot Add!", errorData);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                var errorData = new ErrorResponseDTO(500, "Lỗi hệ thống"); 
-                return new ResponseDTO(500,"Cannot Add!", errorData); 
+                var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
+                return new ShiftResponseModel(500, "Cannot Add!", errorData);
             }
-
         }
 
-        public ResponseDTO DeleteAsync(int id)
+        public ShiftResponseModel DeleteAsync(int id)
         {
             try
             {
@@ -100,12 +93,12 @@ namespace Service
                 }
 
                 _shiftRepo.DeleteAsync(shift);
-                return new ResponseDTO(200, "Delete Successfully!", "This is shift " + shift.Name);
+                return new ShiftResponseModel(200, "Delete Successfully!", "This is shift " + shift.Name);
             }
             catch (ShiftException ex)
             {
-                var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
-                return new ResponseDTO(404, "Cannot find Shift!", errorData);
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ShiftResponseModel(404, "Cannot find Shift!", errorData);
             }
         }
 
@@ -114,7 +107,7 @@ namespace Service
             return _shiftRepo.GetAllShift();
         }
 
-        public ResponseDTO GetShiftById(int id)
+        public ShiftResponseModel GetShiftById(int id)
         {
             try
             {
@@ -125,7 +118,7 @@ namespace Service
                     throw new ShiftException(404, "Shift not available!");
                 }
 
-                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                ShiftResponseDto responseDTO = new ShiftResponseDto();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -136,25 +129,26 @@ namespace Service
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ResponseDTO(200, "Shift " + shift.Name, responseDTO);
+                return new ShiftResponseModel(200, "Shift " + shift.Name, responseDTO);
             }
             catch (ShiftException ex)
             {
-                var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
-                return new ResponseDTO(404, "Cannot find Shift!", errorData);
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ShiftResponseModel(404, "Cannot find Shift!", errorData);
             }
         }
 
-        public ResponseDTO UpdateAsync(int id, ShiftRequestDTO shiftRequest)
+        public ShiftResponseModel UpdateAsync(int id, ShiftRequestDTO shiftRequest)
         {
             try
             {
                 Shift shift = _shiftRepo.GetShiftById(id);
 
-                if(shift == null)
+                if (shift == null)
                 {
                     throw new ShiftException(404, "Shift not available!");
                 }
+
                 if (shiftRequest.Date < DateTime.Today)
                 {
                     throw new ShiftException(404, "Date cannot be before the current date.");
@@ -164,10 +158,12 @@ namespace Service
                 {
                     throw new ShiftException(404, "EndTime cannot be before StartTime.");
                 }
+
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
                     throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
                 }
+
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
                     throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
@@ -185,7 +181,7 @@ namespace Service
 
                 _shiftRepo.UpdateAsync(shift);
 
-                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                ShiftResponseDto responseDTO = new ShiftResponseDto();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -196,18 +192,17 @@ namespace Service
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ResponseDTO(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
-
+                return new ShiftResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
             }
             catch (ShiftException ex)
             {
-                var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
-                return new ResponseDTO(404, "Cannot Update!", errorData);
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ShiftResponseModel(404, "Cannot Update!", errorData);
             }
             catch (Exception ex)
             {
-                var errorData = new ErrorResponseDTO(500, "Lỗi hệ thống");
-                return new ResponseDTO(500, "Cannot Update!", errorData);
+                var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
+                return new ShiftResponseModel(500, "Cannot Update!", errorData);
             }
         }
     }

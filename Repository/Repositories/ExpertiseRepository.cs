@@ -1,21 +1,19 @@
 ﻿using BusinessObject;
 using DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repository.Interfaces;
 
-namespace Repository
+namespace Repository.Repositories
 {
     public class ExpertiseRepository : IExpertiseRepository
     {
         private readonly AppDbContext _context;
+
         public ExpertiseRepository(AppDbContext context)
         {
             _context = context;
         }
+
         public async Task<Expertise> AddAsync(Expertise expertise)
         {
             await _context.Expertises.AddAsync(expertise);
@@ -30,6 +28,7 @@ namespace Repository
             {
                 throw new InvalidOperationException("Expertise not found.");
             }
+
             _context.Expertises.Remove(expertise);
             await _context.SaveChangesAsync();
             return expertise;
@@ -52,10 +51,10 @@ namespace Repository
             {
                 throw new InvalidOperationException("Expertise not found.");
             }
+
             existingExpertise.ExpertiseName = expertise.ExpertiseName;
             await _context.SaveChangesAsync();
             return existingExpertise;
-
         }
     }
 }

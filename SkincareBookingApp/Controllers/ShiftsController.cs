@@ -1,11 +1,9 @@
-﻿using BusinessObject;
-using DAL.DTO.Shift;
-using DAL.DTO.ShiftDTO;
+﻿using DAL.DTOs.RequestModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using Microsoft.AspNetCore.OData.Routing;
 using Service;
+using Service.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SkincareBookingApp.Controllers
@@ -15,7 +13,6 @@ namespace SkincareBookingApp.Controllers
     [ApiExplorerSettings(GroupName = "Shifts")]
     public class ShiftsController : ODataController
     {
-
         private readonly IShiftService _shiftService;
 
         public ShiftsController(IShiftService shiftService)
@@ -34,7 +31,7 @@ namespace SkincareBookingApp.Controllers
 
 
         [HttpPost("add-shift")]
-        public IActionResult AddShift([FromBody]ShiftRequestDTO shiftRequest)
+        public IActionResult AddShift([FromBody] ShiftRequestDTO shiftRequest)
         {
             var response = _shiftService.AddShift(shiftRequest);
 
@@ -47,7 +44,7 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPut("{shiftId}")]
         [SwaggerOperation(Summary = "update shift by id")]
-        public IActionResult UpdateShift([FromRoute]int  shiftId, [FromBody]ShiftRequestDTO shiftRequestDTO) 
+        public IActionResult UpdateShift([FromRoute] int shiftId, [FromBody] ShiftRequestDTO shiftRequestDTO)
         {
             var response = _shiftService.UpdateAsync(shiftId, shiftRequestDTO);
             return StatusCode(response.StatusCode, new
@@ -89,10 +86,9 @@ namespace SkincareBookingApp.Controllers
         public IActionResult GetShiftsByName([FromQuery] string name)
         {
             var shifts = _shiftService.GetAllShift()
-                                      .Where(s => s.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+                .Where(s => s.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
 
             return Ok(shifts);
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DAL.DTO.RequestModel;
+namespace DAL.DTOs.RequestModel;
 
 public class VerifyOtpRequestModel
 {

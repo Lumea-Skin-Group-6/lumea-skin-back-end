@@ -1,13 +1,9 @@
-﻿using BusinessObject;
-using DAL.DTOs.RequestModel;
+﻿using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using DAL.Mappers;
 using Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repository.Interfaces;
+
 
 namespace Service.Services
 {
@@ -28,6 +24,7 @@ namespace Service.Services
             {
                 throw new InvalidOperationException("Service name must be unique");
             }
+
             var result = await _repository.AddAsync(requestModel.ToService());
             return result.ToServiceResponseModel();
         }
@@ -39,6 +36,7 @@ namespace Service.Services
             {
                 throw new KeyNotFoundException("Service not found.");
             }
+
             var result = await _repository.DeleteAsync(id);
             return result.ToServiceResponseModel();
         }
@@ -51,11 +49,12 @@ namespace Service.Services
 
         public async Task<ServiceResponseModel> GetByIdAsync(int id)
         {
-             var service = await _repository.GetByIdAsync(id);
+            var service = await _repository.GetByIdAsync(id);
             if (service == null)
             {
                 throw new KeyNotFoundException("Service not found.");
             }
+
             return service.ToServiceResponseModel();
         }
 
@@ -66,6 +65,7 @@ namespace Service.Services
             {
                 throw new KeyNotFoundException("Service not found.");
             }
+
             var services = await _repository.GetAllAsync();
 
             existingService = services.FirstOrDefault(x => x.Name == requestModel.Name && x.Id != id);
@@ -73,6 +73,7 @@ namespace Service.Services
             {
                 throw new InvalidOperationException("Service name must be unique");
             }
+
             var result = await _repository.UpdateAsync(requestModel.ToService(id));
             return result.ToServiceResponseModel();
         }
