@@ -1,4 +1,4 @@
-﻿namespace DAL.DTO.ResponseModel;
+﻿namespace DAL.DTOs.ResponseModel;
 
 public class RoleInitializeResponse
 {

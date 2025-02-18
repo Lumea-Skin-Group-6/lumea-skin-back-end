@@ -1,9 +1,10 @@
 ﻿using BusinessObject;
 using DAL.DTO;
-using DAL.DTO.Shift;
-using DAL.DTO.ShiftDTO;
+using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Repository.HandleException;
 using Repository.Interfaces;
+using Service.Interfaces;
 
 namespace Service.Services
 {
@@ -55,7 +56,7 @@ namespace Service.Services
 
                 _shiftRepo.AddAsync(shift);
 
-                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                ShiftResponseDto responseDTO = new ShiftResponseDto();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -117,7 +118,7 @@ namespace Service.Services
                     throw new ShiftException(404, "Shift not available!");
                 }
 
-                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                ShiftResponseDto responseDTO = new ShiftResponseDto();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -180,7 +181,7 @@ namespace Service.Services
 
                 _shiftRepo.UpdateAsync(shift);
 
-                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
+                ShiftResponseDto responseDTO = new ShiftResponseDto();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;

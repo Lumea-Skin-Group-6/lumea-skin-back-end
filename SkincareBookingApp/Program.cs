@@ -1,7 +1,6 @@
 using DAL.DBContext;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
-using Repository;
 using Service;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,7 +12,6 @@ using Repository.Repositories;
 using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
-using DAL.DTO.ShiftDTO;
 using DAL.DTOs.ResponseModel;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +24,7 @@ builder.Services.AddControllers().AddOData(options =>
         .Expand().Count().SetMaxTop(null)
         .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
 
-var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
+var shiftEntity = modelBuilder.EntitySet<ShiftResponseDto>("Shifts").EntityType;
 shiftEntity.HasKey(a => a.Name);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
