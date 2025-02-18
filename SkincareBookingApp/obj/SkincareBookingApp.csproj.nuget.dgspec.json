@@ -361,6 +361,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj"
+              },
               "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj": {
                 "projectPath": "C:\\Users\\huvo2\\source\\repos\\Service\\Service.csproj"
               }
@@ -390,6 +393,10 @@
               "target": "Package",
               "version": "[8.0.13, )"
             },
+            "Microsoft.AspNetCore.OData": {
+              "target": "Package",
+              "version": "[8.2.7, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -399,6 +406,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[7.2.0, )"
             }
           },
           "imports": [

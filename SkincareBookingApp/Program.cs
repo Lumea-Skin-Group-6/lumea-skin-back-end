@@ -1,5 +1,10 @@
-using System.Text;
+using BusinessObject;
 using DAL.DBContext;
+using Microsoft.AspNetCore.OData;
+using Microsoft.OData.ModelBuilder;
+using Repository;
+using Service;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -9,21 +14,55 @@ using Repository.Repositories;
 using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
+using DAL.DTO.ShiftDTO;
+using System.Text.Json.Serialization;
+using DAL.DTOs.ResponseModel;
 
 var builder = WebApplication.CreateBuilder(args);
+var modelBuilder = new ODataConventionModelBuilder();
+modelBuilder.EntitySet<ExpertiseResponseModel>("Expertises");
+modelBuilder.EntitySet<ServiceResponseModel>("Services");
+
+builder.Services.AddControllers().AddOData(options =>
+    options.Select().Filter().OrderBy()
+    .Expand().Count().SetMaxTop(null)
+    .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
+
+var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
+shiftEntity.HasKey(a => a.Name);
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations(); 
+});
+
 
 //Configure Scoped
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
+builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
+builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
+builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
+
+builder.Services.AddScoped<IShiftService, ShiftService>();
+
+
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -46,6 +85,10 @@ builder.Services.AddControllers()
 
             return new BadRequestObjectResult(response);
         };
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
     });
 //End
 
@@ -75,7 +118,7 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.AddCors();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skincare Booking API", Version = "v1" });
@@ -110,9 +153,11 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
+
 var app = builder.Build();
 app.UseExceptionHandler(_ => { });
 
+app.UseRouting();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -125,5 +170,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors(options =>
+     options.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 app.Run();
+
