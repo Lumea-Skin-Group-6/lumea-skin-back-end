@@ -3,6 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\servicetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\controllers\\tagcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:controllers\\tagcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -12,10 +25,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\tagservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\interfaces\\itagservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -70,138 +79,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 14,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TagController.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\TagController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TagController.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\TagController.cs",
-              "RelativeToolTip": "Controllers\\TagController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:41:39.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "QuestionController.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\QuestionController.cs",
-              "RelativeDocumentMoniker": "Controllers\\QuestionController.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\QuestionController.cs",
-              "RelativeToolTip": "Controllers\\QuestionController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAswCUAAABoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T12:18:45.846Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TagService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\TagService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Services\\TagService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\TagService.cs",
-              "RelativeToolTip": "..\\Service\\Services\\TagService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:41:17.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ITagService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\ITagService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Interfaces\\ITagService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\ITagService.cs",
-              "RelativeToolTip": "..\\Service\\Interfaces\\ITagService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:41:00.006Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TagRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\TagRepository.cs",
-              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\TagRepository.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\TagRepository.cs",
-              "RelativeToolTip": "..\\Repository\\Repositories\\TagRepository.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAkwDcAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:38:19.324Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ITagRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Interfaces\\ITagRepository.cs",
-              "RelativeDocumentMoniker": "..\\Repository\\Interfaces\\ITagRepository.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Interfaces\\ITagRepository.cs",
-              "RelativeToolTip": "..\\Repository\\Interfaces\\ITagRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:37:50.96Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAkwBQAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T11:34:56.573Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TagResponse.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:34:26.258Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TagUpdateRequest.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:33:42.204Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TagCreateRequest.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T13:30:26.558Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -260,7 +139,164 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Service.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Service.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Service.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Service.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAswCoAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T14:23:06.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceType.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\ServiceType.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\ServiceType.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\ServiceType.cs",
+              "RelativeToolTip": "..\\BusinessObject\\ServiceType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T14:23:02.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Shift.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Shift.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Shift.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Shift.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Shift.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T14:23:02.104Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TagController.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\TagController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TagController.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\TagController.cs",
+              "RelativeToolTip": "Controllers\\TagController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:41:39.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuestionController.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "Controllers\\QuestionController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAswCUAAABoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T12:18:45.846Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "TagService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\TagService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Services\\TagService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\TagService.cs",
+              "RelativeToolTip": "..\\Service\\Services\\TagService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:41:17.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ITagService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\ITagService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Interfaces\\ITagService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\ITagService.cs",
+              "RelativeToolTip": "..\\Service\\Interfaces\\ITagService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:41:00.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TagRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\TagRepository.cs",
+              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\TagRepository.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\TagRepository.cs",
+              "RelativeToolTip": "..\\Repository\\Repositories\\TagRepository.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAkwDcAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:38:19.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ITagRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Interfaces\\ITagRepository.cs",
+              "RelativeDocumentMoniker": "..\\Repository\\Interfaces\\ITagRepository.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Interfaces\\ITagRepository.cs",
+              "RelativeToolTip": "..\\Repository\\Interfaces\\ITagRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:37:50.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T11:34:56.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TagResponse.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
+              "RelativeToolTip": "..\\DAL\\DTOs\\ResponseModel\\TagResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:34:26.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TagUpdateRequest.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
+              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\TagUpdateRequest.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:33:42.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TagCreateRequest.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
+              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\TagCreateRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T13:30:26.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Tag.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Tag.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\Tag.cs",
@@ -268,12 +304,11 @@
               "RelativeToolTip": "..\\BusinessObject\\Tag.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T11:56:51.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-16T11:56:51.754Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "Question.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Question.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\Question.cs",
@@ -281,12 +316,11 @@
               "RelativeToolTip": "..\\BusinessObject\\Question.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T06:25:43.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T06:25:43.739Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "IQuestionService.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\IQuestionService.cs",
               "RelativeDocumentMoniker": "..\\Service\\Interfaces\\IQuestionService.cs",
@@ -298,7 +332,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "QuestionRepository.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\QuestionRepository.cs",
               "RelativeDocumentMoniker": "..\\Repository\\Repositories\\QuestionRepository.cs",
@@ -310,7 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "QuestionCreateRequest.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\QuestionCreateRequest.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\QuestionCreateRequest.cs",
@@ -318,12 +352,11 @@
               "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\QuestionCreateRequest.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAAA0AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T08:00:43.578Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-16T08:00:43.578Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "QuestionService.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\QuestionService.cs",
               "RelativeDocumentMoniker": "..\\Service\\Services\\QuestionService.cs",
@@ -335,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "IQuestionRepository.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Interfaces\\IQuestionRepository.cs",
               "RelativeDocumentMoniker": "..\\Repository\\Interfaces\\IQuestionRepository.cs",
@@ -347,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "AutoMapper.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\MapAndPaginate\\AutoMapper.cs",
               "RelativeDocumentMoniker": "..\\DAL\\MapAndPaginate\\AutoMapper.cs",
@@ -359,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "QuestionUpdateRequest.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\QuestionUpdateRequest.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\QuestionUpdateRequest.cs",
@@ -367,8 +400,7 @@
               "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\QuestionUpdateRequest.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAAAwAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T08:04:48.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-16T08:04:48.482Z"
             }
           ]
         },
