@@ -59,6 +59,10 @@ builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 
 builder.Services.AddScoped<IShiftService, ShiftService>();
 
+builder.Services.AddScoped<ISlotRepository, SlotRepository>();
+builder.Services.AddScoped<ISlotService, SlotService>();
+
+
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
 
