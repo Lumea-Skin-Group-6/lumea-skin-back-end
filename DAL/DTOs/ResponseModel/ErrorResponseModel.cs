@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DAL.DTO
 {
-    public class ErrorResponseDTO
+    public class ErrorResponseModel
     {
         public int ErrorCode { get; set; }
         public string Message { get; set; }
 
-        public ErrorResponseDTO(int errorCode, string message)
+        public ErrorResponseModel(int errorCode, string message)
         {
             ErrorCode = errorCode;
             Message = message;

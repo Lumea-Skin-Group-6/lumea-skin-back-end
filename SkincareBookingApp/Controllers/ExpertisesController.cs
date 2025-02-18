@@ -1,7 +1,4 @@
-﻿using BusinessObject;
-using DAL.DTOs.RequestModel;
-using DAL.DTOs.ResponseModel;
-using Microsoft.AspNetCore.Http;
+﻿using DAL.DTOs.RequestModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -18,6 +15,7 @@ namespace SkincareBookingApp.Controllers
     public class ExpertisesController : ODataController
     {
         private readonly IExpertiseService _expertiseService;
+
         public ExpertisesController(IExpertiseService expertiseService)
         {
             _expertiseService = expertiseService;
@@ -30,7 +28,7 @@ namespace SkincareBookingApp.Controllers
         {
             var expertises = await _expertiseService.GetAllAsync();
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertises successfully",
-            expertises);
+                expertises);
         }
 
         [EnableQuery]
@@ -42,8 +40,9 @@ namespace SkincareBookingApp.Controllers
             {
                 var expertise = await _expertiseService.GetByIdAsync(expertiseId);
                 return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get expertise successfully",
-                expertise);
-            } catch (KeyNotFoundException ex)
+                    expertise);
+            }
+            catch (KeyNotFoundException ex)
             {
                 return NotFound(new { message = ex.Message });
             }
@@ -57,8 +56,9 @@ namespace SkincareBookingApp.Controllers
             {
                 var expertise = await _expertiseService.AddAsync(requestModel);
                 return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.Created, "Add expertise successfully",
-                expertise);
-            } catch (InvalidOperationException ex)
+                    expertise);
+            }
+            catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
@@ -66,17 +66,20 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPut("{expertiseId:int}")]
         [SwaggerOperation(Summary = "Update an expertise")]
-        public async Task<IActionResult> Update([FromBody] UpdateExpertiseRequestModel requestModel, [FromRoute] int expertiseId)
+        public async Task<IActionResult> Update([FromBody] UpdateExpertiseRequestModel requestModel,
+            [FromRoute] int expertiseId)
         {
             try
             {
                 var expertise = await _expertiseService.UpdateAsync(expertiseId, requestModel);
                 return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Update expertise successfully",
-                expertise);
-            } catch (InvalidOperationException ex)
+                    expertise);
+            }
+            catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });
-            } catch (KeyNotFoundException ex)
+            }
+            catch (KeyNotFoundException ex)
             {
                 return NotFound(new { message = ex.Message });
             }
@@ -90,11 +93,13 @@ namespace SkincareBookingApp.Controllers
             {
                 var expertise = await _expertiseService.DeleteAsync(expertiseId);
                 return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Delete expertise successfully",
-                expertise);
-            } catch (InvalidOperationException ex)
+                    expertise);
+            }
+            catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });
-            } catch (KeyNotFoundException ex)
+            }
+            catch (KeyNotFoundException ex)
             {
                 return NotFound(new { message = ex.Message });
             }

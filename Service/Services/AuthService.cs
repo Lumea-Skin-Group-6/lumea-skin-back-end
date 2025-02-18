@@ -3,7 +3,6 @@ using System.Text;
 using BusinessObject;
 using DAL.DTO.RequestModel;
 using DAL.DTOs.ResponseModel;
-using Microsoft.Extensions.Configuration;
 using Repository.Interfaces;
 using Service.Interfaces;
 

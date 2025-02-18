@@ -1,41 +1,40 @@
 ﻿using BusinessObject;
 using DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repository.Interfaces;
 
-namespace Repository
+namespace Repository.Repositories
 {
     public class ServiceRepository : IServiceRepository
     {
         private readonly AppDbContext _context;
+
         public ServiceRepository(AppDbContext context)
         {
             _context = context;
         }
-        public async Task<Service> AddAsync(Service service)
+
+        public async Task<ServiceModel> AddAsync(ServiceModel service)
         {
             await _context.Services.AddAsync(service);
             await _context.SaveChangesAsync();
             return service;
         }
 
-        public async Task<Service> DeleteAsync(int id)
+        public async Task<ServiceModel> DeleteAsync(int id)
         {
-            Service? service = await _context.Services.FirstOrDefaultAsync(x => x.Id == id);
+            ServiceModel? service = await _context.Services.FirstOrDefaultAsync(x => x.Id == id);
             if (service == null)
             {
                 throw new InvalidOperationException("Service not found.");
             }
+
             _context.Services.Remove(service);
             await _context.SaveChangesAsync();
             return service;
         }
 
-        public async Task<IEnumerable<Service>> GetAllAsync()
+        public async Task<IEnumerable<ServiceModel>> GetAllAsync()
         {
             return await _context.Services
                 .Include(s => s.ServiceTags)
@@ -45,7 +44,7 @@ namespace Repository
                 .ToListAsync();
         }
 
-        public async Task<Service?> GetByIdAsync(int id)
+        public async Task<ServiceModel?> GetByIdAsync(int id)
         {
             return await _context.Services
                 .Include(s => s.ServiceTags)
@@ -55,13 +54,14 @@ namespace Repository
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Service> UpdateAsync(Service service)
+        public async Task<ServiceModel> UpdateAsync(ServiceModel service)
         {
-            Service? existingService = await _context.Services.FirstOrDefaultAsync(x => x.Id == service.Id);
+            ServiceModel? existingService = await _context.Services.FirstOrDefaultAsync(x => x.Id == service.Id);
             if (existingService == null)
             {
                 throw new InvalidOperationException("Service not found.");
             }
+
             existingService.Price = service.Price;
             existingService.ExperienceRequired = service.ExperienceRequired;
             existingService.Name = service.Name;

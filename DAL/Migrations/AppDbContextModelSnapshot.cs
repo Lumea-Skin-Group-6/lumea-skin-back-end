@@ -96,7 +96,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("accounts");
+                    b.ToTable("accounts", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>
@@ -134,7 +134,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("appointments");
+                    b.ToTable("appointments", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetail", b =>
@@ -206,7 +206,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("TherapistId");
 
-                    b.ToTable("appointment_details");
+                    b.ToTable("appointment_details", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetailDate", b =>
@@ -233,7 +233,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("appointment_detail_id");
 
-                    b.ToTable("appointment_detail_dates", t =>
+                    b.ToTable("appointment_detail_dates", null, t =>
                         {
                             t.Property("appointment_detail_id")
                                 .HasColumnName("appointment_detail_id1");
@@ -283,7 +283,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("daily_reports");
+                    b.ToTable("daily_reports", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Employee", b =>
@@ -308,7 +308,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("employees");
+                    b.ToTable("employees", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Expertise", b =>
@@ -327,7 +327,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("expertises");
+                    b.ToTable("expertises", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Question", b =>
@@ -362,7 +362,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("questions");
+                    b.ToTable("questions", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Role", b =>
@@ -381,7 +381,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("roles");
+                    b.ToTable("roles", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Service", b =>
@@ -439,7 +439,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("services");
+                    b.ToTable("services", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.ServiceExpertise", b =>
@@ -465,7 +465,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("service_expertises");
+                    b.ToTable("service_expertises", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.ServiceTag", b =>
@@ -491,7 +491,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("service_tags");
+                    b.ToTable("service_tags", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Shift", b =>
@@ -543,7 +543,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("shifts");
+                    b.ToTable("shifts", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Slot", b =>
@@ -575,7 +575,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("employeeId");
 
-                    b.ToTable("slot");
+                    b.ToTable("slot", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Tag", b =>
@@ -600,7 +600,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("questionId");
 
-                    b.ToTable("tag");
+                    b.ToTable("tag", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
@@ -632,7 +632,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("therapistId");
 
-                    b.ToTable("therapist_expertise");
+                    b.ToTable("therapist_expertise", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>
@@ -661,7 +661,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("therapistId");
 
-                    b.ToTable("therapist_shift");
+                    b.ToTable("therapist_shift", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>

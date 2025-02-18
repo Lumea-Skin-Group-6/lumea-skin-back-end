@@ -1,6 +1,4 @@
-﻿using BusinessObject;
-using DAL.DTO;
-using Repository.Interfaces;
+﻿using Repository.Interfaces;
 using Service.Interfaces;
 
 namespace Service.Services;
