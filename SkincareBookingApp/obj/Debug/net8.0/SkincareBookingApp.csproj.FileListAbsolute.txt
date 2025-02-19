@@ -3,7 +3,3 @@ C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingA
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.CoreCompileInputs.cache
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.sourcelink.json
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.dll
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\refint\SkincareBookingApp.dll
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.pdb
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cs
