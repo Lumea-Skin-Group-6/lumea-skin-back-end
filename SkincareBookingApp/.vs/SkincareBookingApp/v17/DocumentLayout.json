@@ -3,10 +3,13 @@
   "WorkspaceRootPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\appointmentdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\serviceexpertise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\appointmentdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -25,7 +28,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 48,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -81,7 +84,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ServiceExpertise.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\ServiceExpertise.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\ServiceExpertise.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\ServiceExpertise.cs",
+              "RelativeToolTip": "..\\BusinessObject\\ServiceExpertise.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T07:23:58.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AppointmentDetail.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\AppointmentDetail.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\AppointmentDetail.cs",
@@ -94,20 +110,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Account.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Account.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\Account.cs",
               "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Account.cs",
               "RelativeToolTip": "..\\BusinessObject\\Account.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAA2wAAAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-19T07:17:54.837Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Service.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Service.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\Service.cs",
@@ -120,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Shift.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Shift.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\Shift.cs",
@@ -132,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Tag.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Tag.cs",
               "RelativeDocumentMoniker": "..\\BusinessObject\\Tag.cs",

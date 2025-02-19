@@ -1,6 +1,0 @@
-C:\Users\huvo2\source\repos\Service\obj\Debug\net8.0\Service.csproj.AssemblyReference.cache
-C:\Users\huvo2\source\repos\Service\obj\Debug\net8.0\Service.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\huvo2\source\repos\Service\obj\Debug\net8.0\Service.AssemblyInfoInputs.cache
-C:\Users\huvo2\source\repos\Service\obj\Debug\net8.0\Service.AssemblyInfo.cs
-C:\Users\huvo2\source\repos\Service\obj\Debug\net8.0\Service.csproj.CoreCompileInputs.cache
-C:\Users\huvo2\source\repos\Service\obj\Debug\net8.0\Service.sourcelink.json
