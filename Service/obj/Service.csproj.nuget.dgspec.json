@@ -278,6 +278,12 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\BusinessObject.csproj"
+              },
+              "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\huvo2\\source\\repos\\DAL\\DAL.csproj"
+              },
               "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj": {
                 "projectPath": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repository.csproj"
               }
@@ -298,6 +304,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.24, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

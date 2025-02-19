@@ -22,7 +22,7 @@ namespace BusinessObject
         [Column("expertise_id")]
         public int ExpertiseId { get; set; }
 
-        public Service Service { get; set; }
+        public ServiceModel Service { get; set; }
         public Expertise Expertise { get; set; }
     }
 

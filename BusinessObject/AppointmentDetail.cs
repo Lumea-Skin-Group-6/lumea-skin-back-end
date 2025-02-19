@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessObject
 {
@@ -41,7 +36,7 @@ namespace BusinessObject
         [Column("end_time")] public DateTime EndTime { get; set; }
 
         public Appointment Appointment { get; set; }
-        public Service Service { get; set; }
+        public ServiceModel Service { get; set; }
         public Employee Therapist { get; set; }
         public ICollection<AppointmentDetailDate> AppointmentDetailDates { get; set; }
     }
