@@ -23,8 +23,8 @@ RUN dotnet restore
 # Copy the full source code
 COPY . .
 
-# Build the project (No custom output directory)
-RUN dotnet build --no-restore -c $BUILD_CONFIGURATION
+# Build the project (Disable AppHost to prevent file conflicts)
+RUN dotnet build --no-restore -c $BUILD_CONFIGURATION /p:UseAppHost=false
 
 # Publish the application
 RUN dotnet publish --no-restore -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
