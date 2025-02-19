@@ -30,20 +30,20 @@ namespace Service
             {
                 if (shiftRequest.Date < DateTime.Today)
                 {
-                    throw new ShiftException(404, "Date cannot be before the current date.");
+                    throw new Repository.HandleException.ErrorException(404, "Date cannot be before the current date.");
                 }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
-                    throw new ShiftException(404, "EndTime cannot be before StartTime.");
+                    throw new Repository.HandleException.ErrorException(404, "EndTime cannot be before StartTime.");
                 }
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
-                    throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
+                    throw new Repository.HandleException.ErrorException(404, "MaxStaff cannot be less than MinStaff.");
                 }
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
-                    throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
+                    throw new Repository.HandleException.ErrorException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
                 Shift shift = new Shift
@@ -75,7 +75,7 @@ namespace Service
                 return new ResponseDTO(200,"Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
 
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message); 
                 return new ResponseDTO(404,"Cannot Add!", errorData); 
@@ -96,13 +96,13 @@ namespace Service
 
                 if (shift == null)
                 {
-                    throw new ShiftException(404, "Shift not available!");
+                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
                 }
 
                 _shiftRepo.DeleteAsync(shift);
                 return new ResponseDTO(200, "Delete Successfully!", "This is shift " + shift.Name);
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
                 return new ResponseDTO(404, "Cannot find Shift!", errorData);
@@ -122,7 +122,7 @@ namespace Service
 
                 if (shift == null)
                 {
-                    throw new ShiftException(404, "Shift not available!");
+                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
                 }
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
@@ -138,7 +138,7 @@ namespace Service
 
                 return new ResponseDTO(200, "Shift " + shift.Name, responseDTO);
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
                 return new ResponseDTO(404, "Cannot find Shift!", errorData);
@@ -153,24 +153,24 @@ namespace Service
 
                 if(shift == null)
                 {
-                    throw new ShiftException(404, "Shift not available!");
+                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
                 }
                 if (shiftRequest.Date < DateTime.Today)
                 {
-                    throw new ShiftException(404, "Date cannot be before the current date.");
+                    throw new Repository.HandleException.ErrorException(404, "Date cannot be before the current date.");
                 }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
-                    throw new ShiftException(404, "EndTime cannot be before StartTime.");
+                    throw new Repository.HandleException.ErrorException(404, "EndTime cannot be before StartTime.");
                 }
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
-                    throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
+                    throw new Repository.HandleException.ErrorException(404, "MaxStaff cannot be less than MinStaff.");
                 }
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
-                    throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
+                    throw new Repository.HandleException.ErrorException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
                 shift.Name = shiftRequest.Name;
@@ -199,7 +199,7 @@ namespace Service
                 return new ResponseDTO(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
 
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseDTO(ex.ErrorCode, ex.Message);
                 return new ResponseDTO(404, "Cannot Update!", errorData);
