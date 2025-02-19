@@ -139,6 +139,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[14.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.12, )"
@@ -258,6 +262,12 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj"
+              },
+              "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj"
+              },
               "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj": {
                 "projectPath": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj"
               }
@@ -278,6 +288,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.24, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
