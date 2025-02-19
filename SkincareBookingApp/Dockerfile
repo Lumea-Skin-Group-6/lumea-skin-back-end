@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 ENV BUILD_CONFIGURATION=Release
 
-# Copy solution and project files (single step to optimize restore caching)
+# Copy solution and project files
 COPY SkincareBookingApp/*.csproj SkincareBookingApp/
 COPY BusinessObject/*.csproj BusinessObject/
 COPY Service/*.csproj Service/
@@ -23,8 +23,8 @@ RUN dotnet restore
 # Copy the full source code
 COPY . .
 
-# Build the project
-RUN dotnet build --no-restore -c $BUILD_CONFIGURATION -o /app/build
+# Build the project (No custom output directory)
+RUN dotnet build --no-restore -c $BUILD_CONFIGURATION
 
 # Publish the application
 RUN dotnet publish --no-restore -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
