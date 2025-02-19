@@ -24,7 +24,7 @@ builder.Services.AddControllers().AddOData(options =>
         .Expand().Count().SetMaxTop(null)
         .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
 
-var shiftEntity = modelBuilder.EntitySet<ShiftResponseDto>("Shifts").EntityType;
+var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
 shiftEntity.HasKey(a => a.Name);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -50,6 +50,10 @@ builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 
 builder.Services.AddScoped<IShiftService, ShiftService>();
+
+builder.Services.AddScoped<ISlotRepository, SlotRepository>();
+builder.Services.AddScoped<ISlotService, SlotService>();
+
 
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));

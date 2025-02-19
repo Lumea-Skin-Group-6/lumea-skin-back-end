@@ -23,22 +23,22 @@ namespace Service.Services
             {
                 if (shiftRequest.Date < DateTime.Today)
                 {
-                    throw new ShiftException(404, "Date cannot be before the current date.");
+                    throw new ErrorException(404, "Date cannot be before the current date.");
                 }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
-                    throw new ShiftException(404, "EndTime cannot be before StartTime.");
+                    throw new ErrorException(404, "EndTime cannot be before StartTime.");
                 }
 
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
-                    throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
+                    throw new ErrorException(404, "MaxStaff cannot be less than MinStaff.");
                 }
 
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
-                    throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
+                    throw new ErrorException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
                 Shift shift = new Shift
@@ -56,7 +56,7 @@ namespace Service.Services
 
                 _shiftRepo.AddAsync(shift);
 
-                ShiftResponseDto responseDTO = new ShiftResponseDto();
+                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -69,7 +69,7 @@ namespace Service.Services
 
                 return new ShiftResponseModel(200, "Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ShiftResponseModel(404, "Cannot Add!", errorData);
@@ -89,13 +89,13 @@ namespace Service.Services
 
                 if (shift == null)
                 {
-                    throw new ShiftException(404, "Shift not available!");
+                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
                 }
 
                 _shiftRepo.DeleteAsync(shift);
                 return new ShiftResponseModel(200, "Delete Successfully!", "This is shift " + shift.Name);
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ShiftResponseModel(404, "Cannot find Shift!", errorData);
@@ -115,10 +115,10 @@ namespace Service.Services
 
                 if (shift == null)
                 {
-                    throw new ShiftException(404, "Shift not available!");
+                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
                 }
 
-                ShiftResponseDto responseDTO = new ShiftResponseDto();
+                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -131,7 +131,7 @@ namespace Service.Services
 
                 return new ShiftResponseModel(200, "Shift " + shift.Name, responseDTO);
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ShiftResponseModel(404, "Cannot find Shift!", errorData);
@@ -146,27 +146,27 @@ namespace Service.Services
 
                 if (shift == null)
                 {
-                    throw new ShiftException(404, "Shift not available!");
+                    throw new ErrorException(404, "Shift not available!");
                 }
 
                 if (shiftRequest.Date < DateTime.Today)
                 {
-                    throw new ShiftException(404, "Date cannot be before the current date.");
+                    throw new ErrorException(404, "Date cannot be before the current date.");
                 }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
-                    throw new ShiftException(404, "EndTime cannot be before StartTime.");
+                    throw new ErrorException(404, "EndTime cannot be before StartTime.");
                 }
 
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
-                    throw new ShiftException(404, "MaxStaff cannot be less than MinStaff.");
+                    throw new ErrorException(404, "MaxStaff cannot be less than MinStaff.");
                 }
 
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
-                    throw new ShiftException(404, "MaxTherapist cannot be less than MinTherapist.");
+                    throw new ErrorException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
                 shift.Name = shiftRequest.Name;
@@ -181,7 +181,7 @@ namespace Service.Services
 
                 _shiftRepo.UpdateAsync(shift);
 
-                ShiftResponseDto responseDTO = new ShiftResponseDto();
+                ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
                 responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
@@ -194,7 +194,7 @@ namespace Service.Services
 
                 return new ShiftResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
             }
-            catch (ShiftException ex)
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ShiftResponseModel(404, "Cannot Update!", errorData);

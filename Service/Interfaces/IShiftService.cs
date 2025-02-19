@@ -1,6 +1,9 @@
-﻿using BusinessObject;
+﻿
+
+using BusinessObject;
 using DAL.DTO;
 using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 
 namespace Service.Interfaces
 {
