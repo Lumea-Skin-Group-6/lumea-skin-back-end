@@ -1,8 +1,6 @@
-using BusinessObject;
 using DAL.DBContext;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
-using Repository;
 using Service;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,8 +12,6 @@ using Repository.Repositories;
 using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
-using DAL.DTO.ShiftDTO;
-using System.Text.Json.Serialization;
 using DAL.DTOs.ResponseModel;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,18 +21,15 @@ modelBuilder.EntitySet<ServiceResponseModel>("Services");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()
-    .Expand().Count().SetMaxTop(null)
-    .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
+        .Expand().Count().SetMaxTop(null)
+        .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
 
 var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
 shiftEntity.HasKey(a => a.Name);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddSwaggerGen(c =>
-{
-    c.EnableAnnotations(); 
-});
+builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
 
 
 //Configure Scoped
@@ -53,7 +46,6 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-
 builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 
@@ -92,7 +84,8 @@ builder.Services.AddControllers()
     })
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.DefaultIgnoreCondition =
+            System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
     });
 //End
 
@@ -157,7 +150,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-
 var app = builder.Build();
 app.UseExceptionHandler(_ => { });
 
@@ -175,8 +167,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors(options =>
-     options.WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+    options.WithOrigins("http://localhost:5173")
+        .AllowAnyHeader()
+        .AllowAnyMethod());
 app.Run();
-

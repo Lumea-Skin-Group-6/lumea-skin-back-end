@@ -1,23 +1,18 @@
 ﻿using BusinessObject;
 using DAL.DBContext;
-using DAL.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repository.Interfaces;
 
-namespace Repository
+namespace Repository.Repositories
 {
     public class ShiftRepository : IShiftRepository
     {
-
         private readonly AppDbContext _context;
 
         public ShiftRepository(AppDbContext context)
         {
             _context = context;
         }
+
         public void AddAsync(Shift shift)
         {
             _context.Shifts.Add(shift);
@@ -26,10 +21,8 @@ namespace Repository
 
         public void DeleteAsync(Shift shift)
         {
-            
-                _context.Shifts.Remove(shift);
-                _context.SaveChangesAsync();
-            
+            _context.Shifts.Remove(shift);
+            _context.SaveChangesAsync();
         }
 
         public List<Shift> GetAllShift()
@@ -43,9 +36,9 @@ namespace Repository
         }
 
         public void UpdateAsync(Shift shift)
-        {      
-               _context.Shifts.Update(shift);
-                _context.SaveChangesAsync();         
+        {
+            _context.Shifts.Update(shift);
+            _context.SaveChangesAsync();
         }
     }
 }

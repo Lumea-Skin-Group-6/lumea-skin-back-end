@@ -6,11 +6,7 @@ using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Repository.Repositories
 {
@@ -18,6 +14,7 @@ namespace Repository.Repositories
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
+
         public QuestionRepository(AppDbContext context, IMapper mapper)
         {
             _context = context;
@@ -27,14 +24,15 @@ namespace Repository.Repositories
         public async Task<IEnumerable<QuestionResponse>> GetAllQuestionAsync()
         {
             return await _context.Questions
-                         .ProjectTo<QuestionResponse>(_mapper.ConfigurationProvider)
-                         .ToListAsync();
+                .ProjectTo<QuestionResponse>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
 
-        public async Task<QuestionResponse?> GetQuestionByIdAsync(int id) { 
+        public async Task<QuestionResponse?> GetQuestionByIdAsync(int id)
+        {
             return await _context.Questions
-                        .ProjectTo<QuestionResponse>(_mapper.ConfigurationProvider)
-                        .FirstOrDefaultAsync(x => x.Id == id);
+                .ProjectTo<QuestionResponse>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<QuestionResponse?> AddQuestionAsync(QuestionCreateRequest question)
@@ -59,7 +57,6 @@ namespace Repository.Repositories
 
             await _context.SaveChangesAsync();
             return _mapper.Map<QuestionResponse>(existingQuestion);
-
         }
 
         public async Task DeleteQuestionAsync(int id)
@@ -69,9 +66,9 @@ namespace Repository.Repositories
             {
                 throw new InvalidOperationException("Question not found.");
             }
+
             _context.Questions.Remove(existingQuestion);
             await _context.SaveChangesAsync();
         }
     }
 }
-

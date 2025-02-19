@@ -1,18 +1,13 @@
 ﻿using BusinessObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Repository
+namespace Repository.Interfaces
 {
     public interface IServiceRepository
     {
-        Task<IEnumerable<Service>> GetAllAsync();
-        Task<Service?> GetByIdAsync(int id);
-        Task<Service> AddAsync(Service service);
-        Task<Service> UpdateAsync(Service service);
-        Task<Service> DeleteAsync(int id);
+        Task<IEnumerable<ServiceModel>> GetAllAsync();
+        Task<ServiceModel?> GetByIdAsync(int id);
+        Task<ServiceModel> AddAsync(ServiceModel service);
+        Task<ServiceModel> UpdateAsync(ServiceModel service);
+        Task<ServiceModel> DeleteAsync(int id);
     }
 }

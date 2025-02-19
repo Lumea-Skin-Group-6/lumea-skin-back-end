@@ -3,21 +3,20 @@ using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using DAL.Mappers;
 using Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repository.Interfaces;
 
-namespace Service
+
+namespace Service.Services
 {
     public class ExpertiseService : IExpertiseService
     {
         private readonly IExpertiseRepository _repository;
+
         public ExpertiseService(IExpertiseRepository repository)
         {
             _repository = repository;
         }
+
         public async Task<ExpertiseResponseModel> AddAsync(AddExpertiseRequestModel requestModel)
         {
             var expertises = await _repository.GetAllAsync();
@@ -26,6 +25,7 @@ namespace Service
             {
                 throw new InvalidOperationException("Expertise name must be unique");
             }
+
             var result = await _repository.AddAsync(requestModel.ToExpertise());
             return result.ToExpertiseResponseModel();
         }
@@ -37,6 +37,7 @@ namespace Service
             {
                 throw new KeyNotFoundException("Expertise not found.");
             }
+
             var result = await _repository.DeleteAsync(id);
             return result.ToExpertiseResponseModel();
         }
@@ -54,6 +55,7 @@ namespace Service
             {
                 throw new KeyNotFoundException("Expertise not found.");
             }
+
             return expertise.ToExpertiseResponseModel();
         }
 
@@ -64,13 +66,16 @@ namespace Service
             {
                 throw new KeyNotFoundException("Expertise not found.");
             }
+
             var expertises = await _repository.GetAllAsync();
 
-            existingExpertise = expertises.FirstOrDefault(x => x.ExpertiseName == requestModel.ExpertiseName && x.Id != id);
+            existingExpertise =
+                expertises.FirstOrDefault(x => x.ExpertiseName == requestModel.ExpertiseName && x.Id != id);
             if (existingExpertise != null)
             {
                 throw new InvalidOperationException("Expertise name must be unique");
             }
+
             var result = await _repository.UpdateAsync(requestModel.ToExpertise(id));
             return result.ToExpertiseResponseModel();
         }

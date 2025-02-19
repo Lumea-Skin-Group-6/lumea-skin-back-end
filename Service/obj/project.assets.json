@@ -3337,6 +3337,8 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BCrypt.Net-Next >= 4.0.3",
+      "BusinessObject >= 1.0.0",
+      "DAL >= 1.0.0",
       "Repository >= 1.0.0",
       "StackExchange.Redis >= 2.8.24"
     ]
@@ -3374,6 +3376,12 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\VanHieu\\Desktop\\Semester8\\PRN231\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj": {
+              "projectPath": "C:\\Users\\VanHieu\\Desktop\\Semester8\\PRN231\\lumea-skin-back-end\\BusinessObject\\BusinessObject.csproj"
+            },
+            "C:\\Users\\VanHieu\\Desktop\\Semester8\\PRN231\\lumea-skin-back-end\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\VanHieu\\Desktop\\Semester8\\PRN231\\lumea-skin-back-end\\DAL\\DAL.csproj"
+            },
             "C:\\Users\\VanHieu\\Desktop\\Semester8\\PRN231\\lumea-skin-back-end\\Repository\\Repository.csproj": {
               "projectPath": "C:\\Users\\VanHieu\\Desktop\\Semester8\\PRN231\\lumea-skin-back-end\\Repository\\Repository.csproj"
             }

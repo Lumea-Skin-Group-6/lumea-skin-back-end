@@ -1,4 +1,4 @@
-﻿using DAL.DTO.RequestModel;
+﻿using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 
 
