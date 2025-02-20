@@ -1,8 +1,3 @@
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.AssemblyReference.cache
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.CoreCompileInputs.cache
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.sourcelink.json
 C:\Users\xtran\OneDrive\Desktop\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\xtran\OneDrive\Desktop\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\appsettings.json
 C:\Users\xtran\OneDrive\Desktop\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\SkincareBookingApp.exe
