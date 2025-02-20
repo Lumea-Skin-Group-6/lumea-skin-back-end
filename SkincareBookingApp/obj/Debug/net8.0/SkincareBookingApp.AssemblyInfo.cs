@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SkincareBookingApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cd4088e9f320103a135d70477e5d1fb68c33143")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ff97f2e93fa7214c0686ec0293bf8029e6def17")]
 [assembly: System.Reflection.AssemblyProductAttribute("SkincareBookingApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SkincareBookingApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
