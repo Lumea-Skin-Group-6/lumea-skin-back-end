@@ -3160,19 +3160,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\xtran\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\Repository\\obj\\",
+      "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\Repository.csproj",
+      "packagesPath": "C:\\Users\\xtran\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\xtran\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3180,14 +3180,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\ACER\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj"
+            "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\xtran\\OneDrive\\Desktop\\lumea-skin-back-end\\DAL\\DAL.csproj"
             }
           }
         }
@@ -3222,7 +3223,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
