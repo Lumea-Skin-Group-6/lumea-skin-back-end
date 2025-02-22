@@ -56,7 +56,7 @@ namespace SkincareBookingApp.Controllers
 
 
         [EnableQuery]
-        [HttpGet("/{shiftId}")]
+        [HttpGet("{shiftId}")]
         [SwaggerOperation(Summary = "get shift by id")]
         public IActionResult GetShift([FromRoute] int shiftId)
         {

@@ -17,7 +17,7 @@ namespace Service.Services
             _shiftRepo = shiftRepo;
         }
 
-        public ShiftResponseModel AddShift(ShiftRequestDTO shiftRequest)
+        public ResponseModel AddShift(ShiftRequestDTO shiftRequest)
         {
             try
             {
@@ -67,21 +67,21 @@ namespace Service.Services
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ShiftResponseModel(200, "Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
+                return new ResponseModel(200, "Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
             }
             catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ShiftResponseModel(404, "Cannot Add!", errorData);
+                return new ResponseModel(404, "Cannot Add!", errorData);
             }
             catch (Exception ex)
             {
                 var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
-                return new ShiftResponseModel(500, "Cannot Add!", errorData);
+                return new ResponseModel(500, "Cannot Add!", errorData);
             }
         }
 
-        public ShiftResponseModel DeleteAsync(int id)
+        public ResponseModel DeleteAsync(int id)
         {
             try
             {
@@ -89,16 +89,16 @@ namespace Service.Services
 
                 if (shift == null)
                 {
-                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
+                    throw new ErrorException(404, "Shift not available!");
                 }
 
                 _shiftRepo.DeleteAsync(shift);
-                return new ShiftResponseModel(200, "Delete Successfully!", "This is shift " + shift.Name);
+                return new ResponseModel(200, "Delete Successfully!", "This is shift " + shift.Name);
             }
             catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ShiftResponseModel(404, "Cannot find Shift!", errorData);
+                return new ResponseModel(404, "Cannot find Shift!", errorData);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Service.Services
             return _shiftRepo.GetAllShift();
         }
 
-        public ShiftResponseModel GetShiftById(int id)
+        public ResponseModel GetShiftById(int id)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace Service.Services
 
                 if (shift == null)
                 {
-                    throw new Repository.HandleException.ErrorException(404, "Shift not available!");
+                    throw new ErrorException(404, "Shift not available!");
                 }
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
@@ -129,16 +129,16 @@ namespace Service.Services
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ShiftResponseModel(200, "Shift " + shift.Name, responseDTO);
+                return new ResponseModel(200, "Shift " + shift.Name, responseDTO);
             }
             catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ShiftResponseModel(404, "Cannot find Shift!", errorData);
+                return new ResponseModel(404, "Cannot find Shift!", errorData);
             }
         }
 
-        public ShiftResponseModel UpdateAsync(int id, ShiftRequestDTO shiftRequest)
+        public ResponseModel UpdateAsync(int id, ShiftRequestDTO shiftRequest)
         {
             try
             {
@@ -192,17 +192,17 @@ namespace Service.Services
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ShiftResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
+                return new ResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
             }
             catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ShiftResponseModel(404, "Cannot Update!", errorData);
+                return new ResponseModel(404, "Cannot Update!", errorData);
             }
             catch (Exception ex)
             {
                 var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
-                return new ShiftResponseModel(500, "Cannot Update!", errorData);
+                return new ResponseModel(500, "Cannot Update!", errorData);
             }
         }
     }

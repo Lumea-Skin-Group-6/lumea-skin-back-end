@@ -10,9 +10,9 @@ namespace Service.Interfaces
     public interface IShiftService
     {
         List<Shift> GetAllShift();
-        ShiftResponseModel GetShiftById(int id);
-        public ShiftResponseModel AddShift(ShiftRequestDTO shift);
-        public ShiftResponseModel UpdateAsync(int id, ShiftRequestDTO shift);
-        public ShiftResponseModel DeleteAsync(int id);
+        ResponseModel GetShiftById(int id);
+        public ResponseModel AddShift(ShiftRequestDTO shift);
+        public ResponseModel UpdateAsync(int id, ShiftRequestDTO shift);
+        public ResponseModel DeleteAsync(int id);
     }
 }

@@ -18,9 +18,14 @@ namespace Service.Services
             _slotRepository = slotRepository;
         }
 
-        public async Task<List<Slot>> GetFreeSlotsOfTherapist(int therapistId)
+        public async Task<List<Shift>> GenerateShifts(string shiftName, DateTime dateTime)
         {
-            return await _slotRepository.GetFreeSlotsByTherapistIdAsync(therapistId);
+            return await _slotRepository.GenerateShifts(shiftName, dateTime);
+        }
+
+        public async Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID)
+        {
+            return await _slotRepository.GetFreeSlotsByTherapistIdAsync(employeeID);
         }
     }
 }

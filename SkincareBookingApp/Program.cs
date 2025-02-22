@@ -114,6 +114,8 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 builder.Services.AddSwaggerGen(c =>
