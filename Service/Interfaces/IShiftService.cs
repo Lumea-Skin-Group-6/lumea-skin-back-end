@@ -11,8 +11,12 @@ namespace Service.Interfaces
     {
         List<Shift> GetAllShift();
         ResponseModel GetShiftById(int id);
-        public ResponseModel AddShift(ShiftRequestDTO shift);
+        public ResponseModel AddShift(int id, ShiftRequestDTO shift);
         public ResponseModel UpdateAsync(int id, ShiftRequestDTO shift);
         public ResponseModel DeleteAsync(int id);
+
+        List<TherapistShift> GetAllTherapistShift();
+
+        public ResponseModel Addsync(int TherapistID, DateTime Datetime);
     }
 }

@@ -17,7 +17,7 @@ namespace Service.Services
             _shiftRepo = shiftRepo;
         }
 
-        public ResponseModel AddShift(ShiftRequestDTO shiftRequest)
+        public ResponseModel AddShift(int id, ShiftRequestDTO shiftRequest)
         {
             try
             {
@@ -41,6 +41,11 @@ namespace Service.Services
                     throw new ErrorException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
+                TherapistShift therapistShift = _shiftRepo.GetTherapistShift(id);
+                if (therapistShift == null) {
+                    throw new ErrorException(404, "No one regis work date!");
+                }
+
                 Shift shift = new Shift
                 {
                     Name = shiftRequest.Name,
@@ -55,6 +60,9 @@ namespace Service.Services
                 };
 
                 _shiftRepo.AddAsync(shift);
+
+                therapistShift.shift_id = shift.Id;
+                _shiftRepo.UpdateTherapistShift(therapistShift);
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
@@ -81,6 +89,8 @@ namespace Service.Services
             }
         }
 
+       
+
         public ResponseModel DeleteAsync(int id)
         {
             try
@@ -105,6 +115,15 @@ namespace Service.Services
         public List<Shift> GetAllShift()
         {
             return _shiftRepo.GetAllShift();
+        }
+
+        public List<TherapistShift> GetAllTherapistShift()
+        {
+            return _shiftRepo.GetAllTherapistShift();
+        }
+        public ResponseModel Addsync(int TherapistID, DateTime Datetime)
+        {
+            throw new NotImplementedException();
         }
 
         public ResponseModel GetShiftById(int id)
