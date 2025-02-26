@@ -36,7 +36,7 @@ namespace BusinessObject
 
         [Column("number_of_treatments")] public int NumberOfTreatment { get; set; }
 
-        public ICollection<ServiceTag> ServiceTags { get; set; }
+        public ICollection<SkinTypeService> SkinTypeServices { get; set; }
         public ICollection<ServiceExpertise> ServiceExpertises { get; set; }
     }
 }

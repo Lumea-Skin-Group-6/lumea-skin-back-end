@@ -10,7 +10,7 @@ namespace DAL.Mappers
 {
     public static class TagMapper
     {
-        public static TagResponseModel ToTagResponseModel(this Tag model)
+        public static TagResponseModel ToTagResponseModel(this Answer model)
         {
             return new TagResponseModel
             {

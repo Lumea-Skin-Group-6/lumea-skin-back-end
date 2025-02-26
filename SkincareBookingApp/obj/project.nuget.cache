@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uj/xOvP3nKrgvfSokaf8YnoMLEwjWmTzMEB3zlN5DSdiXIYmF12NQGAISc93CPlfqheqMl+a9GVlL9Fc14/6Xg==",
+  "dgSpecHash": "JLM4dEaXY2o=",
   "success": true,
   "projectFilePath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\SkincareBookingApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\huvo2\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\huvo2\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\huvo2\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\huvo2\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",

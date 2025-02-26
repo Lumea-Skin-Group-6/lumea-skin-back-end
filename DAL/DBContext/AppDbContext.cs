@@ -36,8 +36,9 @@ namespace DAL.DBContext
         public DbSet<TherapistExpertise> TherapistExpertises { get; set; }
         public DbSet<ServiceModel> Services { get; set; }
         public DbSet<ServiceExpertise> ServiceExpertises { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<ServiceTag> ServiceTags { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<SkinType> ServiceTags { get; set; }
+        public DbSet<SkinTypeService> ServiceSkinTypes { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<DailyReport> DailyReports { get; set; }
 

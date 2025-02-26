@@ -19,27 +19,27 @@ namespace Repository.Repositories
 
         public async Task<IEnumerable<TagResponse>> GetAllTagsAsync()
         {
-            return await _context.Tags
+            return await _context.Answers
                 .Select(t => new TagResponse { tag_id = t.tag_id, name = t.name })
                 .ToListAsync();
         }
 
         public async Task<TagResponse> GetTagByIdAsync(int tagId)
         {
-            var tag = await _context.Tags.FindAsync(tagId);
+            var tag = await _context.Answers.FindAsync(tagId);
             return tag != null ? new TagResponse { tag_id = tag.tag_id, name = tag.name } : null;
         }
 
         public async Task AddTagAsync(TagCreateRequest tag)
         {
-            var newTag = new Tag { name = tag.name };
-            _context.Tags.Add(newTag);
+            var newTag = new Answer { name = tag.name };
+            _context.Answers.Add(newTag);
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateTagAsync(TagUpdateRequest tag)
         {
-            var existingTag = await _context.Tags.FindAsync(tag.tag_id);
+            var existingTag = await _context.Answers.FindAsync(tag.tag_id);
             if (existingTag != null)
             {
                 existingTag.name = tag.name;
@@ -49,10 +49,10 @@ namespace Repository.Repositories
 
         public async Task DeleteTagAsync(int tagId)
         {
-            var tag = await _context.Tags.FindAsync(tagId);
+            var tag = await _context.Answers.FindAsync(tagId);
             if (tag != null)
             {
-                _context.Tags.Remove(tag);
+                _context.Answers.Remove(tag);
                 await _context.SaveChangesAsync();
             }
         }

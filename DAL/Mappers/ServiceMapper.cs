@@ -8,7 +8,7 @@ namespace DAL.Mappers
     {
         public static ServiceResponseModel ToServiceResponseModel(this ServiceModel model)
         {
-            var tags = model.ServiceTags?.Select(x => x.Tag.ToTagResponseModel());
+            var tags = model.SkinTypeServices?.Select(x => x.Tag.ToTagResponseModel());
             var expertises = model.ServiceExpertises?.Select(x => x.Expertise.ToExpertiseResponseModel());
             return new ServiceResponseModel
             {
