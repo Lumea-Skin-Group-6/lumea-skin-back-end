@@ -17,6 +17,6 @@ namespace Service.Interfaces
 
         List<TherapistShift> GetAllTherapistShift();
 
-        public ResponseModel Addsync(int TherapistID, DateTime Datetime);
+        public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime);
     }
 }

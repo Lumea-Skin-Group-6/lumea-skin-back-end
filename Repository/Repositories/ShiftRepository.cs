@@ -41,7 +41,7 @@ namespace Repository.Repositories
             _context.SaveChangesAsync();
         }
 
-        public void Addsync(TherapistShift therapistShift)
+        public void AddTherapistShift(TherapistShift therapistShift)
         {
             _context.TherapistShifts.Add(therapistShift);
             _context.SaveChangesAsync();

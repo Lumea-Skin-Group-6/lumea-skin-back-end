@@ -21,10 +21,6 @@ namespace Service.Services
         {
             try
             {
-                if (shiftRequest.Date < DateTime.Today)
-                {
-                    throw new ErrorException(404, "Date cannot be before the current date.");
-                }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
@@ -49,7 +45,6 @@ namespace Service.Services
                 Shift shift = new Shift
                 {
                     Name = shiftRequest.Name,
-                    Date = shiftRequest.Date,
                     StartTime = shiftRequest.StartTime,
                     EndTime = shiftRequest.EndTime,
                     MinStaff = shiftRequest.MinStaff,
@@ -66,7 +61,6 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-                responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;
@@ -89,7 +83,7 @@ namespace Service.Services
             }
         }
 
-       
+    
 
         public ResponseModel DeleteAsync(int id)
         {
@@ -121,10 +115,32 @@ namespace Service.Services
         {
             return _shiftRepo.GetAllTherapistShift();
         }
-        public ResponseModel Addsync(int TherapistID, DateTime Datetime)
+
+        public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if(Datetime < DateTime.UtcNow)
+                {
+                    throw new ErrorException(404, "Date regis can not less than current date!");
+                }
+                
+
+                TherapistShift therapistShift = new TherapistShift();
+                therapistShift.therapist_id = TherapistID;
+                therapistShift.Date = Datetime;
+                _shiftRepo.AddTherapistShift(therapistShift);
+
+                return new ResponseModel(202, "Add successfully!", therapistShift);
+
+            }catch(ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Can not add!", errorData);
+                
+            }
         }
+
 
         public ResponseModel GetShiftById(int id)
         {
@@ -139,7 +155,7 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-                responseDTO.Date = shift.Date;
+  
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;
@@ -168,10 +184,6 @@ namespace Service.Services
                     throw new ErrorException(404, "Shift not available!");
                 }
 
-                if (shiftRequest.Date < DateTime.Today)
-                {
-                    throw new ErrorException(404, "Date cannot be before the current date.");
-                }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
@@ -189,7 +201,7 @@ namespace Service.Services
                 }
 
                 shift.Name = shiftRequest.Name;
-                shift.Date = shiftRequest.Date;
+          
                 shift.StartTime = shiftRequest.StartTime;
                 shift.EndTime = shiftRequest.EndTime;
                 shift.MinStaff = shiftRequest.MinStaff;
@@ -202,7 +214,7 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-                responseDTO.Date = shift.Date;
+
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;

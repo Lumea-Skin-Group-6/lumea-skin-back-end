@@ -10,6 +10,5 @@ namespace Service.Interfaces
     public interface ISlotService
     {
         Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID);
-        Task<List<Shift>> GenerateShifts(string shiftName, DateTime dateTime);
     }
 }

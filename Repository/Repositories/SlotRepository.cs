@@ -19,16 +19,6 @@ namespace Repository.Repositories
             _context = context;
         }
 
-        public async Task<List<Shift>> GenerateShifts(string shiftName, DateTime dateTime)
-        {
-            var shifts = await _context.Shifts
-       .Where(sh => sh.Name == shiftName &&
-                    sh.Date >= dateTime.Date &&
-                    sh.Date < dateTime.Date.AddDays(1))
-       .ToListAsync();
-
-            return shifts;
-        }
 
         public async Task<List<Slot>> GetFreeSlotsByTherapistIdAsync(int employeeId)
         {

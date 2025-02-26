@@ -15,8 +15,16 @@ namespace BusinessObject
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int therapist_shift_id { get; set; }
 
+
+        [Column("therapist_id")]
         public int therapist_id { get; set; }
+
+        [Column("shift_id")]
         public int shift_id { get; set; }
+
+
+        [Column("shift_date")]
+        public DateTime Date { get; set; }
 
         //[ForeignKey(nameof(therapist_id))]
         public Employee therapist { get; set; }

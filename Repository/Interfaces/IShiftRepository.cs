@@ -10,7 +10,7 @@ namespace Repository.Interfaces
         void UpdateAsync(Shift shift);
         void DeleteAsync(Shift shift);
 
-        void Addsync(TherapistShift therapistShift);
+        void AddTherapistShift(TherapistShift therapistShift);
 
         List<TherapistShift> GetAllTherapistShift();
 

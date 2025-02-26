@@ -24,5 +24,13 @@ namespace SkincareBookingApp.Controllers
             var therapistShift = _shiftService.GetAllTherapistShift();
             return Ok(therapistShift);
         }
+
+        [HttpPost("add-therapistshift/{therapistID}")]
+        [SwaggerOperation(Summary = "Therapist Regis Date to word")]
+        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromQuery]DateTime dateTime)
+        {
+            var therapistShift = _shiftService.AddTherapistShift(therapistID, dateTime);
+            return Ok(therapistShift);
+        }
     }
 }

@@ -28,16 +28,6 @@ namespace SkincareBookingApp.Controllers
         }
 
 
-        //[Authorize(Roles = "Therapist, Manager")]
-        [HttpGet("generateShifts")]
-        public async Task<IActionResult> GenerateShifts([FromQuery] string shiftName, [FromQuery] DateTime dateTime)
-        {
-            var shift = await _slotService.GenerateShifts(shiftName, dateTime);
-            if (shift == null || shift.Count == 0)
-            {
-                return NotFound("No free shifts available for this therapist.");
-            }
-            return Ok(shift);
-        }
+
     }
 }

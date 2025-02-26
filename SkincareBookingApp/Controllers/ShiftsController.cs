@@ -30,7 +30,7 @@ namespace SkincareBookingApp.Controllers
         }
 
 
-        [HttpPost("add-shift")]
+        [HttpPost("add-shift/{therapistShiftID}")]
         public IActionResult AddShift([FromRoute] int therapistShiftID, [FromBody] ShiftRequestDTO shiftRequest)
         {
             var response = _shiftService.AddShift(therapistShiftID, shiftRequest);
