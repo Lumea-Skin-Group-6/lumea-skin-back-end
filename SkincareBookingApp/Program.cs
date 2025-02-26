@@ -53,6 +53,7 @@ builder.Services.AddScoped<IShiftService, ShiftService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 
 

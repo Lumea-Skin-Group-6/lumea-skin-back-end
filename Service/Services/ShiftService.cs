@@ -11,10 +11,12 @@ namespace Service.Services
     public class ShiftService : IShiftService
     {
         private readonly IShiftRepository _shiftRepo;
+        private readonly IEmployeeRepository _employeeRepo;
 
-        public ShiftService(IShiftRepository shiftRepo)
+        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo)
         {
             _shiftRepo = shiftRepo;
+            _employeeRepo = employeeRepo;
         }
 
         public ResponseModel AddShift(int id, ShiftRequestDTO shiftRequest)
@@ -54,7 +56,7 @@ namespace Service.Services
                     Status = shiftRequest.Status
                 };
 
-                _shiftRepo.AddAsync(shift);
+                _shiftRepo.AddShift(shift);
 
                 therapistShift.shift_id = shift.Id;
                 _shiftRepo.UpdateTherapistShift(therapistShift);
@@ -124,10 +126,17 @@ namespace Service.Services
                 {
                     throw new ErrorException(404, "Date regis can not less than current date!");
                 }
+
+                Employee employee = _employeeRepo.GetEmployeeById(TherapistID);
                 
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Therapist not exist!");
+                }
 
                 TherapistShift therapistShift = new TherapistShift();
-                therapistShift.therapist_id = TherapistID;
+                therapistShift.therapist = employee;
+                therapistShift.therapist_id = employee.Id;
                 therapistShift.Date = Datetime;
                 _shiftRepo.AddTherapistShift(therapistShift);
 
