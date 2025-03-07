@@ -19,6 +19,11 @@ namespace Repository.Repositories
             _context = context;
         }
 
+        public void AddSlot(Slot slot)
+        {
+            _context.Slots.Add(slot);
+            _context.SaveChanges();
+        }
 
         public async Task<List<Slot>> GetFreeSlotsByTherapistIdAsync(int employeeId)
         {
@@ -34,5 +39,7 @@ namespace Repository.Repositories
 
             return freeSlots;
         }
+
+        
     }
 }

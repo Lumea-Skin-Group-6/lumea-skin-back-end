@@ -12,11 +12,15 @@ namespace Service.Services
     {
         private readonly IShiftRepository _shiftRepo;
         private readonly IEmployeeRepository _employeeRepo;
+        private readonly AccountUtils _accountUtils;
+        private readonly ISlotRepository _slotRepo;
 
-        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo)
+        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo, AccountUtils accountUtils, ISlotRepository slotRepo)
         {
             _shiftRepo = shiftRepo;
             _employeeRepo = employeeRepo;
+            _accountUtils = accountUtils;
+            _slotRepo = slotRepo;
         }
 
         public ResponseModel AddShift(int id, ShiftRequestDTO shiftRequest)
@@ -40,9 +44,13 @@ namespace Service.Services
                 }
 
                 TherapistShift therapistShift = _shiftRepo.GetTherapistShift(id);
-                if (therapistShift == null) {
+
+                if (therapistShift == null)
+                {
                     throw new ErrorException(404, "No one regis work date!");
                 }
+
+                Account account = _accountUtils.GetCurrentAccount();
 
                 Shift shift = new Shift
                 {
@@ -56,10 +64,20 @@ namespace Service.Services
                     Status = shiftRequest.Status
                 };
 
+              
+
                 _shiftRepo.AddShift(shift);
 
                 therapistShift.shift_id = shift.Id;
                 _shiftRepo.UpdateTherapistShift(therapistShift);
+
+                Slot slot = new Slot();
+                slot.employee_id = account.Id;
+                slot.time = shiftRequest.StartTime.ToLongTimeString();
+                slot.date = therapistShift.Date;
+                slot.status = "Avaliable";
+
+                _slotRepo.AddSlot(slot);
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
@@ -85,7 +103,7 @@ namespace Service.Services
             }
         }
 
-    
+
 
         public ResponseModel DeleteAsync(int id)
         {
@@ -122,13 +140,13 @@ namespace Service.Services
         {
             try
             {
-                if(Datetime < DateTime.UtcNow)
+                if (Datetime < DateTime.UtcNow)
                 {
                     throw new ErrorException(404, "Date regis can not less than current date!");
                 }
 
                 Employee employee = _employeeRepo.GetEmployeeById(TherapistID);
-                
+
                 if (employee == null)
                 {
                     throw new ErrorException(404, "Therapist not exist!");
@@ -142,11 +160,12 @@ namespace Service.Services
 
                 return new ResponseModel(202, "Add successfully!", therapistShift);
 
-            }catch(ErrorException ex)
+            }
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Can not add!", errorData);
-                
+
             }
         }
 
@@ -164,7 +183,7 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-  
+
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;
@@ -210,7 +229,7 @@ namespace Service.Services
                 }
 
                 shift.Name = shiftRequest.Name;
-          
+
                 shift.StartTime = shiftRequest.StartTime;
                 shift.EndTime = shiftRequest.EndTime;
                 shift.MinStaff = shiftRequest.MinStaff;
@@ -244,6 +263,11 @@ namespace Service.Services
                 var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
                 return new ResponseModel(500, "Cannot Update!", errorData);
             }
+        }
+
+        public List<Shift> GetShiftsByTherapistId(int therapistID)
+        {
+            return _shiftRepo.GetShiftsByTherapistId(therapistID);
         }
     }
 }

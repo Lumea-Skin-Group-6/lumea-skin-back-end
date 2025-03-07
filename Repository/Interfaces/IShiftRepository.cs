@@ -17,5 +17,7 @@ namespace Repository.Interfaces
         TherapistShift GetTherapistShift(int id);
 
         void UpdateTherapistShift(TherapistShift therapistShift);
+
+        List<Shift> GetShiftsByTherapistId(int id);
     }
 }

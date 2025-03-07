@@ -90,5 +90,22 @@ namespace SkincareBookingApp.Controllers
 
             return Ok(shifts);
         }
+
+        [HttpGet("therapist/{therapistID}")]
+        [SwaggerOperation(Summary = "get shifts by therapistId")]
+        public IActionResult GetShiftByTherapistID([FromRoute] int therapistID)
+        {
+            var shifts = _shiftService.GetShiftsByTherapistId(therapistID);
+
+            if (shifts == null || !shifts.Any())
+            {
+                return NotFound(new
+                {
+                    message = "There are no shifts belonging to this therapist."
+                });
+            }
+
+            return Ok(shifts);
+        }
     }
 }

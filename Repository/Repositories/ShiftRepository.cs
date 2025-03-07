@@ -62,5 +62,13 @@ namespace Repository.Repositories
             _context.TherapistShifts.Update(therapistShift);
             _context.SaveChanges();
         }
+
+        public List<Shift> GetShiftsByTherapistId(int id)
+        {
+            return _context.TherapistShifts
+                   .Where(ts => ts.therapist_id == id)
+                   .Select(ts => ts.shift)
+                   .ToList();
+        }
     }
 }
