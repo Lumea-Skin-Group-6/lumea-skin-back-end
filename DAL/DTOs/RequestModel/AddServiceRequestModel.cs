@@ -42,5 +42,7 @@ namespace DAL.DTOs.RequestModel
 
         [Range(1, int.MaxValue, ErrorMessage = "Number of Treatment must be at least 1.")]
         public int NumberOfTreatment { get; set; }
+
+        public ICollection<int> ServiceExpertisesID { get; set; }
     }
 }

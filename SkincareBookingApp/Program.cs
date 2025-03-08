@@ -55,6 +55,7 @@ builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<AccountUtils>();
+builder.Services.AddScoped<IServiceExpertiseRepository, ServiceExpertiseRepository>();
 
 
 
@@ -171,7 +172,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:5173")
+    options.WithOrigins("http://localhost:5173", "https://lumea-skin.netlify.app")
         .AllowAnyHeader()
         .AllowAnyMethod());
 app.Run();
