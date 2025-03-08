@@ -44,5 +44,7 @@ namespace DAL.DTOs.RequestModel
         public int NumberOfTreatment { get; set; }
 
         public ICollection<int> ServiceExpertisesID { get; set; }
+
+        public ICollection<int> ServiceTagID { get; set; }
     }
 }
