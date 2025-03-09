@@ -15,7 +15,7 @@ namespace Service.Interfaces
         public ResponseModel UpdateAsync(int id, ShiftRequestDTO shift);
         public ResponseModel DeleteAsync(int id);
 
-        List<TherapistShift> GetAllTherapistShift();
+        List<TherapistShiftGroupedDto> GetAllTherapistShift();
 
         public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime);
 

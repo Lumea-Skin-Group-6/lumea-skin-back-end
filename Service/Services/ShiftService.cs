@@ -64,7 +64,7 @@ namespace Service.Services
                     Status = shiftRequest.Status
                 };
 
-              
+
 
                 _shiftRepo.AddShift(shift);
 
@@ -131,9 +131,16 @@ namespace Service.Services
             return _shiftRepo.GetAllShift();
         }
 
-        public List<TherapistShift> GetAllTherapistShift()
+        public List<TherapistShiftGroupedDto> GetAllTherapistShift()
         {
-            return _shiftRepo.GetAllTherapistShift();
+            return _shiftRepo.GetAllTherapistShift()
+                   .GroupBy(ts => ts.Date)
+                   .Select(g => new TherapistShiftGroupedDto
+                   {
+                       Date = g.Key,
+                       TherapistIds = (ICollection<int>)g.Select(ts => ts.therapist_id).ToList()
+                   })
+                   .ToList();
         }
 
         public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime)
