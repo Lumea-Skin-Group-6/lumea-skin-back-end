@@ -16,14 +16,12 @@ namespace Service.Services
 
         private readonly IServiceExpertiseRepository _serviceExpertiseRepo;
 
-        private readonly ITagRepository _tagRepository;
 
-        public ServiceService(IServiceRepository repository, IExpertiseRepository expertiseRepository, IServiceExpertiseRepository serviceExpertiseRepo, ITagRepository tagRepository)
+        public ServiceService(IServiceRepository repository, IExpertiseRepository expertiseRepository, IServiceExpertiseRepository serviceExpertiseRepo)
         {
             _repository = repository;
             _expertiseRepository = expertiseRepository;
             _serviceExpertiseRepo = serviceExpertiseRepo;
-            _tagRepository = tagRepository;
         }
         public async Task<ServiceResponseModel> AddAsync(AddServiceRequestModel requestModel)
         {
@@ -38,19 +36,11 @@ namespace Service.Services
             var expertise = await _expertiseRepository.GetAllAsync();
             var existingExpertiseIds = expertise.Select(e => e.Id).ToHashSet();
 
-            var tags = await _tagRepository.GetAllTagsAsync();
-            var existingTags = tags.Select(t => t.tag_id).ToHashSet();
-
             // Kiểm tra tất cả ID trong requestModel.ServiceExpertisesID
             var invalidIds = requestModel.ServiceExpertisesID.Where(id => !existingExpertiseIds.Contains(id)).ToList();
             if (invalidIds.Any())
             {
                 throw new InvalidOperationException("Expertise not exist: " + string.Join(", ", invalidIds));
-            }
-            var invalidTagIds = requestModel.ServiceTagID.Where(id => !existingTags.Contains(id)).ToList();
-            if (invalidTagIds.Any())
-            {
-                throw new InvalidOperationException("Tage not exist: " + string.Join(", ", invalidTagIds));
             }
 
             // Nếu tất cả Expertise ID hợp lệ, tiến hành lưu Service
@@ -65,15 +55,6 @@ namespace Service.Services
                     ExpertiseId = item
                 };
                 _serviceExpertiseRepo.AddServiceExpertise(serviceExpertise);
-            }
-
-            foreach(var tag in requestModel.ServiceTagID)
-            {
-                ServiceTag serviceTag = new ServiceTag
-                {
-                    ServiceId = result.Id,
-                    TagId = tag
-                };
             }
 
             return result.ToServiceResponseModel();

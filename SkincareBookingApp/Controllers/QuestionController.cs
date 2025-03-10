@@ -27,6 +27,13 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get all questions successfully", questions);
         }
 
+        [HttpGet("with-answers")]
+        public async Task<IActionResult> GetAllQuestionsWithAnswers()
+        {
+            var questions = await _questionService.GetAllQuestionsWithAnswersAsync();
+            return Ok(questions);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetQuestionById(int id)
         {

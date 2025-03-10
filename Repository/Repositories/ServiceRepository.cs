@@ -37,8 +37,8 @@ namespace Repository.Repositories
         public async Task<IEnumerable<ServiceModel>> GetAllAsync()
         {
             return await _context.Services
-                .Include(s => s.ServiceTags)
-                .ThenInclude(t => t.Tag)
+                //.Include(s => s.ServiceTags)
+                //.ThenInclude(t => t.Tag)
                 .Include(s => s.ServiceExpertises)
                 .ThenInclude(e => e.Expertise)
                 .ToListAsync();
@@ -47,8 +47,8 @@ namespace Repository.Repositories
         public async Task<ServiceModel?> GetByIdAsync(int id)
         {
             return await _context.Services
-                .Include(s => s.ServiceTags)
-                .ThenInclude(t => t.Tag)
+                //.Include(s => s.ServiceTags)
+                //.ThenInclude(t => t.Tag)
                 .Include(s => s.ServiceExpertises)
                 .ThenInclude(e => e.Expertise)
                 .FirstOrDefaultAsync(x => x.Id == id);
@@ -72,7 +72,7 @@ namespace Repository.Repositories
             existingService.Duration = service.Duration;
             existingService.Type = service.Type;
             existingService.NumberOfTreatment = service.NumberOfTreatment;
-            existingService.ServiceTags = service.ServiceTags;
+            //existingService.ServiceTags = service.ServiceTags;
             existingService.ServiceExpertises = service.ServiceExpertises;
             await _context.SaveChangesAsync();
             return existingService;

@@ -1,0 +1,333 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\serviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\shiftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\slotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dtos\\requestmodel\\shiftrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\therapistshift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\answer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 48,
+          "SelectedChildIndex": 24,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:27:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:28:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:16:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:19:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:21:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:35:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:37:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:36:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:38:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:45:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:46:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:62:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:65:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:10:20.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ServiceService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Services\\ServiceService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ServiceService.cs",
+              "RelativeToolTip": "..\\Service\\Services\\ServiceService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:08:17.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ShiftService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ShiftService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Services\\ShiftService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ShiftService.cs",
+              "RelativeToolTip": "..\\Service\\Services\\ShiftService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:06:55.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SlotRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\SlotRepository.cs",
+              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\SlotRepository.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\SlotRepository.cs",
+              "RelativeToolTip": "..\\Repository\\Repositories\\SlotRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAABaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:06:26.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeToolTip": "..\\DAL\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ViewState": "AQIAACoDAAAAAAAAAAAAADMDAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:00:53.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ShiftRequestDTO.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\ShiftRequestDTO.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\ShiftRequestDTO.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\ShiftRequestDTO.cs",
+              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\ShiftRequestDTO.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAArwAsAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T10:00:37.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TherapistShift.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\TherapistShift.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\TherapistShift.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\TherapistShift.cs",
+              "RelativeToolTip": "..\\BusinessObject\\TherapistShift.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:58:17.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Shift.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Shift.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Shift.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Shift.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Shift.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:58:09.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Account.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Account.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Account.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Account.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:57:57.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Service.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Service.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Service.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Service.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAA9wAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:55:14.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Answer.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Answer.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Answer.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Answer.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Answer.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:55:10.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Question.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Question.cs",
+              "RelativeDocumentMoniker": "..\\BusinessObject\\Question.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Question.cs",
+              "RelativeToolTip": "..\\BusinessObject\\Question.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T09:54:45.122Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 170,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:24:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:25:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 291,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:23:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

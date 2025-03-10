@@ -15,7 +15,6 @@ namespace BusinessObject
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int therapist_shift_id { get; set; }
 
-
         [Column("therapist_id")]
         public int therapist_id { get; set; }
 
