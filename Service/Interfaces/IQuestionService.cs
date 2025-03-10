@@ -15,5 +15,6 @@ namespace Service.Interfaces
         Task<QuestionResponse?> AddQuestionAsync(QuestionCreateRequest question);
         Task<QuestionResponse?> UpdateQuestionAsync(QuestionUpdateRequest question);
         Task DeleteQuestionAsync(int id);
+        Task<IEnumerable<QuestionResponseWithAnswer>> GetAllQuestionsWithAnswersAsync();
     }
 }

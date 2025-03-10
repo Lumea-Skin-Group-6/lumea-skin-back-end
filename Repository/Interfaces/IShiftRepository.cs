@@ -6,8 +6,18 @@ namespace Repository.Interfaces
     {
         List<Shift> GetAllShift();
         Shift GetShiftById(int id);
-        void AddAsync(Shift shift);
+        void AddShift(Shift shift);
         void UpdateAsync(Shift shift);
         void DeleteAsync(Shift shift);
+
+        void AddTherapistShift(TherapistShift therapistShift);
+
+        List<TherapistShift> GetAllTherapistShift();
+
+        TherapistShift GetTherapistShift(int id);
+
+        void UpdateTherapistShift(TherapistShift therapistShift);
+
+        List<Shift> GetShiftsByTherapistId(int id);
     }
 }

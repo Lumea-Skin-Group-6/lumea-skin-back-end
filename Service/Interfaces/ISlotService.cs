@@ -9,6 +9,6 @@ namespace Service.Interfaces
 {
     public interface ISlotService
     {
-        Task<List<Slot>> GetFreeSlotsOfTherapist(int therapistId);
+        Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID);
     }
 }
