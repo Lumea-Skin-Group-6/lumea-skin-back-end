@@ -10,8 +10,6 @@ namespace DAL.DTOs.ResponseModel
     public class ShiftResponseDTO
     {
         public string Name { get; set; }
-        public DateTime Date { get; set; }
-
 
         public DateTime StartTime { get; set; }
 
@@ -34,11 +32,10 @@ namespace DAL.DTOs.ResponseModel
         public string Status { get; set; }
 
 
-        public ShiftResponseDTO(string name, DateTime date, DateTime startTime, DateTime endTime, int minStaff,
+        public ShiftResponseDTO(string name, DateTime startTime, DateTime endTime, int minStaff,
             int maxStaff, int minTherapist, int maxTherapist, string status)
         {
             Name = name;
-            Date = date;
             StartTime = startTime;
             EndTime = endTime;
             MinStaff = minStaff;

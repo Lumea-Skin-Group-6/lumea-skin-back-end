@@ -96,7 +96,44 @@ namespace DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("accounts", (string)null);
+                    b.ToTable("accounts");
+                });
+
+            modelBuilder.Entity("BusinessObject.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<short>("DryPoint")
+                        .HasColumnType("smallint")
+                        .HasColumnName("dry_point");
+
+                    b.Property<short>("OilyPoint")
+                        .HasColumnType("smallint")
+                        .HasColumnName("oily_point");
+
+                    b.Property<short>("SensitivePoint")
+                        .HasColumnType("smallint")
+                        .HasColumnName("sensitive_point");
+
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("questionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("question_id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("questionId");
+
+                    b.ToTable("answer");
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>
@@ -134,7 +171,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("appointments", (string)null);
+                    b.ToTable("appointments");
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetail", b =>
@@ -206,7 +243,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("TherapistId");
 
-                    b.ToTable("appointment_details", (string)null);
+                    b.ToTable("appointment_details");
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetailDate", b =>
@@ -233,7 +270,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("appointment_detail_id");
 
-                    b.ToTable("appointment_detail_dates", null, t =>
+                    b.ToTable("appointment_detail_dates", t =>
                         {
                             t.Property("appointment_detail_id")
                                 .HasColumnName("appointment_detail_id1");
@@ -283,7 +320,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("daily_reports", (string)null);
+                    b.ToTable("daily_reports");
                 });
 
             modelBuilder.Entity("BusinessObject.Employee", b =>
@@ -308,7 +345,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("employees", (string)null);
+                    b.ToTable("employees");
                 });
 
             modelBuilder.Entity("BusinessObject.Expertise", b =>
@@ -327,7 +364,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("expertises", (string)null);
+                    b.ToTable("expertises");
                 });
 
             modelBuilder.Entity("BusinessObject.Question", b =>
@@ -362,7 +399,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("questions", (string)null);
+                    b.ToTable("questions");
                 });
 
             modelBuilder.Entity("BusinessObject.Role", b =>
@@ -381,10 +418,36 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("roles", (string)null);
+                    b.ToTable("roles");
                 });
 
-            modelBuilder.Entity("BusinessObject.Service", b =>
+            modelBuilder.Entity("BusinessObject.ServiceExpertise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ExpertiseId")
+                        .HasColumnType("integer")
+                        .HasColumnName("expertise_id");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("integer")
+                        .HasColumnName("service_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpertiseId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("service_expertises");
+                });
+
+            modelBuilder.Entity("BusinessObject.ServiceModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -425,6 +488,10 @@ namespace DAL.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("price");
 
+                    b.Property<int>("RecommendedAge")
+                        .HasColumnType("integer")
+                        .HasColumnName("recommended_age");
+
                     b.Property<DateTime>("RecommendedPeriodEndTime")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("recommended_end_time");
@@ -440,59 +507,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("services", (string)null);
-                });
-
-            modelBuilder.Entity("BusinessObject.ServiceExpertise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ExpertiseId")
-                        .HasColumnType("integer")
-                        .HasColumnName("expertise_id");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("integer")
-                        .HasColumnName("service_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExpertiseId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("service_expertises", (string)null);
-                });
-
-            modelBuilder.Entity("BusinessObject.ServiceTag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("integer")
-                        .HasColumnName("service_id");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("integer")
-                        .HasColumnName("tag_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiceId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("service_tags", (string)null);
+                    b.ToTable("services");
                 });
 
             modelBuilder.Entity("BusinessObject.Shift", b =>
@@ -503,10 +518,6 @@ namespace DAL.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("shift_date");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("timestamp with time zone")
@@ -544,7 +555,72 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("shifts", (string)null);
+                    b.ToTable("shifts");
+                });
+
+            modelBuilder.Entity("BusinessObject.SkinType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<short>("MaxDry")
+                        .HasColumnType("smallint")
+                        .HasColumnName("max_dry");
+
+                    b.Property<short>("MaxOily")
+                        .HasColumnType("smallint")
+                        .HasColumnName("max_oily");
+
+                    b.Property<short>("MaxSensitive")
+                        .HasColumnType("smallint")
+                        .HasColumnName("max_sensitive");
+
+                    b.Property<short>("MinDry")
+                        .HasColumnType("smallint")
+                        .HasColumnName("min_dry");
+
+                    b.Property<short>("MinOily")
+                        .HasColumnType("smallint")
+                        .HasColumnName("min_oily");
+
+                    b.Property<short>("MinSensitive")
+                        .HasColumnType("smallint")
+                        .HasColumnName("min_sensitive");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("skintypes");
+                });
+
+            modelBuilder.Entity("BusinessObject.SkinTypeService", b =>
+                {
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("integer")
+                        .HasColumnName("service_id");
+
+                    b.Property<int>("SkinTypeId")
+                        .HasColumnType("integer")
+                        .HasColumnName("skin_type_id");
+
+                    b.HasKey("ServiceId", "SkinTypeId");
+
+                    b.HasIndex("SkinTypeId");
+
+                    b.ToTable("service_skin_type");
                 });
 
             modelBuilder.Entity("BusinessObject.Slot", b =>
@@ -576,32 +652,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("employeeId");
 
-                    b.ToTable("slot", (string)null);
-                });
-
-            modelBuilder.Entity("BusinessObject.Tag", b =>
-                {
-                    b.Property<int>("tag_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("tag_id"));
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("questionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("question_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("tag_id");
-
-                    b.HasIndex("questionId");
-
-                    b.ToTable("tag", (string)null);
+                    b.ToTable("slot");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
@@ -633,7 +684,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("therapistId");
 
-                    b.ToTable("therapist_expertise", (string)null);
+                    b.ToTable("therapist_expertise");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>
@@ -644,25 +695,21 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_shift_id"));
 
-                    b.Property<int>("shiftId")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date");
 
                     b.Property<int>("shift_id")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("therapistId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("shift_id");
 
                     b.Property<int>("therapist_id")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("therapist_id");
 
                     b.HasKey("therapist_shift_id");
 
-                    b.HasIndex("shiftId");
-
-                    b.HasIndex("therapistId");
-
-                    b.ToTable("therapist_shift", (string)null);
+                    b.ToTable("therapist_shift");
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>
@@ -674,6 +721,17 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("BusinessObject.Answer", b =>
+                {
+                    b.HasOne("BusinessObject.Question", "question")
+                        .WithMany()
+                        .HasForeignKey("questionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("question");
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>
@@ -695,7 +753,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Service", "Service")
+                    b.HasOne("BusinessObject.ServiceModel", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -744,7 +802,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Service", "Service")
+                    b.HasOne("BusinessObject.ServiceModel", "Service")
                         .WithMany("ServiceExpertises")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -755,23 +813,23 @@ namespace DAL.Migrations
                     b.Navigation("Service");
                 });
 
-            modelBuilder.Entity("BusinessObject.ServiceTag", b =>
+            modelBuilder.Entity("BusinessObject.SkinTypeService", b =>
                 {
-                    b.HasOne("BusinessObject.Service", "Service")
-                        .WithMany("ServiceTags")
+                    b.HasOne("BusinessObject.ServiceModel", "Service")
+                        .WithMany("SkinTypeServices")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Tag", "Tag")
+                    b.HasOne("BusinessObject.SkinType", "SkinType")
                         .WithMany()
-                        .HasForeignKey("TagId")
+                        .HasForeignKey("SkinTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Service");
 
-                    b.Navigation("Tag");
+                    b.Navigation("SkinType");
                 });
 
             modelBuilder.Entity("BusinessObject.Slot", b =>
@@ -783,17 +841,6 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("employee");
-                });
-
-            modelBuilder.Entity("BusinessObject.Tag", b =>
-                {
-                    b.HasOne("BusinessObject.Question", "question")
-                        .WithMany()
-                        .HasForeignKey("questionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("question");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
@@ -864,11 +911,11 @@ namespace DAL.Migrations
                     b.Navigation("Accounts");
                 });
 
-            modelBuilder.Entity("BusinessObject.Service", b =>
+            modelBuilder.Entity("BusinessObject.ServiceModel", b =>
                 {
                     b.Navigation("ServiceExpertises");
 
-                    b.Navigation("ServiceTags");
+                    b.Navigation("SkinTypeServices");
                 });
 
             modelBuilder.Entity("BusinessObject.Shift", b =>

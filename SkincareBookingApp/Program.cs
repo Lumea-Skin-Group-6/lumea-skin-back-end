@@ -13,6 +13,7 @@ using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
 using DAL.DTOs.ResponseModel;
+using Service.Services.UploadImage;
 
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
@@ -32,17 +33,23 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
 
 
+// Configuration Cloudinary
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+
 //Configure Scoped
+builder.Services.AddScoped<IUploadImageService, UploadImageService>();
+builder.Services.AddScoped<ISkinAnalysisService, SkinAnalysisService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
-builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
-builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<IAnswerService, AnswerService>();
+builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -53,6 +60,9 @@ builder.Services.AddScoped<IShiftService, ShiftService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<AccountUtils>();
+builder.Services.AddScoped<IServiceExpertiseRepository, ServiceExpertiseRepository>();
 
 
 
@@ -114,6 +124,8 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 builder.Services.AddSwaggerGen(c =>
@@ -167,7 +179,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:5173")
+    options.WithOrigins("http://localhost:5173", "https://lumea-skin.netlify.app")
         .AllowAnyHeader()
         .AllowAnyMethod());
 app.Run();
