@@ -10,7 +10,6 @@ namespace DAL.DTOs.RequestModel
     public class ShiftRequestDTO
     {
         public string Name { get; set; }
-        public DateTime Date { get; set; }
 
 
         public DateTime StartTime { get; set; }

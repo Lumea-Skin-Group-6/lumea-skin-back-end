@@ -11,11 +11,6 @@ namespace BusinessObject
     [Table("service_skin_type")]
     public class SkinTypeService
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("service_id")]
         public int ServiceId { get; set; }
 
@@ -25,4 +20,5 @@ namespace BusinessObject
         public ServiceModel Service { get; set; }
         public SkinType SkinType { get; set; }
     }
+
 }

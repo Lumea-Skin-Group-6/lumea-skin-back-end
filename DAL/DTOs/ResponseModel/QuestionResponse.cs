@@ -10,15 +10,17 @@ namespace DAL.DTOs.ResponseModel
     public class QuestionResponse
     {
         public int Id { get; set; }
-
         public string QuestionContent { get; set; }
-
-        public ServiceType ServiceType { get; set; }
-
         public bool IsMultipleChoice { get; set; }
-
         public DateTime UpdatedAt { get; set; }
+    }
 
-        public int Order { get; set; }
+    public class QuestionResponseWithAnswer
+    {
+        public int Id { get; set; }
+        public string QuestionContent { get; set; }
+        public bool IsMultipleChoice { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public List<AnswerResponse> Answers { get; set; } = new();
     }
 }

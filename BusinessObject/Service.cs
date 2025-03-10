@@ -32,6 +32,8 @@ namespace BusinessObject
 
         [Column("experience_required")] public string ExperienceRequired { get; set; }
 
+        [Column("recommended_age")] public int RecommendedAge { get; set; }
+
         [Column("service_type")] public string Type { get; set; }
 
         [Column("number_of_treatments")] public int NumberOfTreatment { get; set; }

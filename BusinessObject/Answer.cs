@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace BusinessObject
 {
@@ -24,7 +25,7 @@ namespace BusinessObject
 
         [Column("sensitive_point")] public sbyte SensitivePoint { get; set; }
 
-        //[ForeignKey(nameof(question_id))]
-        public Question question { get; set; }
+        [JsonIgnore]
+        public Question? question { get; set; }
     }
 }

@@ -30,6 +30,11 @@ namespace Service.Services
             return await _questionRepository.GetAllQuestionAsync();
         }
 
+        public async Task<IEnumerable<QuestionResponseWithAnswer>> GetAllQuestionsWithAnswersAsync()
+        {
+            return await _questionRepository.GetAllQuestionsWithAnswersAsync();
+        }
+
         public async Task<QuestionResponse?> GetQuestionByIdAsync(int id)
         {
             return await _questionRepository.GetQuestionByIdAsync(id);

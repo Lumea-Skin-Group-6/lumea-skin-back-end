@@ -27,7 +27,7 @@ namespace Repository.Repositories
                                 .Where(ts => ts.therapist_id == therapistId)
                                 .Select(ts => ts.therapist_shift_id)
                                 .Contains(_context.Shifts
-                                    .Where(sh => sh.Date == s.date)
+                                    //.Where(sh => sh.Date == s.date)
                                     .Select(sh => sh.Id)
                                     .FirstOrDefault()))
                 .ToListAsync();
