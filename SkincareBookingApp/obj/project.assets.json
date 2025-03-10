@@ -2827,6 +2827,7 @@
           "CloudinaryDotNet": "1.26.2",
           "DAL": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.3.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
           "Repository": "1.0.0",
           "StackExchange.Redis": "2.8.24"
         },

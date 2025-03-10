@@ -7,7 +7,6 @@ C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingA
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\refint\SkincareBookingApp.dll
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.pdb
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\appsettings.json
 C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\SkincareBookingApp.exe
 C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\SkincareBookingApp.deps.json

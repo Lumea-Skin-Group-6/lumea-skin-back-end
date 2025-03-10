@@ -30,10 +30,10 @@ namespace SkincareBookingApp.Controllers
         }
 
 
-        [HttpPost("add-shift")]
-        public IActionResult AddShift([FromBody] ShiftRequestDTO shiftRequest)
+        [HttpPost("add-shift/{therapistShiftID}")]
+        public IActionResult AddShift([FromRoute] int therapistShiftID, [FromBody] ShiftRequestDTO shiftRequest)
         {
-            var response = _shiftService.AddShift(shiftRequest);
+            var response = _shiftService.AddShift(therapistShiftID, shiftRequest);
 
             return StatusCode(response.StatusCode, new
             {
@@ -56,7 +56,7 @@ namespace SkincareBookingApp.Controllers
 
 
         [EnableQuery]
-        [HttpGet("/{shiftId}")]
+        [HttpGet("{shiftId}")]
         [SwaggerOperation(Summary = "get shift by id")]
         public IActionResult GetShift([FromRoute] int shiftId)
         {
@@ -87,6 +87,23 @@ namespace SkincareBookingApp.Controllers
         {
             var shifts = _shiftService.GetAllShift()
                 .Where(s => s.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+
+            return Ok(shifts);
+        }
+
+        [HttpGet("therapist/{therapistID}")]
+        [SwaggerOperation(Summary = "get shifts by therapistId")]
+        public IActionResult GetShiftByTherapistID([FromRoute] int therapistID)
+        {
+            var shifts = _shiftService.GetShiftsByTherapistId(therapistID);
+
+            if (shifts == null || !shifts.Any())
+            {
+                return NotFound(new
+                {
+                    message = "There are no shifts belonging to this therapist."
+                });
+            }
 
             return Ok(shifts);
         }

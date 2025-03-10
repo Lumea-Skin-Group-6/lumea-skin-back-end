@@ -11,7 +11,6 @@ namespace DAL.DTOs.RequestModel
     {
         public string Name { get; set; }
 
-
         public DateTime StartTime { get; set; }
 
 

@@ -19,20 +19,27 @@ namespace Repository.Repositories
             _context = context;
         }
 
-        public async Task<List<Slot>> GetFreeSlotsByTherapistIdAsync(int therapistId)
+        public void AddSlot(Slot slot)
         {
+            _context.Slots.Add(slot);
+            _context.SaveChanges();
+        }
+
+        public async Task<List<Slot>> GetFreeSlotsByTherapistIdAsync(int employeeId)
+        {
+            var today = DateTime.UtcNow.Date; 
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek); 
+            var endOfWeek = startOfWeek.AddDays(7); 
+
             var freeSlots = await _context.Slots
-                .Where(s => s.status == "Free" &&
-                            _context.TherapistShifts
-                                .Where(ts => ts.therapist_id == therapistId)
-                                .Select(ts => ts.therapist_shift_id)
-                                .Contains(_context.Shifts
-                                    //.Where(sh => sh.Date == s.date)
-                                    .Select(sh => sh.Id)
-                                    .FirstOrDefault()))
+                .Where(s => s.status == "Available" &&
+                            s.date >= startOfWeek && s.date <= endOfWeek &&
+                            s.employee_id == employeeId && s.employee.Type == "Therapist")
                 .ToListAsync();
 
             return freeSlots;
         }
+
+        
     }
 }

@@ -697,25 +697,17 @@ namespace DAL.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("shift_date");
-
-                    b.Property<int>("shiftId")
-                        .HasColumnType("integer");
+                        .HasColumnName("date");
 
                     b.Property<int>("shift_id")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("therapistId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("shift_id");
 
                     b.Property<int>("therapist_id")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("therapist_id");
 
                     b.HasKey("therapist_shift_id");
-
-                    b.HasIndex("shiftId");
-
-                    b.HasIndex("therapistId");
 
                     b.ToTable("therapist_shift");
                 });

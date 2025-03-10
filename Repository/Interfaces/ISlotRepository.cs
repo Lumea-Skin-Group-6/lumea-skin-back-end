@@ -10,5 +10,7 @@ namespace Repository.Interfaces
     public interface ISlotRepository
     {
         Task<List<Slot>> GetFreeSlotsByTherapistIdAsync(int therapistId);
+
+        void AddSlot(Slot slot);
     }
 }
