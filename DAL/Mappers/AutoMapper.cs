@@ -10,6 +10,7 @@ namespace DAL.Mappers
         public AutoMapper()
         {
             QuestionProfile();
+            AnswerProfile();
         }
 
         private void QuestionProfile()
@@ -20,6 +21,14 @@ namespace DAL.Mappers
             CreateMap<Question, QuestionResponse>().ReverseMap();
             CreateMap<QuestionUpdateRequest, Question>()
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
+            CreateMap<QuestionResponseWithAnswer, Question>().ReverseMap();
+        }
+
+        private void AnswerProfile()
+        {
+            CreateMap<AnswerCreateRequest, Answer>();
+            CreateMap<Answer, AnswerResponse>().ReverseMap();
+            CreateMap<AnswerUpdateRequest, Answer>();
         }
     }
 }

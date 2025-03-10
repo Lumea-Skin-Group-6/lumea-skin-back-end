@@ -16,9 +16,6 @@ namespace BusinessObject
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("shift_date")]
-        public DateTime Date { get; set; }
-
         [Column("name")]
         public string Name { get; set; }
 

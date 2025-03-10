@@ -21,10 +21,6 @@ namespace Service.Services
         {
             try
             {
-                if (shiftRequest.Date < DateTime.Today)
-                {
-                    throw new ErrorException(404, "Date cannot be before the current date.");
-                }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
@@ -44,7 +40,6 @@ namespace Service.Services
                 Shift shift = new Shift
                 {
                     Name = shiftRequest.Name,
-                    Date = shiftRequest.Date,
                     StartTime = shiftRequest.StartTime,
                     EndTime = shiftRequest.EndTime,
                     MinStaff = shiftRequest.MinStaff,
@@ -58,7 +53,6 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-                responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;
@@ -120,7 +114,6 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-                responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;
@@ -149,11 +142,6 @@ namespace Service.Services
                     throw new ErrorException(404, "Shift not available!");
                 }
 
-                if (shiftRequest.Date < DateTime.Today)
-                {
-                    throw new ErrorException(404, "Date cannot be before the current date.");
-                }
-
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
                     throw new ErrorException(404, "EndTime cannot be before StartTime.");
@@ -170,7 +158,6 @@ namespace Service.Services
                 }
 
                 shift.Name = shiftRequest.Name;
-                shift.Date = shiftRequest.Date;
                 shift.StartTime = shiftRequest.StartTime;
                 shift.EndTime = shiftRequest.EndTime;
                 shift.MinStaff = shiftRequest.MinStaff;
@@ -183,7 +170,6 @@ namespace Service.Services
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
-                responseDTO.Date = shift.Date;
                 responseDTO.StartTime = shift.StartTime;
                 responseDTO.EndTime = shift.EndTime;
                 responseDTO.MinStaff = shift.MinStaff;

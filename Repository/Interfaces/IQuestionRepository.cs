@@ -11,5 +11,7 @@ namespace Repository.Interfaces
         Task<QuestionResponse?> AddQuestionAsync(QuestionCreateRequest question); 
         Task<QuestionResponse?> UpdateQuestionAsync(QuestionUpdateRequest question); 
         Task DeleteQuestionAsync(int id);
+        Task<SkinAnalysisResultResponse> AnalyzeSkinTypeAsync(List<int> answerIds);
+        Task<IEnumerable<QuestionResponseWithAnswer>> GetAllQuestionsWithAnswersAsync();
     }
 }

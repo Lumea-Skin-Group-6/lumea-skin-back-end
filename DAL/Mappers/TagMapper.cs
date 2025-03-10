@@ -10,13 +10,13 @@ namespace DAL.Mappers
 {
     public static class TagMapper
     {
-        public static TagResponseModel ToTagResponseModel(this Tag model)
-        {
-            return new TagResponseModel
-            {
-                Id = model.tag_id,
-                Name = model.name,
-            };
-        }
+        //public static TagResponseModel ToTagResponseModel(this Answer model)
+        //{
+        //    return new TagResponseModel
+        //    {
+        //        Id = model.tag_id,
+        //        Name = model.name,
+        //    };
+        //}
     }
 }
