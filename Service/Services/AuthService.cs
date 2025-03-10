@@ -151,6 +151,11 @@ public class AuthService : IAuthService
         {
             throw new UnauthorizedAccessException("Incorrect email/password please try again.");
         }
+        
+        if (user.Status.ToLower() == "inactive" && !string.IsNullOrEmpty(user.ActivationCode))
+        {
+            throw new UnauthorizedAccessException("Your account is not verified.");
+        }
 
         var accessToken = _jwtService.GenerateAccessToken(user);
         var refreshToken = _jwtService.GenerateRefreshToken();
