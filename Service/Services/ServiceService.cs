@@ -1,4 +1,5 @@
-﻿using DAL.DTOs.RequestModel;
+﻿using BusinessObject;
+using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using DAL.Mappers;
 using Repository;
@@ -11,11 +12,19 @@ namespace Service.Services
     {
         private readonly IServiceRepository _repository;
 
-        public ServiceService(IServiceRepository repository)
+        private readonly IExpertiseRepository _expertiseRepository;
+
+        private readonly IServiceExpertiseRepository _serviceExpertiseRepo;
+
+        private readonly ITagRepository _tagRepository;
+
+        public ServiceService(IServiceRepository repository, IExpertiseRepository expertiseRepository, IServiceExpertiseRepository serviceExpertiseRepo, ITagRepository tagRepository)
         {
             _repository = repository;
+            _expertiseRepository = expertiseRepository;
+            _serviceExpertiseRepo = serviceExpertiseRepo;
+            _tagRepository = tagRepository;
         }
-
         public async Task<ServiceResponseModel> AddAsync(AddServiceRequestModel requestModel)
         {
             var services = await _repository.GetAllAsync();
@@ -25,9 +34,51 @@ namespace Service.Services
                 throw new InvalidOperationException("Service name must be unique");
             }
 
+            // Lấy tất cả expertise hiện có
+            var expertise = await _expertiseRepository.GetAllAsync();
+            var existingExpertiseIds = expertise.Select(e => e.Id).ToHashSet();
+
+            var tags = await _tagRepository.GetAllTagsAsync();
+            var existingTags = tags.Select(t => t.tag_id).ToHashSet();
+
+            // Kiểm tra tất cả ID trong requestModel.ServiceExpertisesID
+            var invalidIds = requestModel.ServiceExpertisesID.Where(id => !existingExpertiseIds.Contains(id)).ToList();
+            if (invalidIds.Any())
+            {
+                throw new InvalidOperationException("Expertise not exist: " + string.Join(", ", invalidIds));
+            }
+            var invalidTagIds = requestModel.ServiceTagID.Where(id => !existingTags.Contains(id)).ToList();
+            if (invalidTagIds.Any())
+            {
+                throw new InvalidOperationException("Tage not exist: " + string.Join(", ", invalidTagIds));
+            }
+
+            // Nếu tất cả Expertise ID hợp lệ, tiến hành lưu Service
             var result = await _repository.AddAsync(requestModel.ToService());
+
+            // Lưu ServiceExpertise
+            foreach (var item in requestModel.ServiceExpertisesID)
+            {
+                ServiceExpertise serviceExpertise = new ServiceExpertise
+                {
+                    ServiceId = result.Id,
+                    ExpertiseId = item
+                };
+                _serviceExpertiseRepo.AddServiceExpertise(serviceExpertise);
+            }
+
+            foreach(var tag in requestModel.ServiceTagID)
+            {
+                ServiceTag serviceTag = new ServiceTag
+                {
+                    ServiceId = result.Id,
+                    TagId = tag
+                };
+            }
+
             return result.ToServiceResponseModel();
         }
+
 
         public async Task<ServiceResponseModel> DeleteAsync(int id)
         {

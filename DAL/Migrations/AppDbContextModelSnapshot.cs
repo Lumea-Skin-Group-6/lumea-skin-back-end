@@ -96,7 +96,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("accounts", (string)null);
+                    b.ToTable("accounts");
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>
@@ -134,7 +134,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("appointments", (string)null);
+                    b.ToTable("appointments");
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetail", b =>
@@ -206,7 +206,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("TherapistId");
 
-                    b.ToTable("appointment_details", (string)null);
+                    b.ToTable("appointment_details");
                 });
 
             modelBuilder.Entity("BusinessObject.AppointmentDetailDate", b =>
@@ -233,7 +233,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("appointment_detail_id");
 
-                    b.ToTable("appointment_detail_dates", null, t =>
+                    b.ToTable("appointment_detail_dates", t =>
                         {
                             t.Property("appointment_detail_id")
                                 .HasColumnName("appointment_detail_id1");
@@ -283,7 +283,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("daily_reports", (string)null);
+                    b.ToTable("daily_reports");
                 });
 
             modelBuilder.Entity("BusinessObject.Employee", b =>
@@ -308,7 +308,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("employees", (string)null);
+                    b.ToTable("employees");
                 });
 
             modelBuilder.Entity("BusinessObject.Expertise", b =>
@@ -327,7 +327,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("expertises", (string)null);
+                    b.ToTable("expertises");
                 });
 
             modelBuilder.Entity("BusinessObject.Question", b =>
@@ -362,7 +362,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("questions", (string)null);
+                    b.ToTable("questions");
                 });
 
             modelBuilder.Entity("BusinessObject.Role", b =>
@@ -381,10 +381,36 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("roles", (string)null);
+                    b.ToTable("roles");
                 });
 
-            modelBuilder.Entity("BusinessObject.Service", b =>
+            modelBuilder.Entity("BusinessObject.ServiceExpertise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ExpertiseId")
+                        .HasColumnType("integer")
+                        .HasColumnName("expertise_id");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("integer")
+                        .HasColumnName("service_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpertiseId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("service_expertises");
+                });
+
+            modelBuilder.Entity("BusinessObject.ServiceModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -440,33 +466,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("services", (string)null);
-                });
-
-            modelBuilder.Entity("BusinessObject.ServiceExpertise", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ExpertiseId")
-                        .HasColumnType("integer")
-                        .HasColumnName("expertise_id");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("integer")
-                        .HasColumnName("service_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExpertiseId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("service_expertises", (string)null);
+                    b.ToTable("services");
                 });
 
             modelBuilder.Entity("BusinessObject.ServiceTag", b =>
@@ -492,7 +492,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("service_tags", (string)null);
+                    b.ToTable("service_tags");
                 });
 
             modelBuilder.Entity("BusinessObject.Shift", b =>
@@ -503,10 +503,6 @@ namespace DAL.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("shift_date");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("timestamp with time zone")
@@ -544,7 +540,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("shifts", (string)null);
+                    b.ToTable("shifts");
                 });
 
             modelBuilder.Entity("BusinessObject.Slot", b =>
@@ -576,7 +572,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("employeeId");
 
-                    b.ToTable("slot", (string)null);
+                    b.ToTable("slot");
                 });
 
             modelBuilder.Entity("BusinessObject.Tag", b =>
@@ -601,7 +597,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("questionId");
 
-                    b.ToTable("tag", (string)null);
+                    b.ToTable("tag");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
@@ -633,7 +629,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("therapistId");
 
-                    b.ToTable("therapist_expertise", (string)null);
+                    b.ToTable("therapist_expertise");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>
@@ -644,25 +640,21 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_shift_id"));
 
-                    b.Property<int>("shiftId")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date");
 
                     b.Property<int>("shift_id")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("therapistId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("shift_id");
 
                     b.Property<int>("therapist_id")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("therapist_id");
 
                     b.HasKey("therapist_shift_id");
 
-                    b.HasIndex("shiftId");
-
-                    b.HasIndex("therapistId");
-
-                    b.ToTable("therapist_shift", (string)null);
+                    b.ToTable("therapist_shift");
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>
@@ -695,7 +687,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Service", "Service")
+                    b.HasOne("BusinessObject.ServiceModel", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -744,7 +736,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Service", "Service")
+                    b.HasOne("BusinessObject.ServiceModel", "Service")
                         .WithMany("ServiceExpertises")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -757,7 +749,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.ServiceTag", b =>
                 {
-                    b.HasOne("BusinessObject.Service", "Service")
+                    b.HasOne("BusinessObject.ServiceModel", "Service")
                         .WithMany("ServiceTags")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -864,7 +856,7 @@ namespace DAL.Migrations
                     b.Navigation("Accounts");
                 });
 
-            modelBuilder.Entity("BusinessObject.Service", b =>
+            modelBuilder.Entity("BusinessObject.ServiceModel", b =>
                 {
                     b.Navigation("ServiceExpertises");
 

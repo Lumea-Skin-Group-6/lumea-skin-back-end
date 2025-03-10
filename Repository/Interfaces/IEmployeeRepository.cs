@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Interfaces
+namespace Repository.Interfaces
 {
-    public interface ISlotService
+    public interface IEmployeeRepository
     {
-        Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID);
+        Employee GetEmployeeById(int id);
     }
 }

@@ -53,6 +53,9 @@ builder.Services.AddScoped<IShiftService, ShiftService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<AccountUtils>();
+builder.Services.AddScoped<IServiceExpertiseRepository, ServiceExpertiseRepository>();
 
 
 
@@ -114,6 +117,8 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 builder.Services.AddSwaggerGen(c =>
@@ -167,7 +172,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:5173")
+    options.WithOrigins("http://localhost:5173", "https://lumea-skin.netlify.app")
         .AllowAnyHeader()
         .AllowAnyMethod());
 app.Run();

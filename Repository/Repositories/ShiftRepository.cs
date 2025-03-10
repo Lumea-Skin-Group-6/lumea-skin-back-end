@@ -13,16 +13,16 @@ namespace Repository.Repositories
             _context = context;
         }
 
-        public void AddAsync(Shift shift)
+        public void AddShift(Shift shift)
         {
             _context.Shifts.Add(shift);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public void DeleteAsync(Shift shift)
         {
             _context.Shifts.Remove(shift);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public List<Shift> GetAllShift()
@@ -38,7 +38,37 @@ namespace Repository.Repositories
         public void UpdateAsync(Shift shift)
         {
             _context.Shifts.Update(shift);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
+        }
+
+        public void AddTherapistShift(TherapistShift therapistShift)
+        {
+            _context.TherapistShifts.Add(therapistShift);
+            _context.SaveChanges();
+        }
+
+        public List<TherapistShift> GetAllTherapistShift()
+        {
+            return _context.TherapistShifts.ToList();
+        }
+
+        public TherapistShift GetTherapistShift(int id)
+        {
+            return _context.TherapistShifts.Find(id);
+        }
+
+        public void UpdateTherapistShift(TherapistShift therapistShift)
+        {
+            _context.TherapistShifts.Update(therapistShift);
+            _context.SaveChanges();
+        }
+
+        public List<Shift> GetShiftsByTherapistId(int id)
+        {
+            return _context.TherapistShifts
+                   .Where(ts => ts.therapist_id == id)
+                   .Select(ts => ts.shift)
+                   .ToList();
         }
     }
 }
