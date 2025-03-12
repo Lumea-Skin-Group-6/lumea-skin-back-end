@@ -63,6 +63,8 @@ builder.Services.AddScoped<ISlotService, SlotService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<AccountUtils>();
 builder.Services.AddScoped<IServiceExpertiseRepository, ServiceExpertiseRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 
 
