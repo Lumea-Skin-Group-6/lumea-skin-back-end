@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Text;
 using DAL.DTOs.RequestModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Service.Interfaces;
 using SkincareBookingApp.Helpers;
 
@@ -14,9 +17,11 @@ public class AuthController : Controller
 {
     private readonly IAuthService _authService;
 
-    public AuthController(IAuthService service)
+    private readonly IConfiguration _configuration;
+    public AuthController(IAuthService service, IConfiguration configuration)
     {
         _authService = service;
+        _configuration = configuration;
     }
 
     [HttpGet("init-roles")]
@@ -118,4 +123,46 @@ public class AuthController : Controller
             return StatusCode(500, new { message = "An error occurred while logging out.", error = ex.Message });
         }
     }
+
+    [HttpGet("get-user-info")]
+    public IActionResult DecodeToken()
+    {
+        try
+        {
+            var authHeader = HttpContext.Request.Headers["Authorization"].ToString();
+            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+            {
+                return BadRequest(new { error = "Authorization header is missing or invalid" });
+            }
+
+            var token = authHeader.Substring("Bearer ".Length).Trim();
+
+            var jwtSettings = _configuration.GetSection("JwtSettings");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]));
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = false,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["Issuer"],
+                ValidAudience = jwtSettings["Audience"],
+                IssuerSigningKey = key
+            };
+
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+            var jwtToken = (JwtSecurityToken)validatedToken;
+
+            var claims = jwtToken.Claims.ToDictionary(c => c.Type, c => c.Value);
+
+            return Ok(new { claims });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
 }
