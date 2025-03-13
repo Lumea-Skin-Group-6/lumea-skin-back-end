@@ -8,4 +8,6 @@ public interface IUserRepository
     Task<Account?> GetByEmailAsync(string email);
     Task UpdateAsync(Account account);
     Task<Account> GetByRefreshTokenAsync(string refreshToken);
+
+    List<Account> GetAll();
 }

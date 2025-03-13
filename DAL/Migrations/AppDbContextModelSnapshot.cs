@@ -634,11 +634,9 @@ namespace DAL.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("employeeId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("employee_id")
                         .HasColumnType("integer");
+
 
                     b.Property<string>("status")
                         .IsRequired()
@@ -650,7 +648,7 @@ namespace DAL.Migrations
 
                     b.HasKey("slot_id");
 
-                    b.HasIndex("employeeId");
+                    b.HasIndex("employee_id");
 
                     b.ToTable("slot");
                 });

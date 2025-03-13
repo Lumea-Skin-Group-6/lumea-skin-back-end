@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
 using DAL.DTO;
+using DAL.DTOs.RequestModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface ISlotService
+    public interface ITherapistService
     {
-        Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID);
+        ResponseModel AddTherapist(TherapistRequest employee);
 
-        ResponseModel AddSlot();
+        ResponseModel GetAllTherapist();
     }
 }

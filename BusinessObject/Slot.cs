@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BusinessObject
@@ -15,9 +16,12 @@ namespace BusinessObject
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int slot_id { get; set; }
 
+        [Column("employee_id")]
         public int employee_id { get; set; }
 
-        //[ForeignKey(nameof(employee_id))]
+
+        [JsonIgnore]
+        [ForeignKey(nameof(employee_id))]
         public Employee employee { get; set; }
         public string time { get; set; }
         public string status { get; set; }
