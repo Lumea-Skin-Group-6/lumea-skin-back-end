@@ -29,9 +29,8 @@ namespace SkincareBookingApp.Controllers
             return Ok(shift);
         }
 
-
         [HttpPost("add-shift/{therapistShiftID}")]
-        public IActionResult AddShift([FromRoute] int therapistShiftID, [FromBody] ShiftRequestDTO shiftRequest)
+        public IActionResult AddShift([FromRoute] int therapistShiftID,[FromBody] ShiftRequestDTO shiftRequest)
         {
             var response = _shiftService.AddShift(therapistShiftID, shiftRequest);
 
@@ -41,6 +40,7 @@ namespace SkincareBookingApp.Controllers
                 data = response.Data
             });
         }
+
 
         [HttpPut("{shiftId}")]
         [SwaggerOperation(Summary = "update shift by id")]

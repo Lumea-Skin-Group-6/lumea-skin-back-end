@@ -12,15 +12,12 @@ namespace Service.Services
     {
         private readonly IShiftRepository _shiftRepo;
         private readonly IEmployeeRepository _employeeRepo;
-        private readonly AccountUtils _accountUtils;
-        private readonly ISlotRepository _slotRepo;
 
-        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo, AccountUtils accountUtils, ISlotRepository slotRepo)
+
+        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo)
         {
             _shiftRepo = shiftRepo;
             _employeeRepo = employeeRepo;
-            _accountUtils = accountUtils;
-            _slotRepo = slotRepo;
         }
 
         public ResponseModel AddShift(int id, ShiftRequestDTO shiftRequest)
@@ -50,8 +47,7 @@ namespace Service.Services
                     throw new ErrorException(404, "No one regis work date!");
                 }
 
-                Account account = _accountUtils.GetCurrentAccount();
-
+                
                 Shift shift = new Shift
                 {
                     Name = shiftRequest.Name,
@@ -71,13 +67,6 @@ namespace Service.Services
                 therapistShift.shift_id = shift.Id;
                 _shiftRepo.UpdateTherapistShift(therapistShift);
 
-                Slot slot = new Slot();
-                slot.employee_id = account.Id;
-                slot.time = shiftRequest.StartTime.ToLongTimeString();
-                slot.date = therapistShift.Date;
-                slot.status = "Avaliable";
-
-                _slotRepo.AddSlot(slot);
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
                 responseDTO.Name = shift.Name;
@@ -96,11 +85,7 @@ namespace Service.Services
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot Add!", errorData);
             }
-            catch (Exception ex)
-            {
-                var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
-                return new ResponseModel(500, "Cannot Add!", errorData);
-            }
+
         }
 
 

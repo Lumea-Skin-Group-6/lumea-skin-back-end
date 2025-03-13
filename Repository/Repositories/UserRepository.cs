@@ -41,4 +41,9 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync();
         return user;
     }
+
+    public List<Account> GetAll()
+    {
+        return _context.Accounts.ToList();
+    }
 }
