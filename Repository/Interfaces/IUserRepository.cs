@@ -10,4 +10,6 @@ public interface IUserRepository
     Task<Account> GetByRefreshTokenAsync(string refreshToken);
 
     List<Account> GetAll();
+
+    Account GetAccountById(int id);
 }

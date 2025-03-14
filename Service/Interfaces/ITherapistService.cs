@@ -14,5 +14,11 @@ namespace Service.Interfaces
         ResponseModel AddTherapist(TherapistRequest employee);
 
         ResponseModel GetAllTherapist();
+
+        ResponseModel GetTherapistById(int id);
+
+        ResponseModel UpdateTherapist(UpdateTherapistRequestModel updateRequest);
+
+        ResponseModel DeleteTherapist(int id);
     }
 }

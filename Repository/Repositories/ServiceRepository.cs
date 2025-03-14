@@ -73,7 +73,7 @@ namespace Repository.Repositories
             existingService.Type = service.Type;
             existingService.NumberOfTreatment = service.NumberOfTreatment;
             //existingService.ServiceTags = service.ServiceTags;
-            existingService.ServiceExpertises = service.ServiceExpertises;
+            //existingService.ServiceExpertises = service.ServiceExpertises;
             await _context.SaveChangesAsync();
             return existingService;
         }
