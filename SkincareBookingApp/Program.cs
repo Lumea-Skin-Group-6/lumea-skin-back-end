@@ -51,11 +51,10 @@ builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IShiftService, ShiftService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
@@ -67,6 +66,7 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ITherapistRepository, TherapistRepository>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 
