@@ -8,6 +8,7 @@ public interface IUserRepository
     Task<Account?> GetByEmailAsync(string email);
     Task UpdateAsync(Account account);
     Task<Account> GetByRefreshTokenAsync(string refreshToken);
-
     List<Account> GetAll();
+    Task<Account?> GetByIdAsync(int id);
+    Task<bool> ExistsAsync(int id);
 }

@@ -46,4 +46,16 @@ public class UserRepository : IUserRepository
     {
         return _context.Accounts.ToList();
     }
+
+    public async Task<Account?> GetByIdAsync(int id)
+    {
+        return await _context.Accounts
+            .Include(a => a.Role)
+            .FirstOrDefaultAsync(a => a.Id == id);
+    }
+
+    public async Task<bool> ExistsAsync(int id)
+    {
+        return await _context.Accounts.AnyAsync(a => a.Id == id);
+    }
 }
