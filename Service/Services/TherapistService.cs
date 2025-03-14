@@ -62,6 +62,33 @@ namespace Service.Services
             }
         }
 
+        public ResponseModel DeleteTherapist(int id)
+        {
+            try
+            {
+                Employee employee = repository.GetTherapistById(id);
+
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Employee not exist!");
+                }
+
+                Account account = accountRepo.GetAccountById(employee.AccountId);
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Account not exist!");
+                }
+
+                repository.DeleteTherapist(employee);
+                return new ResponseModel(200, "Delete Successfully!", "This is employee " + account.FullName);
+            }
+            catch (ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Cannot Delete!", errorData);
+            }
+        }
+
         public ResponseModel GetAllTherapist()
         {
             try
@@ -91,6 +118,69 @@ namespace Service.Services
                     responses = new List<TherapistResponse>();
                 }
                 return new ResponseModel(200, "List Therapist", responses);
+            }
+            catch (ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Cannot find Therapist!", errorData);
+            }
+        }
+
+        public ResponseModel GetTherapistById(int id)
+        {
+            try
+            {
+                Employee employee = repository.GetTherapistById(id);
+
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Employee not exist!");
+                }
+
+                Account account = accountRepo.GetAccountById(employee.AccountId);
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Account not exist!");
+                }
+
+                TherapistResponse response = new TherapistResponse();
+                response.AccountID = employee.AccountId;
+                response.TherapistName = account.FullName;
+                response.TherapistType = employee.Type;
+
+                return new ResponseModel(200, "List Therapist", response);
+            }
+            catch (ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Cannot find Therapist!", errorData);
+            }
+        }
+
+        public ResponseModel UpdateTherapist(UpdateTherapistRequestModel updateRequest)
+        {
+            try
+            {
+                Employee exist = repository.GetTherapistById(updateRequest.employeeId);
+
+                if (exist == null)
+                {
+                    throw new ErrorException(404, "Employee not exist!");
+                }
+
+                Account account = accountRepo.GetAccountById(updateRequest.AccountId);
+                if (account == null)
+                {
+                    throw new ErrorException(404, "Account not exist!");
+                }
+
+                exist.AccountId = updateRequest.AccountId;
+                exist.Type = updateRequest.Type;
+
+                repository.UpdateTherapist(exist);
+                
+
+                return new ResponseModel(200, "Update successfully!", updateRequest);
             }
             catch (ErrorException ex)
             {
