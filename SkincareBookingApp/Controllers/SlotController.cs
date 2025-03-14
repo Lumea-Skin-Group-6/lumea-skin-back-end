@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DAL.DTOs.RequestModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
+using Service.Services;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SkincareBookingApp.Controllers
 {
@@ -27,6 +30,18 @@ namespace SkincareBookingApp.Controllers
             return Ok(slots);
         }
 
+
+        [HttpPost]
+        [SwaggerOperation(Summary = "Auto gen Slot")]
+        public IActionResult AddSlot()
+        {
+            var slots = _slotService.AddSlot();
+            return StatusCode(slots.StatusCode, new
+            {
+                message = slots.Title,
+                data = slots.Data
+            });
+        }
 
 
     }
