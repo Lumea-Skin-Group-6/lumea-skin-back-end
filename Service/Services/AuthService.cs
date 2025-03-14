@@ -81,7 +81,7 @@ public class AuthService : IAuthService
             Gender = userDto.Gender,
             Status = "inactive",
             RoleId = customerRole.Id,
-            ImageUrl = null,
+            ImageUrl = "",
             ActivationCode = verificationCode,
             RefreshTokenExpiry = null,
             RefreshToken = null,
