@@ -32,11 +32,6 @@ public class UserService : IUserService
             Phone = user.Phone,
             Status = user.Status,
             IsLoggedIn = user.IsLoggedIn,
-            Role = new UserProfileResponseModel.RoleDto
-            {
-                Id = user.Role.Id,
-                Name = user.Role.Name
-            }
         };
     }
 }
