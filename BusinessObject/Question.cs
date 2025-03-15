@@ -17,6 +17,8 @@ namespace BusinessObject
 
         [Column("updated_at")] public DateTime UpdatedAt { get; set; }
 
+        [Column("status")] public bool Active { get; set; }
+
         public ICollection<Answer>? Answers { get; set; }
     }
 }
