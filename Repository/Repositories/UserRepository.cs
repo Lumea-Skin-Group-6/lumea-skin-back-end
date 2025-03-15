@@ -47,6 +47,11 @@ public class UserRepository : IUserRepository
         return _context.Accounts.ToList();
     }
 
+    public Account GetAccountById(int id)
+    {
+        return _context.Accounts.Find(id);
+    }
+
     public async Task<Account?> GetByIdAsync(int id)
     {
         return await _context.Accounts

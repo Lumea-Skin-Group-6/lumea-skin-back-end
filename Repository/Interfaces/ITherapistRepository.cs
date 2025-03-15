@@ -12,5 +12,11 @@ namespace Repository.Interfaces
         void AddTherapist(Employee employee);
 
         List<Employee> GetAllTherapist();
+
+        void UpdateTherapist(Employee employee);
+
+        void DeleteTherapist(Employee employee);
+
+        Employee GetTherapistById(int id);
     }
 }

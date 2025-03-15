@@ -42,5 +42,41 @@ namespace SkincareBookingApp.Controllers
                 data = therapist.Data
             });
         }
+
+        [HttpGet("{therapistID}")]
+        [SwaggerOperation(Summary = "get therapist by id")]
+        public IActionResult GetTherapistByID([FromRoute] int therapistID)
+        {
+            var therapist = therapistService.GetTherapistById(therapistID);
+            return StatusCode(therapist.StatusCode, new
+            {
+                message = therapist.Title,
+                data = therapist.Data
+            });
+        }
+
+        [HttpPut]
+        [SwaggerOperation(Summary = "Udpate Therapist")]
+        public IActionResult UpdateTherapist([FromBody] UpdateTherapistRequestModel therapistRequestModel)
+        {
+            var therapist = therapistService.UpdateTherapist(therapistRequestModel);
+            return StatusCode(therapist.StatusCode, new
+            {
+                message = therapist.Title,
+                data = therapist.Data
+            });
+        }
+
+        [HttpDelete("{therapistID}")]
+        [SwaggerOperation(Summary = "delete therapist by id")]
+        public IActionResult DeleteTherapist([FromRoute] int therapistID)
+        {
+            var therapist = therapistService.DeleteTherapist(therapistID);
+            return StatusCode(therapist.StatusCode, new
+            {
+                message = therapist.Title,
+                data = therapist.Data
+            });
+        }
     }
 }

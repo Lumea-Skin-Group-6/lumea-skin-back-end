@@ -24,9 +24,26 @@ namespace Repository.Repositories
             _context.SaveChanges();
         }
 
+        public void DeleteTherapist(Employee employee)
+        {
+            _context.Employees.Remove(employee);
+            _context.SaveChanges();
+        }
+
         public List<Employee> GetAllTherapist()
         {
             return _context.Employees.ToList();
+        }
+
+        public Employee GetTherapistById(int id)
+        {
+            return _context.Employees.Find(id);
+        }
+
+        public void UpdateTherapist(Employee employee)
+        {
+            _context.Employees.Update(employee);
+            _context.SaveChanges();
         }
     }
 }
