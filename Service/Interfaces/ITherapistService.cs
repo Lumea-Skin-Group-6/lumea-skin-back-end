@@ -11,7 +11,7 @@ namespace Service.Interfaces
 {
     public interface ITherapistService
     {
-        ResponseModel AddTherapist(TherapistRequest employee);
+        ResponseModel AddTherapist(AccountRequestModel accountRequest);
 
         ResponseModel GetAllTherapist();
 

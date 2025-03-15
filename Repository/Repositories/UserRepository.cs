@@ -63,4 +63,10 @@ public class UserRepository : IUserRepository
     {
         return await _context.Accounts.AnyAsync(a => a.Id == id);
     }
+
+    public void AddAccount(Account account)
+    {
+        _context.Accounts.Add(account);
+        _context.SaveChanges();
+    }
 }
