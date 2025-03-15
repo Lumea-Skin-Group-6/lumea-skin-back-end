@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 
 namespace BusinessObject
@@ -25,7 +20,6 @@ namespace BusinessObject
 
         [Column("sensitive_point")] public sbyte SensitivePoint { get; set; }
 
-        [JsonIgnore]
-        public Question? question { get; set; }
+        [JsonIgnore] public Question? question { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Service.Interfaces
     public interface ISlotService
     {
         Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID);
+
+        ResponseModel AddSlot();
     }
 }

@@ -81,7 +81,7 @@ public class AuthService : IAuthService
             Gender = userDto.Gender,
             Status = "inactive",
             RoleId = customerRole.Id,
-            ImageUrl = null,
+            ImageUrl = "",
             ActivationCode = verificationCode,
             RefreshTokenExpiry = null,
             RefreshToken = null,
@@ -150,6 +150,11 @@ public class AuthService : IAuthService
         if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
         {
             throw new UnauthorizedAccessException("Incorrect email/password please try again.");
+        }
+        
+        if (user.Status.ToLower() == "inactive" && !string.IsNullOrEmpty(user.ActivationCode))
+        {
+            throw new UnauthorizedAccessException("Your account is not verified.");
         }
 
         var accessToken = _jwtService.GenerateAccessToken(user);

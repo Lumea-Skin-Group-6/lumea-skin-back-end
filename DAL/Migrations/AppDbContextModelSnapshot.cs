@@ -627,11 +627,9 @@ namespace DAL.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("employeeId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("employee_id")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("employee_id");
 
                     b.Property<string>("status")
                         .IsRequired()
@@ -643,7 +641,7 @@ namespace DAL.Migrations
 
                     b.HasKey("slot_id");
 
-                    b.HasIndex("employeeId");
+                    b.HasIndex("employee_id");
 
                     b.ToTable("slot");
                 });
@@ -832,7 +830,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("BusinessObject.Employee", "employee")
                         .WithMany("Slots")
-                        .HasForeignKey("employeeId")
+                        .HasForeignKey("employee_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -848,7 +846,7 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("BusinessObject.Employee", "therapist")
-                        .WithMany()
+                        .WithMany("TherapistExpertises")
                         .HasForeignKey("therapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -895,6 +893,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("BusinessObject.Employee", b =>
                 {
                     b.Navigation("Slots");
+
+                    b.Navigation("TherapistExpertises");
                 });
 
             modelBuilder.Entity("BusinessObject.Expertise", b =>

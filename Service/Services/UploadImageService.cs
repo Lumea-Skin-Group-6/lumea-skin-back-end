@@ -3,27 +3,23 @@ using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Service.Interfaces;
 
-namespace Service.Services.UploadImage
+
+namespace Service.Services
 {
     public class UploadImageService : IUploadImageService
     {
-        private readonly Cloudinary cloudinary;
+        private readonly Cloudinary _cloudinary;
 
         public UploadImageService(IConfiguration configuration)
         {
-            var account = new Account(
-                configuration["CloudinarySettings:CloudName"] ?? Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME"),
-                configuration["CloudinarySettings:ApiKey"] ?? Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY"),
-                configuration["CloudinarySettings:ApiSecret"] ?? Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET")
-            );
+            var cloudName = configuration["CloudinarySettings:CloudName"];
+            var apiKey = configuration["CloudinarySettings:ApiKey"];
+            var apiSecret = configuration["CloudinarySettings:ApiSecret"];
 
-            cloudinary = new Cloudinary(account);
+            var account = new Account(cloudName, apiKey, apiSecret);
+            _cloudinary = new Cloudinary(account);
         }
 
         public async Task<ImageUploadResult> UploadImageAsync(IFormFile file)
@@ -38,8 +34,7 @@ namespace Service.Services.UploadImage
                     File = new FileDescription(file.Name, stream),
                     Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
                 };
-
-                uploadResult = await cloudinary.UploadAsync(uploadParams);
+                uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
 
             return uploadResult;

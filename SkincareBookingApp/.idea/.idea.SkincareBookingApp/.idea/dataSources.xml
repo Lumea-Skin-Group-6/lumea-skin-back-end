@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="lumea_skin@dpg-cu5jv9tsvqrc7388rgk0-a.oregon-postgres.render.com" uuid="c06ab674-e359-4ad9-9175-f577f73b5523">
+    <data-source source="LOCAL" name="lumea_skin_db_r27t@dpg-cupkmudsvqrc73f2phpg-a.oregon-postgres.render.com" uuid="ddf8358b-43de-4877-9d05-4488ce02ad24">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://dpg-cu5jv9tsvqrc7388rgk0-a.oregon-postgres.render.com:5432/lumea_skin?user=lumea_skin_user&amp;password=59pk0vhLJDGS9fIP50J8HFxmMt6OYyNb</jdbc-url>
+      <jdbc-url>jdbc:postgresql://dpg-cupkmudsvqrc73f2phpg-a.oregon-postgres.render.com:5432/lumea_skin_db_r27t</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
         <property name="com.intellij.clouds.kubernetes.db.container.port" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>

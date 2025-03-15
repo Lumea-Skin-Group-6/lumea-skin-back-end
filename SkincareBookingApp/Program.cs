@@ -13,7 +13,6 @@ using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
 using DAL.DTOs.ResponseModel;
-using Service.Services.UploadImage;
 
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
@@ -32,8 +31,10 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
 
-//Configure Scoped
+// Configuration Cloudinary
 builder.Services.AddScoped<IUploadImageService, UploadImageService>();
+
+//Configure Scoped
 builder.Services.AddScoped<ISkinAnalysisService, SkinAnalysisService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMailService, MailService>();
@@ -47,11 +48,10 @@ builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IShiftService, ShiftService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
@@ -59,7 +59,11 @@ builder.Services.AddScoped<ISlotService, SlotService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<AccountUtils>();
 builder.Services.AddScoped<IServiceExpertiseRepository, ServiceExpertiseRepository>();
-
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<ITherapistRepository, TherapistRepository>();
+builder.Services.AddScoped<ITherapistService, TherapistService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
