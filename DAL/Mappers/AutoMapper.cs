@@ -11,6 +11,7 @@ namespace DAL.Mappers
         {
             QuestionProfile();
             AnswerProfile();
+            SkinTypeProfile();
         }
 
         private void QuestionProfile()
@@ -29,6 +30,11 @@ namespace DAL.Mappers
             CreateMap<AnswerCreateRequest, Answer>();
             CreateMap<Answer, AnswerResponse>().ReverseMap();
             CreateMap<AnswerUpdateRequest, Answer>();
+        }
+
+        private void SkinTypeProfile()
+        {
+            CreateMap<SkinType, SkinTypeResponse>().ReverseMap();
         }
     }
 }

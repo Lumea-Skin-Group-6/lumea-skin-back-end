@@ -22,14 +22,10 @@ namespace Service.Services
             _cloudinary = new Cloudinary(account);
         }
 
-        public Task<DeletionResult> DeleteImageAsync(string publicId)
-        {
-            return null;
-        }
-
         public async Task<ImageUploadResult> UploadImageAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
+
             if (file.Length > 0)
             {
                 using var stream = file.OpenReadStream();
@@ -42,6 +38,11 @@ namespace Service.Services
             }
 
             return uploadResult;
+        }
+
+        public Task<DeletionResult> DeleteImageAsync(string publicId)
+        {
+            return null; // Implement deletion logic here
         }
     }
 }

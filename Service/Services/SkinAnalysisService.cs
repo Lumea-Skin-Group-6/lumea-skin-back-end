@@ -17,7 +17,7 @@ namespace Service.Services
         {
             _questionRepository = questionRepository;
         }
-        public async Task<SkinAnalysisResultResponse> AnalyzeSkinTypeAsync(List<int> answerIds)
+        public async Task<SkinAnalysisResultResponse?> AnalyzeSkinTypeAsync(List<int> answerIds)
         {
             return await _questionRepository.AnalyzeSkinTypeAsync(answerIds);
         }

@@ -35,7 +35,7 @@ namespace Service.Services
             return await _questionRepository.GetAllQuestionsWithAnswersAsync();
         }
 
-        public async Task<QuestionResponse?> GetQuestionByIdAsync(int id)
+        public async Task<QuestionResponseWithAnswer?> GetQuestionByIdAsync(int id)
         {
             return await _questionRepository.GetQuestionByIdAsync(id);
         }
