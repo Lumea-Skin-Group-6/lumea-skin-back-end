@@ -13,7 +13,6 @@ using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
 using DAL.DTOs.ResponseModel;
-using Service.Services.UploadImage;
 
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
@@ -34,7 +33,7 @@ builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
 
 
 // Configuration Cloudinary
-builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+builder.Services.AddScoped<IUploadImageService, UploadImageService>();
 
 //Configure Scoped
 builder.Services.AddScoped<IUploadImageService, UploadImageService>();
@@ -67,7 +66,6 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ITherapistRepository, TherapistRepository>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
 
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
