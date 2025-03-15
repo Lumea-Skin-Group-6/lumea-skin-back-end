@@ -20,10 +20,10 @@ namespace SkincareBookingApp.Controllers
         }
 
         [HttpPost]
-        [SwaggerOperation(Summary = "add therapist")]
-        public IActionResult AddTherapist([FromBody] TherapistRequest therapistRequest)
+        [SwaggerOperation(Summary = "add account and therapist")]
+        public IActionResult AddTherapist([FromBody] AccountRequestModel accountRequest)
         {
-            var therapist = therapistService.AddTherapist(therapistRequest);
+            var therapist = therapistService.AddTherapist(accountRequest);
             return StatusCode(therapist.StatusCode, new
             {
                 message = therapist.Title,

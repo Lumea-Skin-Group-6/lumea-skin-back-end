@@ -28,32 +28,44 @@ namespace Service.Services
             this.accountRepo = userRepository;
         }
 
-        public ResponseModel AddTherapist(TherapistRequest employee)
+        public ResponseModel AddTherapist(AccountRequestModel accountRequest)
         {
             try
             {
-                // Lấy danh sách tài khoản có RoleId == 5
-                var validAccounts = accountRepo.GetAll().Where(e => e.RoleId == 5).ToList();
-                var existAccount = validAccounts.Select(e => e.Id).ToHashSet();
+                Account account = new Account();
 
-                // Kiểm tra tất cả ID trong employee.AccountId
-                var invalidIds = employee.AccountId.Where(id => !existAccount.Contains(id)).ToList();
-                if (invalidIds.Any())
+                account.FullName = accountRequest.FullName;
+                account.Email = accountRequest.Email;
+                account.Password = BCrypt.Net.BCrypt.HashPassword(accountRequest.Password);
+                account.DateOfBirth = accountRequest.DateOfBirth;
+                account.Gender = accountRequest.Gender;
+                account.Phone = accountRequest.Phone;
+                account.RoleId = accountRequest.RoleId;
+                account.Status = "active";
+                account.IsDeleted = false;
+                account.IsLoggedIn = true;
+
+                accountRepo.AddAccount(account);
+
+                AccountResponse response = new AccountResponse();
+                response.FullName = account.FullName;
+                response.Email = account.Email;
+                response.DateOfBirth = account.DateOfBirth;
+                response.Gender = account.Gender;
+                response.type = "";
+
+                Employee employee = new Employee();
+                if(account.RoleId == 5)
                 {
-                    throw new ErrorException(404, "Account not exist: " + string.Join(", ", invalidIds));
+                    employee.AccountId = account.Id;
+                    employee.Type = "Therapist";
+                    repository.AddTherapist(employee);
+                    response.type = employee.Type;
                 }
-
-                foreach (var item in employee.AccountId)
-                {
-                    Employee employee1 = new Employee
-                    {
-                        AccountId = item,
-                        Type = employee.Type
-                    };
-                    repository.AddTherapist(employee1);
-                }
-
-                return new ResponseModel(200, "Add successfully!", employee);
+                
+               
+                   
+                return new ResponseModel(200, "Add successfully!", response);
             }
             catch (ErrorException ex)
             {
@@ -80,6 +92,9 @@ namespace Service.Services
                 }
 
                 repository.DeleteTherapist(employee);
+                account.Status = "inactive";
+
+                accountRepo.UpdateAsync(account);
                 return new ResponseModel(200, "Delete Successfully!", "This is employee " + account.FullName);
             }
             catch (ErrorException ex)
