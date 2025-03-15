@@ -13,4 +13,6 @@ public interface IUserRepository
     Account GetAccountById(int id);
     Task<Account?> GetByIdAsync(int id);
     Task<bool> ExistsAsync(int id);
+
+    void AddAccount(Account account);
 }
