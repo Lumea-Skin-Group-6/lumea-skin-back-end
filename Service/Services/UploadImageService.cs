@@ -1,24 +1,25 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Service.Interfaces;
 
 
-namespace Service.Services.UploadImage
+namespace Service.Services
 {
     public class UploadImageService : IUploadImageService
     {
-        private readonly Cloudinary cloudinary;
+        private readonly Cloudinary _cloudinary;
 
-        public UploadImageService(IOptions<CloudinarySettings> config)
+        public UploadImageService(IConfiguration configuration)
         {
-            var acc = new Account
-            (
-                config.Value.CloudName,
-                config.Value.ApiKey,
-                config.Value.ApiSecret
-            );
-            cloudinary = new Cloudinary(acc);
+            var cloudName = configuration["CloudinarySettings:CloudName"];
+            var apiKey = configuration["CloudinarySettings:ApiKey"];
+            var apiSecret = configuration["CloudinarySettings:ApiSecret"];
+
+            var account = new Account(cloudName, apiKey, apiSecret);
+            _cloudinary = new Cloudinary(account);
         }
 
         public Task<DeletionResult> DeleteImageAsync(string publicId)
@@ -37,7 +38,7 @@ namespace Service.Services.UploadImage
                     File = new FileDescription(file.Name, stream),
                     Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
                 };
-                uploadResult = await cloudinary.UploadAsync(uploadParams);
+                uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
 
             return uploadResult;

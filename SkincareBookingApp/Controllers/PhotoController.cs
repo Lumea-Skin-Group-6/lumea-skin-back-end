@@ -1,6 +1,5 @@
-﻿using Service.Services.UploadImage;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Service.Interfaces;
 
 namespace SkincareBookingApp.Controllers
 {
@@ -24,6 +23,7 @@ namespace SkincareBookingApp.Controllers
             {
                 return BadRequest(result.Error.Message);
             }
+
             var photoUrl = result.SecureUrl.AbsoluteUri;
 
             return photoUrl;
