@@ -31,12 +31,10 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
 
-
 // Configuration Cloudinary
 builder.Services.AddScoped<IUploadImageService, UploadImageService>();
 
 //Configure Scoped
-builder.Services.AddScoped<IUploadImageService, UploadImageService>();
 builder.Services.AddScoped<ISkinAnalysisService, SkinAnalysisService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMailService, MailService>();

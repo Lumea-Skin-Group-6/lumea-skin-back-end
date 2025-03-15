@@ -28,10 +28,10 @@ namespace Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<QuestionResponse?> GetQuestionByIdAsync(int id)
+        public async Task<QuestionResponseWithAnswer?> GetQuestionByIdAsync(int id)
         {
             return await _context.Questions
-                .ProjectTo<QuestionResponse>(_mapper.ConfigurationProvider)
+                .ProjectTo<QuestionResponseWithAnswer>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -62,7 +62,7 @@ namespace Repository.Repositories
 
             if (existingQuestion == null)
             {
-                throw new InvalidOperationException("Question not found.");
+                return null;
             }
 
             // Use AutoMapper to update the existing entity without replacing it
@@ -116,15 +116,12 @@ namespace Repository.Repositories
             {
                 throw new InvalidOperationException("Question not found.");
             }
-            if (existingQuestion.Answers.Any())
-            {
-                throw new InvalidOperationException("There have been answers related to this question!");
-            }
+            
             _context.Questions.Remove(existingQuestion);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<SkinAnalysisResultResponse> AnalyzeSkinTypeAsync(List<int> answerIds)
+        public async Task<SkinAnalysisResultResponse?> AnalyzeSkinTypeAsync(List<int> answerIds)
         {
             var answers = await _context.Answers
                 .Where(a => answerIds.Contains(a.Id))
@@ -146,7 +143,7 @@ namespace Repository.Repositories
 
             if (skinType == null)
             {
-                throw new Exception("No matching skin type found.");
+                return null;
             }
 
             var recommendedServices = await _context.Services

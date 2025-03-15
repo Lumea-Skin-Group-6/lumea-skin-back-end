@@ -11,7 +11,7 @@ namespace Service.Interfaces
     public interface IQuestionService
     {
         Task<IEnumerable<QuestionResponse>> GetAllQuestionAsync();
-        Task<QuestionResponse?> GetQuestionByIdAsync(int id);
+        Task<QuestionResponseWithAnswer?> GetQuestionByIdAsync(int id);
         Task<QuestionResponse?> AddQuestionAsync(QuestionCreateRequest question);
         Task<QuestionResponse?> UpdateQuestionAsync(QuestionUpdateRequest question);
         Task DeleteQuestionAsync(int id);

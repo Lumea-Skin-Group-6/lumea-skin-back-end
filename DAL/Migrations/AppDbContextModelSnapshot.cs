@@ -123,15 +123,12 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("questionId")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("question_id")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("questionId");
+                    b.HasIndex("question_id");
 
                     b.ToTable("answer");
                 });
@@ -376,22 +373,18 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean")
+                        .HasColumnName("status");
+
                     b.Property<bool>("IsMultipleChoice")
                         .HasColumnType("boolean")
                         .HasColumnName("is_multiple_choice");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("integer")
-                        .HasColumnName("display_order");
 
                     b.Property<string>("QuestionContent")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("question_content");
-
-                    b.Property<int>("ServiceType")
-                        .HasColumnType("integer")
-                        .HasColumnName("service_type");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone")
@@ -635,8 +628,8 @@ namespace DAL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("employee_id")
-                        .HasColumnType("integer");
-
+                        .HasColumnType("integer")
+                        .HasColumnName("employee_id");
 
                     b.Property<string>("status")
                         .IsRequired()
@@ -707,6 +700,10 @@ namespace DAL.Migrations
 
                     b.HasKey("therapist_shift_id");
 
+                    b.HasIndex("shift_id");
+
+                    b.HasIndex("therapist_id");
+
                     b.ToTable("therapist_shift");
                 });
 
@@ -724,10 +721,9 @@ namespace DAL.Migrations
             modelBuilder.Entity("BusinessObject.Answer", b =>
                 {
                     b.HasOne("BusinessObject.Question", "question")
-                        .WithMany()
-                        .HasForeignKey("questionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Answers")
+                        .HasForeignKey("question_id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("question");
                 });
@@ -834,7 +830,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("BusinessObject.Employee", "employee")
                         .WithMany("Slots")
-                        .HasForeignKey("employeeId")
+                        .HasForeignKey("employee_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -850,7 +846,7 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("BusinessObject.Employee", "therapist")
-                        .WithMany()
+                        .WithMany("TherapistExpertises")
                         .HasForeignKey("therapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -864,13 +860,13 @@ namespace DAL.Migrations
                 {
                     b.HasOne("BusinessObject.Shift", "shift")
                         .WithMany("TherapistShifts")
-                        .HasForeignKey("shiftId")
+                        .HasForeignKey("shift_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BusinessObject.Employee", "therapist")
                         .WithMany()
-                        .HasForeignKey("therapistId")
+                        .HasForeignKey("therapist_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -897,11 +893,18 @@ namespace DAL.Migrations
             modelBuilder.Entity("BusinessObject.Employee", b =>
                 {
                     b.Navigation("Slots");
+
+                    b.Navigation("TherapistExpertises");
                 });
 
             modelBuilder.Entity("BusinessObject.Expertise", b =>
                 {
                     b.Navigation("TherapistExpertises");
+                });
+
+            modelBuilder.Entity("BusinessObject.Question", b =>
+                {
+                    b.Navigation("Answers");
                 });
 
             modelBuilder.Entity("BusinessObject.Role", b =>
