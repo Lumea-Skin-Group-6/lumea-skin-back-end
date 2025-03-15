@@ -165,11 +165,6 @@ C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\ref\SkincareBook
 C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\Newtonsoft.Json.dll
-C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.AssemblyReference.cache
-C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.CoreCompileInputs.cache
-C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.sourcelink.json
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\SkincareBookingApp.staticwebassets.runtime.json
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\SkincareBookingApp.exe
@@ -444,7 +439,12 @@ C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Service.pdb
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\DAL.pdb
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Repository.pdb
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.AssemblyReference.cache
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.CoreCompileInputs.cache
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.sourcelink.json
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\staticwebassets\msbuild.SkincareBookingApp.Microsoft.AspNetCore.StaticWebAssets.props

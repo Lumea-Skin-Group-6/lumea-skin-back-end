@@ -27,6 +27,8 @@ namespace BusinessObject
 
         [JsonIgnore]
         public ICollection<Slot> Slots { get; set; }
+        
+        public ICollection<TherapistExpertise> TherapistExpertises { get; set; }
     }
 
 }
