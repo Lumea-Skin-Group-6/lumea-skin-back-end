@@ -7,11 +7,11 @@ namespace Repository.Interfaces
     public interface IQuestionRepository
     {
         Task<IEnumerable<QuestionResponse>> GetAllQuestionAsync();
-        Task<QuestionResponse?> GetQuestionByIdAsync(int id);
+        Task<QuestionResponseWithAnswer?> GetQuestionByIdAsync(int id);
         Task<QuestionResponse?> AddQuestionAsync(QuestionCreateRequest question); 
         Task<QuestionResponse?> UpdateQuestionAsync(QuestionUpdateRequest question); 
         Task DeleteQuestionAsync(int id);
-        Task<SkinAnalysisResultResponse> AnalyzeSkinTypeAsync(List<int> answerIds);
+        Task<SkinAnalysisResultResponse?> AnalyzeSkinTypeAsync(List<int> answerIds);
         Task<IEnumerable<QuestionResponseWithAnswer>> GetAllQuestionsWithAnswersAsync();
     }
 }

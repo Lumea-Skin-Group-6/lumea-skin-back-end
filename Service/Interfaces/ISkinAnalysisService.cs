@@ -9,6 +9,6 @@ namespace Service.Interfaces
 {
     public interface ISkinAnalysisService
     {
-        Task<SkinAnalysisResultResponse> AnalyzeSkinTypeAsync(List<int> answerIds);
+        Task<SkinAnalysisResultResponse?> AnalyzeSkinTypeAsync(List<int> answerIds);
     }
 }
