@@ -33,7 +33,7 @@ namespace SkincareBookingApp.Controllers
 
         [EnableQuery]
         [HttpGet("{expertiseId:int}")]
-        [SwaggerOperation(Summary = "Get all expertise by ID")]
+        [SwaggerOperation(Summary = "Get expertise by ID")]
         public async Task<IActionResult> GetExpertise([FromRoute] int expertiseId)
         {
             try
