@@ -20,7 +20,7 @@ namespace DAL.Mappers
             };
         }
 
-        public static SkinTypeResponse ToSkinTypeResponseModel(this SkinType model)
+        public static SkinTypeResponse ToSkinTypeRespons(this SkinType model)
         {
             return new SkinTypeResponse
             {
@@ -28,6 +28,8 @@ namespace DAL.Mappers
                 Name = model.Name,
             };
         }
+
+
 
         public static Expertise ToExpertise(this AddExpertiseRequestModel requestModel)
         {
