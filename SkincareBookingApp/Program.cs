@@ -65,6 +65,9 @@ builder.Services.AddScoped<ITherapistRepository, TherapistRepository>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
+builder.Services.AddScoped<ISkinTypeServiceRepository, SkinTypeServiceRepository>();
+
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
 

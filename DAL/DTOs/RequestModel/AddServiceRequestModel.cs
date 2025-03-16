@@ -43,6 +43,9 @@ namespace DAL.DTOs.RequestModel
         [Range(1, int.MaxValue, ErrorMessage = "Number of Treatment must be at least 1.")]
         public int NumberOfTreatment { get; set; }
 
+        [Range(18, int.MaxValue, ErrorMessage = "Age must be at 18.")]
+        public int recommend_age { get; set; }
+
         public ICollection<int> ServiceExpertisesID { get; set; }
 
         public List<int> ServiceSkinTypeID { get; set; }
