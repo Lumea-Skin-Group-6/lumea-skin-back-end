@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class SkinTypeService : ISkinTypeService
+    public class SkinTypeServiceService : ISkinTypeService
     {
         private readonly ISkinTypeRepository _repository;
-        public SkinTypeService(ISkinTypeRepository repository)
+        public SkinTypeServiceService(ISkinTypeRepository repository)
         {
             _repository = repository;
         }

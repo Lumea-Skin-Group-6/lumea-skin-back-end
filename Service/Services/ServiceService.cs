@@ -16,12 +16,17 @@ namespace Service.Services
 
         private readonly IServiceExpertiseRepository _serviceExpertiseRepo;
 
+        private readonly ISkinTypeRepository _skinTypeRepository;
+        private readonly ISkinTypeServiceRepository _skinTypeServiceRepository;
 
-        public ServiceService(IServiceRepository repository, IExpertiseRepository expertiseRepository, IServiceExpertiseRepository serviceExpertiseRepo)
+
+        public ServiceService(IServiceRepository repository, IExpertiseRepository expertiseRepository, IServiceExpertiseRepository serviceExpertiseRepo, ISkinTypeRepository skinTypeRepository, ISkinTypeServiceRepository skinTypeServiceRepository)
         {
             _repository = repository;
             _expertiseRepository = expertiseRepository;
             _serviceExpertiseRepo = serviceExpertiseRepo;
+            _skinTypeRepository = skinTypeRepository;
+            _skinTypeServiceRepository = skinTypeServiceRepository;
         }
         public async Task<ServiceResponseModel> AddAsync(AddServiceRequestModel requestModel)
         {
@@ -43,6 +48,16 @@ namespace Service.Services
                 throw new InvalidOperationException("Expertise not exist: " + string.Join(", ", invalidIds));
             }
 
+            var skintype =  _skinTypeRepository.GetAllSkinType();
+            var existSkinID = skintype.Select(e => e.Id).ToHashSet();
+
+            // Kiểm tra tất cả ID trong requestModel.ServiceExpertisesID
+            var invalidSkinType = requestModel.ServiceSkinTypeID.Where(id => !existSkinID.Contains(id)).ToList();
+            if (invalidSkinType.Any())
+            {
+                throw new InvalidOperationException("SkinType not exist: " + string.Join(", ", invalidSkinType));
+            }
+
             // Nếu tất cả Expertise ID hợp lệ, tiến hành lưu Service
             var result = await _repository.AddAsync(requestModel.ToService());
 
@@ -55,6 +70,17 @@ namespace Service.Services
                     ExpertiseId = item
                 };
                 _serviceExpertiseRepo.AddServiceExpertise(serviceExpertise);
+            }
+
+            // Lưu skin type service
+            foreach (var item in requestModel.ServiceSkinTypeID)
+            {
+                SkinTypeService skinTypeService = new SkinTypeService
+                {
+                    ServiceId = result.Id,
+                    SkinTypeId = item
+                };
+                _skinTypeServiceRepository.AddSkinTypeService(skinTypeService);
             }
 
             return result.ToServiceResponseModel();

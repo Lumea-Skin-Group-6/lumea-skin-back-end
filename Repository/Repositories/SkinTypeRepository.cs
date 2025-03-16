@@ -12,7 +12,9 @@ namespace Repository.Repositories
 {
     public class SkinTypeRepository : ISkinTypeRepository
     {
+
         private readonly AppDbContext _context;
+
         public SkinTypeRepository(AppDbContext context)
         {
             _context = context;
@@ -24,6 +26,10 @@ namespace Repository.Repositories
             return skinType;
         }
 
+        public List<SkinType> GetAllSkinType()
+        {
+            return _context.SkinTypes.ToList();
+        }
         public async Task<SkinType> DeleteAsync(int id)
         {
             SkinType? skinType = await _context.SkinTypes.FirstOrDefaultAsync(x => x.Id == id);
@@ -66,6 +72,7 @@ namespace Repository.Repositories
 
             await _context.SaveChangesAsync();
             return existingModel;
+
         }
     }
 }

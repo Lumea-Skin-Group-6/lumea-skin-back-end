@@ -14,5 +14,8 @@ namespace Repository.Interfaces
         Task<SkinType> AddAsync(SkinType skinType);
         Task<SkinType> UpdateAsync(SkinType skinType);
         Task<SkinType> DeleteAsync(int id);
+        List<SkinType> GetAllSkinType();
+
+        
     }
 }

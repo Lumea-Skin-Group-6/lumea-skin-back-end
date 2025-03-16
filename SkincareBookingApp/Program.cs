@@ -58,7 +58,7 @@ builder.Services.AddScoped<IShiftService, ShiftService>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
-builder.Services.AddScoped<ISkinTypeService, SkinTypeService>();
+builder.Services.AddScoped<ISkinTypeService, SkinTypeServiceService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();
@@ -70,6 +70,9 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ITherapistRepository, TherapistRepository>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
+builder.Services.AddScoped<ISkinTypeServiceRepository, SkinTypeServiceRepository>();
 
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
