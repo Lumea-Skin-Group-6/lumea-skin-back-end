@@ -57,7 +57,7 @@ namespace Repository.Repositories
         public async Task<Account?> GetByIdAsync(int id)
         {
             return await _context.Accounts
-                .Include (x => x.Role)
+                .Include(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -95,6 +95,7 @@ namespace Repository.Repositories
             existingAccount.FullName = account.FullName;
             existingAccount.ImageUrl = account.ImageUrl;
             existingAccount.Gender = account.Gender;
+            existingAccount.RoleId = account.RoleId;
 
             await _context.SaveChangesAsync();
             return account;

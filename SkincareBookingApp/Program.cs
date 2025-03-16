@@ -20,6 +20,7 @@ modelBuilder.EntitySet<ExpertiseResponseModel>("Expertises");
 modelBuilder.EntitySet<ServiceResponseModel>("Services");
 modelBuilder.EntitySet<AccountResponseModel>("Accounts");
 modelBuilder.EntitySet<SkinTypeResponseModel>("SkinTypes");
+modelBuilder.EntitySet<TherapistResponseModel>("Therapists");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()

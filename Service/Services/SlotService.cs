@@ -17,13 +17,13 @@ namespace Service.Services
     public class SlotService : ISlotService
     {
         private readonly ISlotRepository _slotRepository;
-        private readonly ITherapistRepository _herapistRepository;
+        private readonly ITherapistRepository _therapistRepository;
         private readonly IShiftRepository _shiftRepository;
 
         public SlotService(ISlotRepository slotRepository, ITherapistRepository therapistRepository, IShiftRepository shiftRepository)
         {
             _slotRepository = slotRepository;
-            _herapistRepository = therapistRepository;
+            _therapistRepository = therapistRepository;
             _shiftRepository = shiftRepository;
         }
 
@@ -33,12 +33,12 @@ namespace Service.Services
             return await _slotRepository.GetFreeSlotsByTherapistIdAsync(employeeID);
         }
 
-        public ResponseModel AddSlot()
+        public async Task<ResponseModel> AddSlot()
         {
             try
             {
-
-                List<Employee> listEmployee = _herapistRepository.GetAllTherapist();
+                var therapists = await _therapistRepository.GetAllAsync();
+                List<Employee> listEmployee = therapists.Select(x => x.Employee).ToList();
                 List<TherapistShift> therapistShifts = _shiftRepository.GetAllTherapistShift();
                 List<Shift> shifts = _shiftRepository.GetAllShift();
 
