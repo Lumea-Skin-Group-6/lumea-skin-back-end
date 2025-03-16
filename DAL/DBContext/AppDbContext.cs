@@ -62,6 +62,11 @@ namespace DAL.DBContext
         .WithMany(q => q.Answers)
         .HasForeignKey(a => a.question_id)
         .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Account>()
+               .HasOne(a => a.Employee)
+               .WithOne(e => e.Account)
+               .HasForeignKey<Employee>(e => e.AccountId)
+               .OnDelete(DeleteBehavior.Cascade);
             base.OnModelCreating(modelBuilder);
         }
     }

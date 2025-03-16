@@ -41,7 +41,6 @@ namespace BusinessObject
 
         public Role Role { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
-        [Column("employee_id")] public int? EmployeeId { get; set; }
         public Employee? Employee { get; set; }
     }
 }
