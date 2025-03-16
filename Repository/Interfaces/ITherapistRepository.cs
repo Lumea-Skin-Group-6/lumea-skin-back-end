@@ -9,14 +9,10 @@ namespace Repository.Interfaces
 {
     public interface ITherapistRepository
     {
-        void AddTherapist(Employee employee);
-
-        List<Employee> GetAllTherapist();
-
-        void UpdateTherapist(Employee employee);
-
-        void DeleteTherapist(Employee employee);
-
-        Employee GetTherapistById(int id);
+        Task<IEnumerable<Account>> GetAllAsync();
+        Task<Account?> GetByIdAsync(int id);
+        Task<Account> AddAsync(Account account);
+        Task<Account> UpdateAsync(Account account);
+        Task<Account> DeleteAsync(int id);
     }
 }

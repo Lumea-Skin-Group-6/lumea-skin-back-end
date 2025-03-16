@@ -12,6 +12,6 @@ namespace Service.Interfaces
     {
         Task<List<Slot>> GetFreeSlotsOfTherapist(int employeeID);
 
-        ResponseModel AddSlot();
+        Task<ResponseModel> AddSlot();
     }
 }

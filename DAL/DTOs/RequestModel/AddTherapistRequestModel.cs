@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.DTOs.RequestModel
 {
-    public class UpdateTherapistRequestModel
+    public class AddTherapistExpertiseRequestModel
+    {
+        [Required(ErrorMessage = "Expertise ID is required.")]
+        public int ExpertiseId { get; set; }
+        [Range(0, 50, ErrorMessage = "Experience must be between 0 and 50 years.")]
+        public int Experience { get; set; }
+    }
+
+    public class AddTherapistRequestModel
     {
         [Required(ErrorMessage = "Full Name is required.")]
         [StringLength(100, ErrorMessage = "Full Name cannot exceed 100 characters.")]
