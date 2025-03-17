@@ -28,8 +28,9 @@ namespace DAL.DTOs.ResponseModel
         public TimeSpan Duration { get; set; }
 
         public string ExperienceRequired { get; set; } = "";
+        public int RecommendedAge { get; set; }
 
-        public string Type { get; set; }
+        public string Type { get; set; } = "";
 
         public int NumberOfTreatment { get; set; }
 
