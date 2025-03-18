@@ -23,8 +23,16 @@ namespace Repository.Repositories
 
         public async Task<Account> AddAsync(Account account)
         {
+            //var therapistExpertises = account.Employee?.TherapistExpertises ?? [];
+            //account.Employee.TherapistExpertises = null;
             await _context.Accounts.AddAsync(account);
             await _context.SaveChangesAsync();
+            //foreach (var therapistExpertise in therapistExpertises)
+            //{
+            //    therapistExpertise.TherapistId = account.Employee.Id;
+            //    _context.TherapistExpertises.Add(therapistExpertise);
+            //}
+            //await _context.SaveChangesAsync();
             return account;
         }
 
@@ -36,7 +44,7 @@ namespace Repository.Repositories
                 throw new InvalidOperationException("Therapist not found.");
             }
 
-            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.therapist_id == account.Id).ToListAsync();
+            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.TherapistId == account.Id).ToListAsync();
             foreach (var item in therapistExpertises)
             {
                 _context.TherapistExpertises.Remove(item);
@@ -60,7 +68,7 @@ namespace Repository.Repositories
                 .Include(x => x.Role)
                 .Include(x => x.Employee)
                 .ThenInclude(x => x.TherapistExpertises)
-                .ThenInclude(x => x.expertise)
+                .ThenInclude(x => x.Expertise)
                 .ToListAsync();
         }
 
@@ -71,7 +79,7 @@ namespace Repository.Repositories
               .Include(x => x.Role)
               .Include(x => x.Employee)
               .ThenInclude(x => x.TherapistExpertises)
-              .ThenInclude(x => x.expertise)
+              .ThenInclude(x => x.Expertise)
               .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -87,7 +95,7 @@ namespace Repository.Repositories
             {
                 throw new InvalidOperationException("Therapist not found.");
             }
-            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.therapist_id == account.Id).ToListAsync();
+            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.TherapistId == account.Id).ToListAsync();
             foreach (var item in therapistExpertises)
             {
                 _context.TherapistExpertises.Remove(item);
@@ -95,6 +103,7 @@ namespace Repository.Repositories
 
             foreach (var item in account.Employee?.TherapistExpertises ?? [])
             {
+                item.TherapistId = account.Employee.Id;
                 await _context.TherapistExpertises.AddAsync(item);
             }
 

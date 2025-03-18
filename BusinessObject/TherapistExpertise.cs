@@ -13,16 +13,11 @@ namespace BusinessObject
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int therapist_expertise_id { get; set; }
-
-        public int therapist_id { get; set; }
-        public int expertise_id { get; set; }
-
-        //[ForeignKey(nameof(therapist_id))]
-        public Employee therapist { get; set; }
-
-        //[ForeignKey(nameof(expertise_id))]
-        public Expertise expertise { get; set; }
-        public int experience { get; set; }
+        public int Id { get; set; }
+        public int TherapistId { get; set; }
+        public int ExpertiseId { get; set; }
+        public Employee? Therapist { get; set; }
+        public Expertise? Expertise { get; set; }
+        public int Experience { get; set; }
     }
 }

@@ -23,10 +23,10 @@ namespace DAL.Mappers
                 RoleId = model.RoleId,
                 Id = model.Id,
                 ImageUrl = model.ImageUrl,
-                RoleName = model.Role.Name,
+                RoleName = model.Role?.Name ?? "",
                 Status = model.Status,
                 Expertises = model.Employee?
-                .TherapistExpertises.Select(x => x.ToTherapistExpertiseResponseModel()) ?? []
+                .TherapistExpertises?.Select(x => x.ToTherapistExpertiseResponseModel()) ?? []
             };
         }
 
@@ -34,9 +34,9 @@ namespace DAL.Mappers
         {
             return new TherapistExpertiseResponseModel
             {
-                Experience = therapistExpertise.experience,
-                ExpertiseName = therapistExpertise.expertise.ExpertiseName,
-                ExpertiseId = therapistExpertise.expertise_id,
+                Experience = therapistExpertise.Experience,
+                ExpertiseName = therapistExpertise.Expertise?.ExpertiseName ?? "",
+                ExpertiseId = therapistExpertise.ExpertiseId,
             };
         }
 
@@ -49,8 +49,8 @@ namespace DAL.Mappers
                 TherapistExpertises = requestModel.TherapistExpertises
                 .Select(x => new TherapistExpertise
                 {
-                    experience = x.Experience,
-                    expertise_id = x.ExpertiseId,
+                    Experience = x.Experience,
+                    ExpertiseId = x.ExpertiseId,
                 }).ToList()
             };
             return new Account
@@ -78,8 +78,8 @@ namespace DAL.Mappers
                 TherapistExpertises = requestModel.TherapistExpertises
                 .Select(x => new TherapistExpertise
                 {
-                    experience = x.Experience,
-                    expertise_id = x.ExpertiseId,
+                    Experience = x.Experience,
+                    ExpertiseId = x.ExpertiseId,
                 }).ToList()
             };
 
