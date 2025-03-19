@@ -1,6 +1,7 @@
 ﻿using BusinessObject;
 using DAL.DTO;
 using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,10 @@ namespace Service.Interfaces
 {
     public interface ITherapistService
     {
-        ResponseModel AddTherapist(AccountRequestModel accountRequest);
-
-        ResponseModel GetAllTherapist();
-
-        ResponseModel GetTherapistById(int id);
-
-        ResponseModel UpdateTherapist(UpdateTherapistRequestModel updateRequest);
-
-        ResponseModel DeleteTherapist(int id);
+        Task<IEnumerable<TherapistResponseModel>> GetAllAsync();
+        Task<TherapistResponseModel> GetByIdAsync(int id);
+        Task<TherapistResponseModel> AddAsync(AddTherapistRequestModel requestModel);
+        Task<TherapistResponseModel> UpdateAsync(int id, UpdateTherapistRequestModel requestModel);
+        Task<TherapistResponseModel> DeleteAsync(int id);
     }
 }

@@ -20,7 +20,7 @@ namespace SkincareBookingApp.Controllers
         }
 
         [HttpGet("free/{employeeID}")]
-        public async Task<IActionResult> GetFreeSlots([FromRoute]int employeeID)
+        public async Task<IActionResult> GetFreeSlots([FromRoute] int employeeID)
         {
             var slots = await _slotService.GetFreeSlotsOfTherapist(employeeID);
             if (slots == null || slots.Count == 0)
@@ -33,9 +33,9 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPost]
         [SwaggerOperation(Summary = "Auto gen Slot")]
-        public IActionResult AddSlot()
+        public async Task<IActionResult> AddSlot()
         {
-            var slots = _slotService.AddSlot();
+            var slots = await _slotService.AddSlot();
             return StatusCode(slots.StatusCode, new
             {
                 message = slots.Title,

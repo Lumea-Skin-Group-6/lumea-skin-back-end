@@ -38,13 +38,16 @@ namespace DAL.DTOs.RequestModel
 
         [Required(ErrorMessage = "Type is required.")]
         [StringLength(50, ErrorMessage = "Type cannot be longer than 50 characters.")]
-        public string Type { get; set; }
+        public string Type { get; set; } = "";
 
         [Range(1, int.MaxValue, ErrorMessage = "Number of Treatment must be at least 1.")]
         public int NumberOfTreatment { get; set; }
 
-        public ICollection<int> ServiceExpertisesID { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Age must be at least 1.")]
+        public int RecommededAge { get; set; }
 
-        public List<int> ServiceSkinTypeID { get; set; }
+        public ICollection<int> ServiceExpertisesID { get; set; } = [];
+
+        public List<int> ServiceSkinTypeID { get; set; } = [];
     }
 }

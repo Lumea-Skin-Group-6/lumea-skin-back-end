@@ -18,6 +18,9 @@ var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
 modelBuilder.EntitySet<ExpertiseResponseModel>("Expertises");
 modelBuilder.EntitySet<ServiceResponseModel>("Services");
+modelBuilder.EntitySet<AccountResponseModel>("Accounts");
+modelBuilder.EntitySet<SkinTypeResponseModel>("SkinTypes");
+modelBuilder.EntitySet<TherapistResponseModel>("Therapists");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()
@@ -53,6 +56,10 @@ builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IShiftService, ShiftService>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
+builder.Services.AddScoped<ISkinTypeService, SkinTypeServiceService>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();
@@ -64,6 +71,9 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ITherapistRepository, TherapistRepository>();
 builder.Services.AddScoped<ITherapistService, TherapistService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
+builder.Services.AddScoped<ISkinTypeServiceRepository, SkinTypeServiceRepository>();
 
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));

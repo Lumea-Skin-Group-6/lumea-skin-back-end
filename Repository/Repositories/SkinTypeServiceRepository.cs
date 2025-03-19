@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class SkinTypeServiceRepository : ISkinTypeServiceRepository
     {
         private readonly AppDbContext _context;
 
-        public EmployeeRepository(AppDbContext context)
+        public SkinTypeServiceRepository(AppDbContext context)
         {
             _context = context;
         }
-        public Employee GetEmployeeByAccountId(int id)
+
+        public void AddSkinTypeService(SkinTypeService skinTypeService)
         {
-            return _context.Employees.FirstOrDefault(x => x.AccountId == id);
+             _context.ServiceSkinTypes.Add(skinTypeService);
+             _context.SaveChanges();
         }
     }
 }

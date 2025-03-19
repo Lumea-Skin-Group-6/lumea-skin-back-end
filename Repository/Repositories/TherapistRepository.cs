@@ -1,5 +1,7 @@
 ﻿using BusinessObject;
 using DAL.DBContext;
+using DAL.Migrations;
+using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,32 +20,103 @@ namespace Repository.Repositories
         {
             _context = context;
         }
-        public void AddTherapist(Employee employee)
+
+        public async Task<Account> AddAsync(Account account)
         {
-            _context.Employees.Add(employee);
-            _context.SaveChanges();
+            //var therapistExpertises = account.Employee?.TherapistExpertises ?? [];
+            //account.Employee.TherapistExpertises = null;
+            await _context.Accounts.AddAsync(account);
+            await _context.SaveChangesAsync();
+            //foreach (var therapistExpertise in therapistExpertises)
+            //{
+            //    therapistExpertise.TherapistId = account.Employee.Id;
+            //    _context.TherapistExpertises.Add(therapistExpertise);
+            //}
+            //await _context.SaveChangesAsync();
+            return account;
         }
 
-        public void DeleteTherapist(Employee employee)
+        public async Task<Account> DeleteAsync(int id)
         {
-            _context.Employees.Remove(employee);
-            _context.SaveChanges();
+            Account? account = await _context.Accounts.FirstOrDefaultAsync(x => x.Id == id);
+            if (account == null)
+            {
+                throw new InvalidOperationException("Therapist not found.");
+            }
+
+            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.TherapistId == account.Id).ToListAsync();
+            foreach (var item in therapistExpertises)
+            {
+                _context.TherapistExpertises.Remove(item);
+            }
+
+            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.AccountId == id);
+            if (employee != null)
+            {
+                _context.Employees.Remove(employee);
+            }
+
+            _context.Accounts.Remove(account);
+            await _context.SaveChangesAsync();
+            return account;
         }
 
-        public List<Employee> GetAllTherapist()
+        public async Task<IEnumerable<Account>> GetAllAsync()
         {
-            return _context.Employees.ToList();
+            return await _context.Accounts
+                .Where(x => x.RoleId == 5)
+                .Include(x => x.Role)
+                .Include(x => x.Employee)
+                .ThenInclude(x => x.TherapistExpertises)
+                .ThenInclude(x => x.Expertise)
+                .ToListAsync();
         }
 
-        public Employee GetTherapistById(int id)
+        public async Task<Account?> GetByIdAsync(int id)
         {
-            return _context.Employees.Find(id);
+            return await _context.Accounts
+              .Where(x => x.RoleId == 5)
+              .Include(x => x.Role)
+              .Include(x => x.Employee)
+              .ThenInclude(x => x.TherapistExpertises)
+              .ThenInclude(x => x.Expertise)
+              .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public void UpdateTherapist(Employee employee)
+        public async Task<Account> UpdateAsync(Account account)
         {
-            _context.Employees.Update(employee);
-            _context.SaveChanges();
+            var existingEmployee = await _context.Employees.FirstOrDefaultAsync(x => x.AccountId != account.Id);
+            if (existingEmployee == null)
+            {
+                throw new InvalidOperationException("Therapist not found.");
+            }
+            var existingAccount = await _context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id);
+            if (existingAccount == null)
+            {
+                throw new InvalidOperationException("Therapist not found.");
+            }
+            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.TherapistId == account.Id).ToListAsync();
+            foreach (var item in therapistExpertises)
+            {
+                _context.TherapistExpertises.Remove(item);
+            }
+
+            foreach (var item in account.Employee?.TherapistExpertises ?? [])
+            {
+                item.TherapistId = account.Employee.Id;
+                await _context.TherapistExpertises.AddAsync(item);
+            }
+
+            existingAccount.Status = account.Status;
+            existingAccount.Email = account.Email;
+            existingAccount.DateOfBirth = account.DateOfBirth;
+            existingAccount.Phone = account.Phone;
+            existingAccount.FullName = account.FullName;
+            existingAccount.ImageUrl = account.ImageUrl;
+            existingAccount.Gender = account.Gender;
+
+            await _context.SaveChangesAsync();
+            return account;
         }
     }
 }

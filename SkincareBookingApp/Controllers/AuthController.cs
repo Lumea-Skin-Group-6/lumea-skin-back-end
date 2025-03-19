@@ -1,11 +1,13 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using DAL.DTOs.RequestModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Service.Interfaces;
+using Service.Services;
 using SkincareBookingApp.Helpers;
 
 namespace SkincareBookingApp.Controllers;
@@ -16,12 +18,14 @@ namespace SkincareBookingApp.Controllers;
 public class AuthController : Controller
 {
     private readonly IAuthService _authService;
+    private readonly IAccountService _accountService;
 
     private readonly IConfiguration _configuration;
-    public AuthController(IAuthService service, IConfiguration configuration)
+    public AuthController(IAuthService service, IConfiguration configuration, IAccountService accountService)
     {
         _authService = service;
         _configuration = configuration;
+        _accountService = accountService;
     }
 
     [HttpGet("init-roles")]
@@ -48,12 +52,10 @@ public class AuthController : Controller
             await _authService.VerifyOtp(request.Email, request.Otp);
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "OTP Verified",
                 "Your account is now active.");
-        }
-        catch (KeyNotFoundException ex)
+        } catch (KeyNotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
-        }
-        catch (UnauthorizedAccessException ex)
+        } catch (UnauthorizedAccessException ex)
         {
             return Unauthorized(new { message = ex.Message });
         }
@@ -73,8 +75,7 @@ public class AuthController : Controller
             };
 
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Login successful", responseObject);
-        }
-        catch (UnauthorizedAccessException ex)
+        } catch (UnauthorizedAccessException ex)
         {
             return Unauthorized(new { message = ex.Message });
         }
@@ -92,12 +93,10 @@ public class AuthController : Controller
                 access_token = authResponse.AccessToken,
                 refresh_token = authResponse.RefreshToken
             });
-        }
-        catch (UnauthorizedAccessException ex)
+        } catch (UnauthorizedAccessException ex)
         {
             return Unauthorized(new { message = ex.Message });
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             return StatusCode(500,
                 new { message = "An error occurred while refreshing the token.", error = ex.Message });
@@ -113,19 +112,17 @@ public class AuthController : Controller
             await _authService.LogoutAsync(request.RefreshToken);
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Logout successful",
                 "You have been logged out.");
-        }
-        catch (UnauthorizedAccessException ex)
+        } catch (UnauthorizedAccessException ex)
         {
             return Unauthorized(new { message = ex.Message });
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             return StatusCode(500, new { message = "An error occurred while logging out.", error = ex.Message });
         }
     }
 
     [HttpGet("get-user-info")]
-    public IActionResult DecodeToken()
+    public async Task<IActionResult> DecodeToken()
     {
         try
         {
@@ -135,31 +132,28 @@ public class AuthController : Controller
                 return BadRequest(new { error = "Authorization header is missing or invalid" });
             }
 
-            var token = authHeader.Substring("Bearer ".Length).Trim();
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            var jwtSettings = _configuration.GetSection("JwtSettings");
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]));
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var validationParameters = new TokenValidationParameters
+            if (identity != null)
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = false,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = jwtSettings["Issuer"],
-                ValidAudience = jwtSettings["Audience"],
-                IssuerSigningKey = key
-            };
+                var claims = identity.Claims;
+                var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+                var role = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                if (email != null && role != null)
+                {
+                    var accounts = await _accountService.GetAllAsync();
+                    var user = accounts.FirstOrDefault(x => x.Email.ToLower() == email.ToLower());
+                    if (user == null) throw new Exception("Invalid token");
+                    return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get user information successful",
+                user); ;
+                } else
+                {
+                    return Unauthorized();
+                }
+            }
 
-            var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
-            var jwtToken = (JwtSecurityToken)validatedToken;
-
-            var claims = jwtToken.Claims.ToDictionary(c => c.Type, c => c.Value);
-
-            return Ok(new { claims });
-        }
-        catch (Exception ex)
+            return Unauthorized();
+        } catch (Exception ex)
         {
             return BadRequest(new { error = ex.Message });
         }

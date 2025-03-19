@@ -137,7 +137,7 @@ namespace Service.Services
                     throw new ErrorException(404, "Date regis can not less than current date!");
                 }
 
-                Employee employee = _employeeRepo.GetEmployeeById(TherapistID);
+                Employee employee = _employeeRepo.GetEmployeeByAccountId(TherapistID);
 
                 if (employee == null)
                 {
