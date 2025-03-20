@@ -3,19 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\skintyperepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\questionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\skintypeserviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\serviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dtos\\responsemodel\\serviceresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\skinanalysisservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dtos\\requestmodel\\updateservicerequestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dtos\\requestmodel\\addservicerequestmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\mappers\\servicemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dbcontext\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -23,12 +20,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\serviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\mappers\\servicemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\mappers\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -42,9 +33,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\interfaces\\iserviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,76 +42,37 @@
       "DocumentGroups": [
         {
           "DockedHeight": 39,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SkinTypeServiceService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\SkinTypeServiceService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Services\\SkinTypeServiceService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\SkinTypeServiceService.cs",
-              "RelativeToolTip": "..\\Service\\Services\\SkinTypeServiceService.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAACoAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T04:17:34.562Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SkinTypeRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\SkinTypeRepository.cs",
-              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\SkinTypeRepository.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\SkinTypeRepository.cs",
-              "RelativeToolTip": "..\\Repository\\Repositories\\SkinTypeRepository.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwFQAAAAFAAAA",
+              "Title": "QuestionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\QuestionRepository.cs",
+              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\QuestionRepository.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\QuestionRepository.cs",
+              "RelativeToolTip": "..\\Repository\\Repositories\\QuestionRepository.cs",
+              "ViewState": "AQIAAIwAAAAAAAAAAAAuwJYAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T04:12:03.47Z",
+              "WhenOpened": "2025-03-20T08:46:43.856Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ServiceResponseModel.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\ResponseModel\\ServiceResponseModel.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\ResponseModel\\ServiceResponseModel.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\ResponseModel\\ServiceResponseModel.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\ResponseModel\\ServiceResponseModel.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAhwBwAAAAAAAAA",
+              "Title": "SkinAnalysisService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\SkinAnalysisService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Services\\SkinAnalysisService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\SkinAnalysisService.cs",
+              "RelativeToolTip": "..\\Service\\Services\\SkinAnalysisService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAUwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T04:10:17.122Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UpdateServiceRequestModel.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\UpdateServiceRequestModel.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\UpdateServiceRequestModel.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\UpdateServiceRequestModel.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\UpdateServiceRequestModel.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAADgvzYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T04:10:03.015Z",
+              "WhenOpened": "2025-03-20T08:46:29.737Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "AddServiceRequestModel.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\AddServiceRequestModel.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\AddServiceRequestModel.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\AddServiceRequestModel.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\AddServiceRequestModel.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAArwDYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T04:09:21.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DBContext\\AppDbContext.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DBContext\\AppDbContext.cs",
@@ -136,20 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "20250320035550_UpdateServiceTableRecommendTime.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
-              "RelativeToolTip": "..\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T03:55:52.154Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "ServiceMapper.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\Mappers\\ServiceMapper.cs",
               "RelativeDocumentMoniker": "..\\DAL\\Mappers\\ServiceMapper.cs",
@@ -162,7 +98,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
+              "Title": "ServiceService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ServiceService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Services\\ServiceService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ServiceService.cs",
+              "RelativeToolTip": "..\\Service\\Services\\ServiceService.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAhwBgAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T06:52:44.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "20250320035550_UpdateServiceTableRecommendTime.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
+              "RelativeToolTip": "..\\DAL\\Migrations\\20250320035550_UpdateServiceTableRecommendTime.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T03:55:52.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ServicesController.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\ServicesController.cs",
               "RelativeDocumentMoniker": "Controllers\\ServicesController.cs",
@@ -271,33 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ServiceRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\ServiceRepository.cs",
-              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\ServiceRepository.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\ServiceRepository.cs",
-              "RelativeToolTip": "..\\Repository\\Repositories\\ServiceRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGgAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T06:09:40.617Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ServiceService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ServiceService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Services\\ServiceService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ServiceService.cs",
-              "RelativeToolTip": "..\\Service\\Services\\ServiceService.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAMwBgAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T06:52:44.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "AutoMapper.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\Mappers\\AutoMapper.cs",
               "RelativeDocumentMoniker": "..\\DAL\\Mappers\\AutoMapper.cs",
@@ -310,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -323,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 9,
               "Title": "IServiceService.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\IServiceService.cs",
               "RelativeDocumentMoniker": "..\\Service\\Interfaces\\IServiceService.cs",
