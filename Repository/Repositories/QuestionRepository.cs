@@ -168,6 +168,7 @@ namespace Repository.Repositories
         public async Task<IEnumerable<QuestionResponseWithAnswer>> GetAllQuestionsWithAnswersAsync()
         {
             var questions = await _context.Questions
+                .Where(q => q.Active)
                 .Include(q => q.Answers) // Ensure answers are loaded
                 .ToListAsync();
 

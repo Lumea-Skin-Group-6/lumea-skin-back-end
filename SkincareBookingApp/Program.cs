@@ -53,6 +53,7 @@ builder.Services.AddScoped<IExpertiseRepository, ExpertiseRepository>();
 builder.Services.AddScoped<IExpertiseService, ExpertiseService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IShiftService, ShiftService>();
+builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();
 builder.Services.AddScoped<ISlotService, SlotService>();

@@ -11,5 +11,12 @@ namespace DAL.DTOs.ResponseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+        public sbyte MinDry { get; set; }
+        public sbyte MaxDry { get; set; }
+        public sbyte MinOily { get; set; }
+        public sbyte MaxOily { get; set; }
+        public sbyte MinSensitive { get; set; }
+        public sbyte MaxSensitive { get; set; }
     }
 }

@@ -57,11 +57,18 @@ namespace DAL.DBContext
         {
             modelBuilder.Entity<SkinTypeService>()
         .HasKey(sts => new { sts.ServiceId, sts.SkinTypeId });
+
             modelBuilder.Entity<Answer>()
         .HasOne(a => a.question)
         .WithMany(q => q.Answers)
         .HasForeignKey(a => a.question_id)
         .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder
+       .Entity<ServiceModel>()
+       .Property(e => e.Type)
+       .HasConversion<string>();
+
             base.OnModelCreating(modelBuilder);
         }
     }

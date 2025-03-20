@@ -10,10 +10,10 @@ namespace BusinessObject
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ServiceType
     {
-        trị_liệu_da_mặt, 
-        triệt_lông, 
-        massage, 
-        làm_móng, 
-        makeup_trị_liệu
+        Dưỡng_ẩm_phục_hồi,
+        Kiểm_soát_dầu_thanh_lọc_da,
+        Làm_dịu_giảm_kích_ứng,
+        Làm_sạch_ngừa_mụn,
+        Duy_trì_sức_khỏe_da
     }
 }
