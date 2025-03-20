@@ -12,6 +12,8 @@ namespace DAL.Mappers
             QuestionProfile();
             AnswerProfile();
             SkinTypeProfile();
+            ServiceProfile();
+            ExpertiseProfile();
         }
 
         private void QuestionProfile()
@@ -35,6 +37,21 @@ namespace DAL.Mappers
         private void SkinTypeProfile()
         {
             CreateMap<SkinType, SkinTypeResponse>().ReverseMap();
+        }
+
+        private void ServiceProfile()
+        {
+            CreateMap<ServiceModel, ServiceResponseModel>()
+               .ForMember(dest => dest.SkinTypeServices, opt => opt.MapFrom(src => src.SkinTypeServices.Select(sts => sts.SkinType)))
+               .ForMember(dest => dest.ServiceExpertises, opt => opt.MapFrom(src => src.ServiceExpertises.Select(se => se.Expertise)))
+               .ReverseMap();
+            CreateMap<ServiceModel, AddServiceRequestModel>().ReverseMap();
+            CreateMap<ServiceModel, UpdateServiceRequestModel>().ReverseMap();
+        }
+
+        private void ExpertiseProfile()
+        {
+            CreateMap<Expertise, ExpertiseResponseModel>().ReverseMap();
         }
     }
 }

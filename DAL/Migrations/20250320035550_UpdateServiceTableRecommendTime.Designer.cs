@@ -3,6 +3,7 @@ using System;
 using DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250320035550_UpdateServiceTableRecommendTime")]
+    partial class UpdateServiceTableRecommendTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -340,8 +343,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId")
-                        .IsUnique();
+                    b.HasIndex("AccountId");
 
                     b.ToTable("employees");
                 });
@@ -662,26 +664,32 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("therapist_expertise_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_expertise_id"));
 
-                    b.Property<int>("Experience")
+                    b.Property<int>("experience")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ExpertiseId")
+                    b.Property<int>("expertiseId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TherapistId")
+                    b.Property<int>("expertise_id")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("therapistId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("ExpertiseId");
+                    b.Property<int>("therapist_id")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("TherapistId");
+                    b.HasKey("therapist_expertise_id");
+
+                    b.HasIndex("expertiseId");
+
+                    b.HasIndex("therapistId");
 
                     b.ToTable("therapist_expertise");
                 });
@@ -788,8 +796,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("BusinessObject.Employee", b =>
                 {
                     b.HasOne("BusinessObject.Account", "Account")
-                        .WithOne("Employee")
-                        .HasForeignKey("BusinessObject.Employee", "AccountId")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -847,21 +855,21 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.HasOne("BusinessObject.Expertise", "Expertise")
+                    b.HasOne("BusinessObject.Expertise", "expertise")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("ExpertiseId")
+                        .HasForeignKey("expertiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Employee", "Therapist")
+                    b.HasOne("BusinessObject.Employee", "therapist")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("TherapistId")
+                        .HasForeignKey("therapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Expertise");
+                    b.Navigation("expertise");
 
-                    b.Navigation("Therapist");
+                    b.Navigation("therapist");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>
@@ -886,8 +894,6 @@ namespace DAL.Migrations
             modelBuilder.Entity("BusinessObject.Account", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>

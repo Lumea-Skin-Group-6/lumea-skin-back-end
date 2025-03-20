@@ -11,9 +11,9 @@ namespace Service
     public interface IServiceService
     {
         Task<IEnumerable<ServiceResponseModel>> GetAllAsync();
-        Task<ServiceResponseModel> GetByIdAsync(int id);
+        Task<ServiceResponseModel?> GetByIdAsync(int id);
         Task<ServiceResponseModel> AddAsync(AddServiceRequestModel requestModel);
         Task<ServiceResponseModel> UpdateAsync(int id, UpdateServiceRequestModel requestModel);
-        Task<ServiceResponseModel> DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

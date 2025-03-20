@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using SkincareBookingApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,12 @@ namespace DAL.DTOs.RequestModel
         [Url(ErrorMessage = "Invalid Image URL format.")]
         public string ImageUrl { get; set; } = "";
 
+        [Url(ErrorMessage = "Invalid Image URL format.")]
+        public string ImageUrl2 { get; set; } = "";
+
+        [Url(ErrorMessage = "Invalid Image URL format.")]
+        public string ImageUrl3 { get; set; } = "";
+
         [Required(ErrorMessage = "Price is required.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero.")]
         public decimal Price { get; set; }
@@ -25,10 +32,10 @@ namespace DAL.DTOs.RequestModel
         public string Description { get; set; } = "";
 
         [Required(ErrorMessage = "Recommended Period Start Time is required.")]
-        public DateTime RecommendedPeriodStartTime { get; set; }
+        public string RecommendedPeriodStartTime { get; set; }
 
         [Required(ErrorMessage = "Recommended Period End Time is required.")]
-        public DateTime RecommendedPeriodEndTime { get; set; }
+        public string RecommendedPeriodEndTime { get; set; }
 
         [Required(ErrorMessage = "Duration is required.")]
         public TimeSpan Duration { get; set; }
@@ -36,14 +43,19 @@ namespace DAL.DTOs.RequestModel
         [StringLength(200, ErrorMessage = "Experience Required cannot be longer than 200 characters.")]
         public string ExperienceRequired { get; set; } = "";
 
+        [StringLength(200, ErrorMessage = "Recommended Age cannot be longer than 30 characters.")]
+        public string RecommendedAge { get; set; } = "";
+
         [Required(ErrorMessage = "Type is required.")]
-        [StringLength(50, ErrorMessage = "Type cannot be longer than 50 characters.")]
-        public string Type { get; set; }
+        [EnumValidation(typeof(ServiceType), ErrorMessage = "Invalid ServiceType value.")]
+        public ServiceType Type { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Number of Treatment must be at least 1.")]
         public int NumberOfTreatment { get; set; }
 
-        [Range(18, int.MaxValue, ErrorMessage = "Age must be at 18.")]
-        public int recommend_age { get; set; }
+        public List<int> ServiceExpertisesID { get; set; }
+
+        public List<int> SkinTypeID { get; set; }
+
     }
 }
