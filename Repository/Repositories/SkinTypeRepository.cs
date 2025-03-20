@@ -19,6 +19,23 @@ namespace Repository.Repositories
             _context = context;
         }
 
+        public List<SkinType> GetAllSkinType()
+        {
+            return _context.SkinTypes.ToList();
+        }
+        public async Task<SkinType> DeleteAsync(int id)
+        {
+            SkinType? skinType = await _context.SkinTypes.FirstOrDefaultAsync(x => x.Id == id);
+            if (skinType == null)
+            {
+                throw new InvalidOperationException("Skin type not found.");
+            }
+
+            _context.SkinTypes.Remove(skinType);
+            await _context.SaveChangesAsync();
+            return skinType;
+        }
+
         public async Task<IEnumerable<SkinType>> GetAllAsync()
         {
             return await _context.SkinTypes.ToListAsync();
@@ -65,20 +82,5 @@ namespace Repository.Repositories
             await _context.SaveChangesAsync();
             return existingSkinType;
         }
-
-        public async Task DeleteAsync(int id)
-        {
-            var skinType = await _context.SkinTypes
-                .FirstOrDefaultAsync(st => st.Id == id);
-
-            if (skinType == null)
-            {
-                throw new InvalidOperationException("SkinType not found.");
-            }
-
-            _context.SkinTypes.Remove(skinType);
-            await _context.SaveChangesAsync();
-        }
     }
-
 }

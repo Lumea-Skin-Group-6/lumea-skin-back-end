@@ -1,14 +1,15 @@
-﻿using System;
+﻿using BusinessObject;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.DTOs.RequestModel
 {
-    public class UpdateTherapistRequestModel
+    public class AddAccountRequestModel
     {
         [Required(ErrorMessage = "Full Name is required.")]
         [StringLength(100, ErrorMessage = "Full Name cannot exceed 100 characters.")]
@@ -42,7 +43,5 @@ namespace DAL.DTOs.RequestModel
         [Required(ErrorMessage = "Status is required.")]
         [StringLength(50, ErrorMessage = "Status cannot exceed 50 characters.")]
         public string Status { get; set; } = "";
-        [MinLength(1, ErrorMessage = "At least one expertise is required.")]
-        public IEnumerable<AddTherapistExpertiseRequestModel> TherapistExpertises { get; set; } = [];
     }
 }

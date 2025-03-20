@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface ISkinTypeServiceRepository
     {
-        Employee GetEmployeeByAccountId(int id);
+        void AddSkinTypeService(SkinTypeService skinTypeService);
     }
 }

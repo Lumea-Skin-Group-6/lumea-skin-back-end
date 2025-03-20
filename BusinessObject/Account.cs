@@ -41,5 +41,6 @@ namespace BusinessObject
 
         public Role Role { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
+        public Employee? Employee { get; set; }
     }
 }

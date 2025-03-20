@@ -3,6 +3,7 @@ using System;
 using DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250316093156_AccountEmployee")]
+    partial class AccountEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -469,16 +472,6 @@ namespace DAL.Migrations
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
-                    b.Property<string>("ImageUrl2")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("image_url_2");
-
-                    b.Property<string>("ImageUrl3")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("image_url_3");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -492,19 +485,16 @@ namespace DAL.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("price");
 
-                    b.Property<string>("RecommendedAge")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("RecommendedAge")
+                        .HasColumnType("integer")
                         .HasColumnName("recommended_age");
 
-                    b.Property<string>("RecommendedPeriodEndTime")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<DateTime>("RecommendedPeriodEndTime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("recommended_end_time");
 
-                    b.Property<string>("RecommendedPeriodStartTime")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<DateTime>("RecommendedPeriodStartTime")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("recommended_start_time");
 
                     b.Property<string>("Type")
@@ -662,26 +652,32 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("therapist_expertise_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_expertise_id"));
 
-                    b.Property<int>("Experience")
+                    b.Property<int>("experience")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ExpertiseId")
+                    b.Property<int>("expertiseId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TherapistId")
+                    b.Property<int>("expertise_id")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("therapistId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("ExpertiseId");
+                    b.Property<int>("therapist_id")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("TherapistId");
+                    b.HasKey("therapist_expertise_id");
+
+                    b.HasIndex("expertiseId");
+
+                    b.HasIndex("therapistId");
 
                     b.ToTable("therapist_expertise");
                 });
@@ -847,21 +843,21 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.HasOne("BusinessObject.Expertise", "Expertise")
+                    b.HasOne("BusinessObject.Expertise", "expertise")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("ExpertiseId")
+                        .HasForeignKey("expertiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Employee", "Therapist")
+                    b.HasOne("BusinessObject.Employee", "therapist")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("TherapistId")
+                        .HasForeignKey("therapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Expertise");
+                    b.Navigation("expertise");
 
-                    b.Navigation("Therapist");
+                    b.Navigation("therapist");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>

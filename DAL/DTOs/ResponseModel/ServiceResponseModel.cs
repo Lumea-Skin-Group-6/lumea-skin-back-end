@@ -30,6 +30,7 @@ namespace DAL.DTOs.ResponseModel
         public TimeSpan Duration { get; set; }
 
         public string ExperienceRequired { get; set; } = "";
+
         public string RecommendedAge { get; set; } = "";
         public ServiceType Type { get; set; }
 

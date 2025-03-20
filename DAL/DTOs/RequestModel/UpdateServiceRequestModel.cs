@@ -56,5 +56,6 @@ namespace DAL.DTOs.RequestModel
         public List<int> ServiceExpertisesID { get; set; }
 
         public List<int> SkinTypeID { get; set; }
+
     }
 }

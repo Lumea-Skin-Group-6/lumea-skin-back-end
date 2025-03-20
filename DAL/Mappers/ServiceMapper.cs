@@ -8,7 +8,7 @@ namespace DAL.Mappers
     {
         public static ServiceResponseModel ToServiceResponseModel(this ServiceModel model)
         {
-            //var tags = model.SkinTypeServices?.Select(x => x.Tag.ToTagResponseModel());
+            var skinType = model.SkinTypeServices?.Select(x => x.SkinType.ToSkinTypeResponse());
             var expertises = model.ServiceExpertises?.Select(x => x.Expertise.ToExpertiseResponseModel());
             return new ServiceResponseModel
             {
@@ -23,8 +23,9 @@ namespace DAL.Mappers
                 ExperienceRequired = model.ExperienceRequired,
                 Type = model.Type,
                 NumberOfTreatment = model.NumberOfTreatment,
-                //ServiceTags = tags,
-                //ServiceExpertises = expertises
+                RecommendedAge = model.RecommendedAge,
+                //ServiceSkinTypes = skinType ?? [],
+                //ServiceExpertises = expertises ?? [],
             };
         }
 
@@ -42,6 +43,7 @@ namespace DAL.Mappers
                 ExperienceRequired = model.ExperienceRequired,
                 Type = model.Type,
                 NumberOfTreatment = model.NumberOfTreatment,
+                //RecommendedAge = model.RecommededAge,
             };
         }
 
@@ -60,7 +62,7 @@ namespace DAL.Mappers
                 ExperienceRequired = model.ExperienceRequired,
                 Type = model.Type,
                 NumberOfTreatment = model.NumberOfTreatment,
-                RecommendedAge = model.RecommendedAge,
+                //RecommendedAge = model.recommend_age
             };
         }
     }

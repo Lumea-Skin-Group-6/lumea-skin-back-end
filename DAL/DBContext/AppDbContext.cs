@@ -56,18 +56,36 @@ namespace DAL.DBContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SkinTypeService>()
-        .HasKey(sts => new { sts.ServiceId, sts.SkinTypeId });
+               .HasKey(sts => new { sts.ServiceId, sts.SkinTypeId });
 
             modelBuilder.Entity<Answer>()
-        .HasOne(a => a.question)
-        .WithMany(q => q.Answers)
-        .HasForeignKey(a => a.question_id)
-        .OnDelete(DeleteBehavior.Cascade);
+               .HasOne(a => a.question)
+               .WithMany(q => q.Answers)
+               .HasForeignKey(a => a.question_id)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Account>()
+               .HasOne(a => a.Employee)
+               .WithOne(e => e.Account)
+               .HasForeignKey<Employee>(e => e.AccountId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder
-       .Entity<ServiceModel>()
-       .Property(e => e.Type)
-       .HasConversion<string>();
+               .Entity<ServiceModel>()
+               .Property(e => e.Type)
+               .HasConversion<string>();
+
+            modelBuilder.Entity<Expertise>()
+                .HasMany(e => e.TherapistExpertises)
+                .WithOne(t => t.Expertise)
+                .HasForeignKey(t => t.ExpertiseId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.TherapistExpertises)
+                .WithOne(t => t.Therapist)
+                .HasForeignKey(t => t.TherapistId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }
