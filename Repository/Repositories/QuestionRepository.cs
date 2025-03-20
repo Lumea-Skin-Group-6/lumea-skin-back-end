@@ -154,14 +154,7 @@ namespace Repository.Repositories
             {
                 SkinType = skinType.Name,
                 Description = skinType.Description,
-                RecommendedServices = recommendedServices.Select(s => new ServiceSuggestResponse
-                {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Description = s.Description,
-                    Price = s.Price,
-                    ImageUrl = s.ImageUrl,
-                }).ToList()
+                RecommendedServices = _mapper.Map<List<ServiceResponseModel>>(recommendedServices)
             };
         }
 
