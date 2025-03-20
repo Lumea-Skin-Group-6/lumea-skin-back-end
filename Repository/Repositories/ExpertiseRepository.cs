@@ -43,6 +43,12 @@ namespace Repository.Repositories
         {
             return await _context.Expertises.FirstOrDefaultAsync(x => x.Id == id);
         }
+        public async Task<IEnumerable<Expertise>> GetByIdsAsync(List<int> ids)
+        {
+            return await _context.Expertises
+                .Where(st => ids.Contains(st.Id))
+                .ToListAsync();
+        }
 
         public async Task<Expertise> UpdateAsync(Expertise expertise)
         {

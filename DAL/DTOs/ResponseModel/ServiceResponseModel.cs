@@ -16,25 +16,27 @@ namespace DAL.DTOs.ResponseModel
         public string Name { get; set; } = "";
 
         public string ImageUrl { get; set; } = "";
+        public string ImageUrl2 { get; set; } = "";
+        public string ImageUrl3 { get; set; } = "";
 
         public decimal Price { get; set; }
 
         public string Description { get; set; } = "";
 
-        public DateTime RecommendedPeriodStartTime { get; set; }
+        public string RecommendedPeriodStartTime { get; set; }
 
-        public DateTime RecommendedPeriodEndTime { get; set; }
+        public string RecommendedPeriodEndTime { get; set; }
 
         public TimeSpan Duration { get; set; }
 
         public string ExperienceRequired { get; set; } = "";
-        public int RecommendedAge { get; set; }
 
-        public string Type { get; set; } = "";
+        public string RecommendedAge { get; set; } = "";
+        public ServiceType Type { get; set; }
 
         public int NumberOfTreatment { get; set; }
 
-        public IEnumerable<SkinTypeResponse> ServiceSkinTypes { get; set; } = [];
-        public IEnumerable<ExpertiseResponseModel> ServiceExpertises { get; set; } = [];
+        public ICollection<SkinTypeResponse> SkinTypeServices { get; set; } = [];
+        public ICollection<ExpertiseResponseModel> ServiceExpertises { get; set; } = [];
     }
 }

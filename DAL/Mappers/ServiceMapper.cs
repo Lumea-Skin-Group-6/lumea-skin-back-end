@@ -24,8 +24,8 @@ namespace DAL.Mappers
                 Type = model.Type,
                 NumberOfTreatment = model.NumberOfTreatment,
                 RecommendedAge = model.RecommendedAge,
-                ServiceSkinTypes = skinType ?? [],
-                ServiceExpertises = expertises ?? [],
+                //ServiceSkinTypes = skinType ?? [],
+                //ServiceExpertises = expertises ?? [],
             };
         }
 
@@ -37,13 +37,13 @@ namespace DAL.Mappers
                 ImageUrl = model.ImageUrl,
                 Price = model.Price,
                 Description = model.Description,
-                RecommendedPeriodStartTime = model.RecommendedPeriodStartTime.ToUniversalTime(),
-                RecommendedPeriodEndTime = model.RecommendedPeriodEndTime.ToUniversalTime(),
+                //RecommendedPeriodStartTime = model.RecommendedPeriodStartTime.ToUniversalTime(),
+                //RecommendedPeriodEndTime = model.RecommendedPeriodEndTime.ToUniversalTime(),
                 Duration = model.Duration,
                 ExperienceRequired = model.ExperienceRequired,
                 Type = model.Type,
                 NumberOfTreatment = model.NumberOfTreatment,
-                RecommendedAge = model.RecommededAge,
+                //RecommendedAge = model.RecommededAge,
             };
         }
 
@@ -56,13 +56,13 @@ namespace DAL.Mappers
                 ImageUrl = model.ImageUrl,
                 Price = model.Price,
                 Description = model.Description,
-                RecommendedPeriodStartTime = model.RecommendedPeriodStartTime.ToUniversalTime(),
-                RecommendedPeriodEndTime = model.RecommendedPeriodEndTime.ToUniversalTime(),
+                //RecommendedPeriodStartTime = model.RecommendedPeriodStartTime.ToUniversalTime(),
+                //RecommendedPeriodEndTime = model.RecommendedPeriodEndTime.ToUniversalTime(),
                 Duration = model.Duration,
                 ExperienceRequired = model.ExperienceRequired,
                 Type = model.Type,
                 NumberOfTreatment = model.NumberOfTreatment,
-                RecommendedAge = model.recommend_age
+                //RecommendedAge = model.recommend_age
             };
         }
     }

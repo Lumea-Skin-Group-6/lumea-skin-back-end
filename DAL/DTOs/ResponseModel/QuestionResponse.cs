@@ -15,6 +15,7 @@ namespace DAL.DTOs.ResponseModel
         public bool IsMultipleChoice { get; set; }
         public bool Active { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public List<AnswerResponse> Answers { get; set; } = new();
     }
 
     public class QuestionResponseWithAnswer

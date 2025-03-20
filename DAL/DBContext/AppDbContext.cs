@@ -70,6 +70,11 @@ namespace DAL.DBContext
                .HasForeignKey<Employee>(e => e.AccountId)
                .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder
+               .Entity<ServiceModel>()
+               .Property(e => e.Type)
+               .HasConversion<string>();
+
             modelBuilder.Entity<Expertise>()
                 .HasMany(e => e.TherapistExpertises)
                 .WithOne(t => t.Expertise)
@@ -81,6 +86,7 @@ namespace DAL.DBContext
                 .WithOne(t => t.Therapist)
                 .HasForeignKey(t => t.TherapistId)
                 .OnDelete(DeleteBehavior.Cascade);
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -10,9 +10,10 @@ namespace Repository.Interfaces
     public interface ISkinTypeRepository
     {
         Task<IEnumerable<SkinType>> GetAllAsync();
+        Task<IEnumerable<SkinType>> GetByIdsAsync(List<int> ids);
         Task<SkinType?> GetByIdAsync(int id);
-        Task<SkinType> AddAsync(SkinType skinType);
-        Task<SkinType> UpdateAsync(SkinType skinType);
+        Task<SkinType?> AddAsync(SkinType skinType);
+        Task<SkinType?> UpdateAsync(SkinType skinType);
         Task<SkinType> DeleteAsync(int id);
         List<SkinType> GetAllSkinType();
 
