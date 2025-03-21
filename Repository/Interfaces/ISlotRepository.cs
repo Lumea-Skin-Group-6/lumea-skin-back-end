@@ -12,5 +12,6 @@ namespace Repository.Interfaces
         Task<List<Slot>> GetFreeSlotsByTherapistIdAsync(int therapistId);
 
         void AddSlot(Slot slot);
+        List<Slot> GetSlots();
     }
 }
