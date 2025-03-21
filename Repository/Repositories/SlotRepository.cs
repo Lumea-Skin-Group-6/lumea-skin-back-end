@@ -40,6 +40,9 @@ namespace Repository.Repositories
             return freeSlots;
         }
 
-        
+        public List<Slot> GetSlots()
+        {
+            return _context.Slots.ToList();
+        }
     }
 }

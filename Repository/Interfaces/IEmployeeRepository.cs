@@ -9,6 +9,6 @@ namespace Repository.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Employee GetEmployeeById(int id);
+        Employee GetEmployeeByAccountId(int id);
     }
 }

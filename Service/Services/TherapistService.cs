@@ -50,12 +50,19 @@ namespace Service.Services
             return result.Select(x => x.ToTherapistResponseModel());
         }
 
+        public async Task<IEnumerable<TherapistResponseModel>> GetAllTherapistByListExpertiseID(ICollection<int> expertiseID)
+        {
+            var result = await _repository.GetAllTherapistByListExpertiseID(expertiseID);
+            return result.Select(x => x.ToTherapistResponseModel());
+        }
+
         public async Task<TherapistResponseModel> GetByIdAsync(int id)
         {
             var result = await _repository.GetByIdAsync(id);
             if (result == null) throw new KeyNotFoundException();
             return result.ToTherapistResponseModel();
         }
+
 
         public async Task<TherapistResponseModel> UpdateAsync(int id, UpdateTherapistRequestModel requestModel)
         {
@@ -67,5 +74,9 @@ namespace Service.Services
             var result = await _repository.UpdateAsync(requestModel.ToAccount(id));
             return result.ToTherapistResponseModel();
         }
+
+
+
+
     }
 }

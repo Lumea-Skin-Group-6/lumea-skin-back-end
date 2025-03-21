@@ -154,20 +154,14 @@ namespace Repository.Repositories
             {
                 SkinType = skinType.Name,
                 Description = skinType.Description,
-                RecommendedServices = recommendedServices.Select(s => new ServiceSuggestResponse
-                {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Description = s.Description,
-                    Price = s.Price,
-                    ImageUrl = s.ImageUrl,
-                }).ToList()
+                RecommendedServices = _mapper.Map<List<ServiceResponseModel>>(recommendedServices)
             };
         }
 
         public async Task<IEnumerable<QuestionResponseWithAnswer>> GetAllQuestionsWithAnswersAsync()
         {
             var questions = await _context.Questions
+                .Where(q => q.Active)
                 .Include(q => q.Answers) // Ensure answers are loaded
                 .ToListAsync();
 

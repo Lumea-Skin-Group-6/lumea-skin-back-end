@@ -469,6 +469,16 @@ namespace DAL.Migrations
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
+                    b.Property<string>("ImageUrl2")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("image_url_2");
+
+                    b.Property<string>("ImageUrl3")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("image_url_3");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -482,16 +492,19 @@ namespace DAL.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("price");
 
-                    b.Property<int>("RecommendedAge")
-                        .HasColumnType("integer")
+                    b.Property<string>("RecommendedAge")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("recommended_age");
 
-                    b.Property<DateTime>("RecommendedPeriodEndTime")
-                        .HasColumnType("timestamp with time zone")
+                    b.Property<string>("RecommendedPeriodEndTime")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("recommended_end_time");
 
-                    b.Property<DateTime>("RecommendedPeriodStartTime")
-                        .HasColumnType("timestamp with time zone")
+                    b.Property<string>("RecommendedPeriodStartTime")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("recommended_start_time");
 
                     b.Property<string>("Type")
@@ -649,32 +662,26 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.Property<int>("therapist_expertise_id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("therapist_expertise_id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("experience")
+                    b.Property<int>("Experience")
                         .HasColumnType("integer");
 
-                    b.Property<int>("expertiseId")
+                    b.Property<int>("ExpertiseId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("expertise_id")
+                    b.Property<int>("TherapistId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("therapistId")
-                        .HasColumnType("integer");
+                    b.HasKey("Id");
 
-                    b.Property<int>("therapist_id")
-                        .HasColumnType("integer");
+                    b.HasIndex("ExpertiseId");
 
-                    b.HasKey("therapist_expertise_id");
-
-                    b.HasIndex("expertiseId");
-
-                    b.HasIndex("therapistId");
+                    b.HasIndex("TherapistId");
 
                     b.ToTable("therapist_expertise");
                 });
@@ -840,21 +847,21 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("BusinessObject.TherapistExpertise", b =>
                 {
-                    b.HasOne("BusinessObject.Expertise", "expertise")
+                    b.HasOne("BusinessObject.Expertise", "Expertise")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("expertiseId")
+                        .HasForeignKey("ExpertiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BusinessObject.Employee", "therapist")
+                    b.HasOne("BusinessObject.Employee", "Therapist")
                         .WithMany("TherapistExpertises")
-                        .HasForeignKey("therapistId")
+                        .HasForeignKey("TherapistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("expertise");
+                    b.Navigation("Expertise");
 
-                    b.Navigation("therapist");
+                    b.Navigation("Therapist");
                 });
 
             modelBuilder.Entity("BusinessObject.TherapistShift", b =>

@@ -17,9 +17,9 @@ namespace Repository.Repositories
         {
             _context = context;
         }
-        public Employee GetEmployeeById(int id)
+        public Employee GetEmployeeByAccountId(int id)
         {
-            return _context.Employees.Find(id);
+            return _context.Employees.FirstOrDefault(x => x.AccountId == id);
         }
     }
 }

@@ -86,9 +86,16 @@ namespace SkincareBookingApp.Controllers
         {
             try
             {
-                var service = await _serviceService.DeleteAsync(serviceId);
-                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Delete service successfully",
-                service);
+                var success = await _serviceService.DeleteAsync(serviceId);
+                if (success)
+                {
+                    return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Delete service successfully", success);
+                }
+                else
+                {
+                    return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Delete service failed", success);
+                }
+
             } catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });

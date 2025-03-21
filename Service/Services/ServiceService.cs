@@ -1,4 +1,6 @@
-﻿using BusinessObject;
+﻿using AutoMapper;
+using BusinessObject;
+using DAL.DBContext;
 using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
 using DAL.Mappers;
@@ -10,130 +12,85 @@ namespace Service.Services
 {
     public class ServiceService : IServiceService
     {
-        private readonly IServiceRepository _repository;
-
+        private readonly IServiceRepository _serviceRepository;
         private readonly IExpertiseRepository _expertiseRepository;
-
-        private readonly IServiceExpertiseRepository _serviceExpertiseRepo;
-
         private readonly ISkinTypeRepository _skinTypeRepository;
-        private readonly ISkinTypeServiceRepository _skinTypeServiceRepository;
+        private readonly IMapper _mapper;
 
-
-        public ServiceService(IServiceRepository repository, IExpertiseRepository expertiseRepository, IServiceExpertiseRepository serviceExpertiseRepo, ISkinTypeRepository skinTypeRepository, ISkinTypeServiceRepository skinTypeServiceRepository)
+        public ServiceService(IServiceRepository serviceRepository,
+                              IExpertiseRepository expertiseRepository,
+                              ISkinTypeRepository skinTypeRepository,
+                              IMapper mapper)
         {
-            _repository = repository;
+            _serviceRepository = serviceRepository;
             _expertiseRepository = expertiseRepository;
-            _serviceExpertiseRepo = serviceExpertiseRepo;
             _skinTypeRepository = skinTypeRepository;
-            _skinTypeServiceRepository = skinTypeServiceRepository;
-        }
-        public async Task<ServiceResponseModel> AddAsync(AddServiceRequestModel requestModel)
-        {
-            var services = await _repository.GetAllAsync();
-            var existingService = services.FirstOrDefault(x => x.Name == requestModel.Name);
-            if (existingService != null)
-            {
-                throw new InvalidOperationException("Service name must be unique");
-            }
-
-            // Lấy tất cả expertise hiện có
-            var expertise = await _expertiseRepository.GetAllAsync();
-            var existingExpertiseIds = expertise.Select(e => e.Id).ToHashSet();
-
-            // Kiểm tra tất cả ID trong requestModel.ServiceExpertisesID
-            var invalidIds = requestModel.ServiceExpertisesID.Where(id => !existingExpertiseIds.Contains(id)).ToList();
-            if (invalidIds.Any())
-            {
-                throw new InvalidOperationException("Expertise not exist: " + string.Join(", ", invalidIds));
-            }
-
-            var skintype =  _skinTypeRepository.GetAllSkinType();
-            var existSkinID = skintype.Select(e => e.Id).ToHashSet();
-
-            // Kiểm tra tất cả ID trong requestModel.ServiceExpertisesID
-            var invalidSkinType = requestModel.ServiceSkinTypeID.Where(id => !existSkinID.Contains(id)).ToList();
-            if (invalidSkinType.Any())
-            {
-                throw new InvalidOperationException("SkinType not exist: " + string.Join(", ", invalidSkinType));
-            }
-
-            // Nếu tất cả Expertise ID hợp lệ, tiến hành lưu Service
-            var result = await _repository.AddAsync(requestModel.ToService());
-
-            // Lưu ServiceExpertise
-            foreach (var item in requestModel.ServiceExpertisesID)
-            {
-                ServiceExpertise serviceExpertise = new ServiceExpertise
-                {
-                    ServiceId = result.Id,
-                    ExpertiseId = item
-                };
-                _serviceExpertiseRepo.AddServiceExpertise(serviceExpertise);
-            }
-
-            // Lưu skin type service
-            foreach (var item in requestModel.ServiceSkinTypeID)
-            {
-                SkinTypeService skinTypeService = new SkinTypeService
-                {
-                    ServiceId = result.Id,
-                    SkinTypeId = item
-                };
-                _skinTypeServiceRepository.AddSkinTypeService(skinTypeService);
-            }
-
-            return result.ToServiceResponseModel();
+            _mapper = mapper;
         }
 
 
-        public async Task<ServiceResponseModel> DeleteAsync(int id)
+        public async Task<ServiceResponseModel> AddAsync(AddServiceRequestModel request)
         {
-            var service = await _repository.GetByIdAsync(id);
-            if (service == null)
-            {
-                throw new KeyNotFoundException("Service not found.");
-            }
+            var service = _mapper.Map<ServiceModel>(request);
 
-            var result = await _repository.DeleteAsync(id);
-            return result.ToServiceResponseModel();
+            service.ServiceExpertises = await ConvertExpertiseIdsToObjects(request.ServiceExpertisesID);
+
+            service.SkinTypeServices = await ConvertSkinTypeIdsToObjects(request.SkinTypeID);
+
+            var createdService = await _serviceRepository.AddAsync(service);
+            return _mapper.Map<ServiceResponseModel>(createdService);
+        }
+
+        public async Task<ServiceResponseModel> UpdateAsync(int id, UpdateServiceRequestModel request)
+        {
+            var serviceToUpdate = _mapper.Map<ServiceModel>(request);
+            serviceToUpdate.Id = id;
+
+            serviceToUpdate.ServiceExpertises = await ConvertExpertiseIdsToObjects(request.ServiceExpertisesID);
+
+            serviceToUpdate.SkinTypeServices = await ConvertSkinTypeIdsToObjects(request.SkinTypeID);
+
+            var updatedService = await _serviceRepository.UpdateAsync(serviceToUpdate);
+            return _mapper.Map<ServiceResponseModel>(updatedService);
         }
 
         public async Task<IEnumerable<ServiceResponseModel>> GetAllAsync()
         {
-            var services = await _repository.GetAllAsync();
-            return services.Select(e => e.ToServiceResponseModel());
+            var services = await _serviceRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<ServiceResponseModel>>(services);
         }
 
-        public async Task<ServiceResponseModel> GetByIdAsync(int id)
+        public async Task<ServiceResponseModel?> GetByIdAsync(int id)
         {
-            var service = await _repository.GetByIdAsync(id);
-            if (service == null)
-            {
-                throw new KeyNotFoundException("Service not found.");
-            }
-
-            return service.ToServiceResponseModel();
+            var service = await _serviceRepository.GetByIdAsync(id);
+            return service == null ? null : _mapper.Map<ServiceResponseModel>(service);
         }
 
-        public async Task<ServiceResponseModel> UpdateAsync(int id, UpdateServiceRequestModel requestModel)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var existingService = await _repository.GetByIdAsync(id);
-            if (existingService == null)
+            try
             {
-                throw new KeyNotFoundException("Service not found.");
+                await _serviceRepository.DeleteAsync(id);
+                return true;
             }
-
-            var services = await _repository.GetAllAsync();
-
-            existingService = services.FirstOrDefault(x => x.Name == requestModel.Name && x.Id != id);
-            if (existingService != null)
+            catch (InvalidOperationException)
             {
-                throw new InvalidOperationException("Service name must be unique");
+                return false;
             }
+        }
 
-            var result = await _repository.UpdateAsync(requestModel.ToService(id));
-            return result.ToServiceResponseModel();
+        private async Task<List<ServiceExpertise>> ConvertExpertiseIdsToObjects(List<int> expertiseIds)
+        {
+            var expertises = await _expertiseRepository.GetByIdsAsync(expertiseIds);
+            return expertises.Select(e => new ServiceExpertise { ExpertiseId = e.Id }).ToList();
+        }
+
+        private async Task<List<SkinTypeService>> ConvertSkinTypeIdsToObjects(List<int> skinTypeIds)
+        {
+            var skinTypes = await _skinTypeRepository.GetByIdsAsync(skinTypeIds);
+            return skinTypes.Select(s => new SkinTypeService { SkinTypeId = s.Id }).ToList();
         }
     }
+
+
 }

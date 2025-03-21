@@ -36,7 +36,7 @@ namespace Repository.Repositories
                 throw new InvalidOperationException("Therapist not found.");
             }
 
-            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.therapist_id == account.Id).ToListAsync();
+            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.TherapistId == account.Id).ToListAsync();
             foreach (var item in therapistExpertises)
             {
                 _context.TherapistExpertises.Remove(item);
@@ -60,7 +60,19 @@ namespace Repository.Repositories
                 .Include(x => x.Role)
                 .Include(x => x.Employee)
                 .ThenInclude(x => x.TherapistExpertises)
-                .ThenInclude(x => x.expertise)
+                .ThenInclude(x => x.Expertise)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Account>> GetAllTherapistByListExpertiseID(ICollection<int> expertiseID)
+        {
+            return await _context.Accounts
+                .Where(x => x.RoleId == 5 &&
+                         x.Employee.TherapistExpertises.Any(te => expertiseID.Contains(te.ExpertiseId))) 
+                .Include(x => x.Role)
+                .Include(x => x.Employee)
+                .ThenInclude(e => e.TherapistExpertises)
+                .ThenInclude(te => te.Expertise)
                 .ToListAsync();
         }
 
@@ -71,9 +83,10 @@ namespace Repository.Repositories
               .Include(x => x.Role)
               .Include(x => x.Employee)
               .ThenInclude(x => x.TherapistExpertises)
-              .ThenInclude(x => x.expertise)
+              .ThenInclude(x => x.Expertise)
               .FirstOrDefaultAsync(x => x.Id == id);
         }
+
 
         public async Task<Account> UpdateAsync(Account account)
         {
@@ -87,7 +100,7 @@ namespace Repository.Repositories
             {
                 throw new InvalidOperationException("Therapist not found.");
             }
-            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.therapist_id == account.Id).ToListAsync();
+            var therapistExpertises = await _context.TherapistExpertises.Where(x => x.TherapistId == account.Id).ToListAsync();
             foreach (var item in therapistExpertises)
             {
                 _context.TherapistExpertises.Remove(item);
@@ -109,5 +122,8 @@ namespace Repository.Repositories
             await _context.SaveChangesAsync();
             return account;
         }
+
+
+
     }
 }

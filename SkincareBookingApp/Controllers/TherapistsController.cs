@@ -1,4 +1,5 @@
 ﻿using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -100,6 +101,24 @@ namespace SkincareBookingApp.Controllers
             {
                 return NotFound(new { message = ex.Message });
             }
+        }
+
+        [HttpGet("by-expertise")]
+        public async Task<ActionResult<IEnumerable<TherapistResponseModel>>> GetAllTherapistsByExpertise([FromQuery] List<int> expertiseIds)
+        {
+            if (expertiseIds == null || !expertiseIds.Any())
+            {
+                return BadRequest("Expertise ID list cannot be empty.");
+            }
+
+            var therapists = await _therapistService.GetAllTherapistByListExpertiseID(expertiseIds);
+
+            if (therapists == null || !therapists.Any())
+            {
+                return NotFound("No therapists found for the given expertise IDs.");
+            }
+
+            return Ok(therapists);
         }
     }
 }
