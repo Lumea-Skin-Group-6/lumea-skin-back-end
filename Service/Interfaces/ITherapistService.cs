@@ -17,5 +17,7 @@ namespace Service.Interfaces
         Task<TherapistResponseModel> AddAsync(AddTherapistRequestModel requestModel);
         Task<TherapistResponseModel> UpdateAsync(int id, UpdateTherapistRequestModel requestModel);
         Task<TherapistResponseModel> DeleteAsync(int id);
+
+        Task<IEnumerable<TherapistResponseModel>> GetAllTherapistByListExpertiseID(ICollection<int> expertiseID);
     }
 }

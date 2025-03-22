@@ -42,6 +42,9 @@ namespace Service.Services
                 List<TherapistShift> therapistShifts = _shiftRepository.GetAllTherapistShift();
                 List<Shift> shifts = _shiftRepository.GetAllShift();
 
+                // 👉 Lấy danh sách Slot đã tồn tại trong DB
+                List<Slot> existingSlots = _slotRepository.GetSlots();
+
                 List<Slot> slots = new List<Slot>();
 
                 foreach (TherapistShift therapistshift in therapistShifts)
@@ -51,24 +54,35 @@ namespace Service.Services
 
                     foreach (Shift shift in shifts)
                     {
-                        if (therapistshift.shift_id == shift.Id)
+                        if (therapistshift.shift_id == shift.Id && employee.Id == therapistshift.therapist_id)
                         {
-                            Slot newSlot = new Slot();
-                            newSlot.employee_id = employee.Id;
-                            newSlot.date = therapistshift.Date;
-                            newSlot.time = shift.StartTime.ToLongTimeString();
-                            newSlot.status = "Available";
+                            // 👉 Kiểm tra nếu Slot đã tồn tại
+                            bool isDuplicate = existingSlots.Any(s =>
+                                s.employee_id == employee.Id &&
+                                s.date == therapistshift.Date &&
+                                s.time == shift.StartTime.ToLongTimeString()
+                            );
 
-                           _slotRepository.AddSlot(newSlot);
-                            slots.Add(newSlot);
+                            if (!isDuplicate) // Chỉ thêm nếu chưa tồn tại
+                            {
+                                Slot newSlot = new Slot
+                                {
+                                    employee_id = employee.Id,
+                                    date = therapistshift.Date,
+                                    time = shift.StartTime.ToLongTimeString(),
+                                    status = "Available"
+                                };
+
+                                _slotRepository.AddSlot(newSlot);
+                                slots.Add(newSlot);
+                            }
                         }
                     }
                 }
 
-
                 if (slots.IsNullOrEmpty())
                 {
-                    slots = new List<Slot>();
+                    throw new ErrorException(404, "Cannot gen slot because there are allready data!");
                 }
 
                 return new ResponseModel(200, "Auto Gen Slot Successfully!", slots);
@@ -76,7 +90,7 @@ namespace Service.Services
             catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ResponseModel(404, "Faile", errorData);
+                return new ResponseModel(404, "Failed", errorData);
             }
         }
 
