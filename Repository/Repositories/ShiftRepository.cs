@@ -70,5 +70,11 @@ namespace Repository.Repositories
                    .Select(ts => ts.shift)
                    .ToList();
         }
+
+        public void DeleteTherapistShift(TherapistShift therapistShift)
+        {
+            _context.TherapistShifts.Remove(therapistShift);
+            _context.SaveChanges();
+        }
     }
 }
