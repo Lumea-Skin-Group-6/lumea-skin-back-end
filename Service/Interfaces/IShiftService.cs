@@ -17,10 +17,11 @@ namespace Service.Interfaces
 
         List<TherapistShiftGroupedDto> GetAllTherapistShift();
 
-        public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime);
+        public ResponseModel AddTherapistShift(int therapistID, List<DateTime> dateTimes);
+
 
         List<Shift> GetShiftsByTherapistId(int therapistID);
-        ResponseModel DeleteTherapistShift(int therapistID);
-        ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID, DateTime Datetime);
+        public ResponseModel DeleteTherapistShift(int  therapistID);
+        public ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID,  DateTime Datetime);
     }
 }
