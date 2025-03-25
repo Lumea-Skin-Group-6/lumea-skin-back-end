@@ -54,9 +54,11 @@ namespace Service.Services
 
                     foreach (Shift shift in shifts)
                     {
+                        if (therapistshift.Date < DateTime.Today) continue;
+
                         if (therapistshift.shift_id == shift.Id && employee.Id == therapistshift.therapist_id)
                         {
-                            // 👉 Kiểm tra nếu Slot đã tồn tại
+                            //  Kiểm tra nếu Slot đã tồn tại
                             bool isDuplicate = existingSlots.Any(s =>
                                 s.employee_id == employee.Id &&
                                 s.date == therapistshift.Date &&
