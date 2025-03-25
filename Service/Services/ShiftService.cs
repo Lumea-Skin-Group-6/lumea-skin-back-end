@@ -129,38 +129,7 @@ namespace Service.Services
                    .ToList();
         }
 
-        public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime)
-        {
-            try
-            {
-                if (Datetime < DateTime.UtcNow)
-                {
-                    throw new ErrorException(404, "Date regis can not less than current date!");
-                }
 
-                Employee employee = _employeeRepo.GetEmployeeByAccountId(TherapistID);
-
-                if (employee == null)
-                {
-                    throw new ErrorException(404, "Therapist not exist!");
-                }
-
-                TherapistShift therapistShift = new TherapistShift();
-                therapistShift.therapist = employee;
-                therapistShift.therapist_id = employee.Id;
-                therapistShift.Date = Datetime;
-                _shiftRepo.AddTherapistShift(therapistShift);
-
-                return new ResponseModel(202, "Add successfully!", therapistShift);
-
-            }
-            catch (ErrorException ex)
-            {
-                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ResponseModel(404, "Can not add!", errorData);
-
-            }
-        }
 
 
         public ResponseModel GetShiftById(int id)
@@ -316,5 +285,56 @@ namespace Service.Services
 
             }
         }
+
+        public ResponseModel AddTherapistShift(int therapistID, List<DateTime> dateTimes)
+        {
+            try
+            {
+                if (dateTimes == null || !dateTimes.Any())
+                {
+                    throw new ErrorException(400, "DateTimes list cannot be empty!");
+                }
+
+                Employee employee = _employeeRepo.GetEmployeeByAccountId(therapistID);
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Therapist does not exist!");
+                }
+
+                List<TherapistShift> addedShifts = new List<TherapistShift>();
+
+                foreach (var dateTime in dateTimes)
+                {
+                    if (dateTime < DateTime.UtcNow)
+                    {
+                        throw new ErrorException(400, "Date cannot be earlier than the current date!");
+                    }
+
+                    TherapistShift therapistShift = new TherapistShift
+                    {
+                        therapist = employee,
+                        therapist_id = employee.Id,
+                        Date = dateTime
+                    };
+
+                    _shiftRepo.AddTherapistShift(therapistShift);
+                    addedShifts.Add(therapistShift);
+                }
+
+                return new ResponseModel(202, "Add successfully!", addedShifts);
+            }
+            catch (ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Cannot add shifts!", errorData);
+            }
+            catch (Exception ex)
+            {
+                // Catch any unexpected exceptions
+                var errorData = new ErrorResponseModel(500, ex.Message);
+                return new ResponseModel(500, "An unexpected error occurred!", errorData);
+            }
+        }
+
     }
 }
