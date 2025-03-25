@@ -21,9 +21,7 @@ namespace Service.Interfaces
 
 
         List<Shift> GetShiftsByTherapistId(int therapistID);
-
         public ResponseModel DeleteTherapistShift(int  therapistID);
-
         public ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID,  DateTime Datetime);
     }
 }
