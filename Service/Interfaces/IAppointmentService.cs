@@ -11,7 +11,7 @@ namespace Service.Interfaces
     public interface IAppointmentService
     {
         Task<Appointment> CreateAppointmentAsync(CreateAppointmentDTO dto);
-        Task<Appointment?> UpdateAppointmentAsync(Appointment appointment);
+        Task<Appointment?> UpdateAppointmentAsync(UpdateAppointmentDTO appointment);
         Task<Appointment?> GetAppointmentByIdAsync(int id);
         Task<IEnumerable<Appointment>> GetAllAppointmentsAsync();
     }

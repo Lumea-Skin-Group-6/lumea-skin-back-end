@@ -23,16 +23,8 @@ namespace Repository.Repositories
 
         public async Task<Account> AddAsync(Account account)
         {
-            //var therapistExpertises = account.Employee?.TherapistExpertises ?? [];
-            //account.Employee.TherapistExpertises = null;
             await _context.Accounts.AddAsync(account);
             await _context.SaveChangesAsync();
-            //foreach (var therapistExpertise in therapistExpertises)
-            //{
-            //    therapistExpertise.TherapistId = account.Employee.Id;
-            //    _context.TherapistExpertises.Add(therapistExpertise);
-            //}
-            //await _context.SaveChangesAsync();
             return account;
         }
 
@@ -72,6 +64,18 @@ namespace Repository.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Account>> GetAllTherapistByListExpertiseID(ICollection<int> expertiseID)
+        {
+            return await _context.Accounts
+                .Where(x => x.RoleId == 5 &&
+                         x.Employee.TherapistExpertises.Any(te => expertiseID.Contains(te.ExpertiseId))) 
+                .Include(x => x.Role)
+                .Include(x => x.Employee)
+                .ThenInclude(e => e.TherapistExpertises)
+                .ThenInclude(te => te.Expertise)
+                .ToListAsync();
+        }
+
         public async Task<Account?> GetByIdAsync(int id)
         {
             return await _context.Accounts
@@ -82,6 +86,7 @@ namespace Repository.Repositories
               .ThenInclude(x => x.Expertise)
               .FirstOrDefaultAsync(x => x.Id == id);
         }
+
 
         public async Task<Account> UpdateAsync(Account account)
         {
@@ -103,7 +108,6 @@ namespace Repository.Repositories
 
             foreach (var item in account.Employee?.TherapistExpertises ?? [])
             {
-                item.TherapistId = account.Employee.Id;
                 await _context.TherapistExpertises.AddAsync(item);
             }
 
@@ -118,5 +122,8 @@ namespace Repository.Repositories
             await _context.SaveChangesAsync();
             return account;
         }
+
+
+
     }
 }

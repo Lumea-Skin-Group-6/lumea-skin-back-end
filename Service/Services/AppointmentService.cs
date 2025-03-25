@@ -25,7 +25,7 @@ namespace Service.Services
                 AccountId = dto.AccountId,
                 Amount = dto.Amount,
                 Note = dto.Note,
-                Status = "Pending",
+                Status = "Booked",
                 Date = DateTime.UtcNow,
                 AppointmentDetails = new List<AppointmentDetail>()
             };
@@ -68,8 +68,51 @@ namespace Service.Services
             return addedAppointment;
         }
 
-        public async Task<Appointment?> UpdateAppointmentAsync(Appointment appointment)
+        public async Task<Appointment?> UpdateAppointmentAsync(UpdateAppointmentDTO dto)
         {
+            var appointment = new Appointment
+            {
+                Id = dto.Id,
+                Amount = dto.Amount,
+                Note = dto.Note,
+                Status = dto.Status,
+                Date = dto.Date,
+                AppointmentDetails = new List<AppointmentDetail>()
+            };
+
+            foreach (var serviceDto in dto.Services)
+            {
+                foreach (var dateDto in serviceDto.AppointmentDates)
+                {
+                    bool isAvailable = await _appointmentRepo.IsSlotAvailableAsync(serviceDto.TherapistId, dateDto.Date, serviceDto.Duration);
+                    if (!isAvailable)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            foreach (var serviceDto in dto.Services)
+            {
+                var appointmentDetail = new AppointmentDetail
+                {
+                    ServiceId = serviceDto.ServiceId,
+                    TherapistId = serviceDto.TherapistId,
+                    Price = serviceDto.Price,
+                    Type = serviceDto.Type,
+                    Status = "Scheduled",
+                    AppointmentDetailDates = new List<AppointmentDetailDate>()
+                };
+
+                foreach (var dateDto in serviceDto.AppointmentDates)
+                {
+                    await _appointmentRepo.BookSlotsAsync(serviceDto.TherapistId, dateDto.Date, serviceDto.Duration);
+                    appointmentDetail.AppointmentDetailDates.Add(new AppointmentDetailDate { Date = dateDto.Date });
+                }
+
+                appointment.AppointmentDetails.Add(appointmentDetail);
+            }
+
             var updatedAppointment = await _appointmentRepo.UpdateAppointmentAsync(appointment);
             if (updatedAppointment != null)
             {
