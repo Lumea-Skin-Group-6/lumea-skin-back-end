@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace BusinessObject
 {
@@ -20,12 +21,13 @@ namespace BusinessObject
 
         [Column("appointment_date")] public DateTime Date { get; set; }
 
-        [Column("note")] public string Note { get; set; }
+        [Column("note")] public string? Note { get; set; }
 
         [Column("amount")] public decimal Amount { get; set; }
 
         [Column("status")] public string Status { get; set; }
 
+        [JsonIgnore]
         public Account Account { get; set; }
         public ICollection<AppointmentDetail> AppointmentDetails { get; set; }
     }
