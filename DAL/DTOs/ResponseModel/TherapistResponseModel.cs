@@ -24,6 +24,8 @@ namespace DAL.DTOs.ResponseModel
         public int RoleId { get; set; }
         public string RoleName { get; set; } = "";
         public string Status { get; set; } = "";
+
+        public int? TherapistID { get; set; } 
         public IEnumerable<TherapistExpertiseResponseModel> Expertises { get; set; } = [];
     }
 }
