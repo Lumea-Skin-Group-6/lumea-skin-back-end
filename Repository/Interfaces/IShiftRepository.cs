@@ -19,5 +19,7 @@ namespace Repository.Interfaces
         void UpdateTherapistShift(TherapistShift therapistShift);
 
         List<Shift> GetShiftsByTherapistId(int id);
+
+        void DeleteTherapistShift(TherapistShift id);
     }
 }
