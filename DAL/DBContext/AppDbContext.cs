@@ -75,6 +75,11 @@ namespace DAL.DBContext
                .Property(e => e.Type)
                .HasConversion<string>();
 
+            modelBuilder
+               .Entity<AppointmentDetail>()
+               .Property(e => e.Type)
+               .HasConversion<string>();
+
             modelBuilder.Entity<Expertise>()
                 .HasMany(e => e.TherapistExpertises)
                 .WithOne(t => t.Expertise)
