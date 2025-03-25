@@ -292,3 +292,9 @@ C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.pdb
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.genruntimeconfig.cache
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\ref\SkincareBookingApp.dll
+C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.AssemblyReference.cache
+C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.csproj.CoreCompileInputs.cache
+C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.sourcelink.json
+C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.MvcApplicationPartsAssemblyInfo.cs

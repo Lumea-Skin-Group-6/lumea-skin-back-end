@@ -27,9 +27,25 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPost("add-therapistshift/{therapistID}")]
         [SwaggerOperation(Summary = "Therapist Regis Date to word")]
-        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromQuery]DateTime dateTime)
+        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromQuery] List<DateTime> dateTime)
         {
             var therapistShift = _shiftService.AddTherapistShift(therapistID, dateTime);
+            return Ok(therapistShift);
+        }
+
+        [HttpPut("update-therapistshift/{therapistID}/{therapistShiftID}")]
+        [SwaggerOperation(Summary = "Therapist update Date to word")]
+        public IActionResult Update([FromRoute] int therapistID, [FromRoute] int therapistShiftID, [FromQuery] DateTime dateTime)
+        {
+            var therapistShift = _shiftService.UpdateTherapistShift(therapistID, therapistShiftID, dateTime);
+            return Ok(therapistShift);
+        }
+
+        [HttpDelete("delte-therapstshift/{therapistshiftID}")]
+        [SwaggerOperation(Summary = "delete")]
+        public IActionResult Delete([FromRoute] int therapistshiftID)
+        {
+            var therapistShift = _shiftService.DeleteTherapistShift(therapistshiftID);
             return Ok(therapistShift);
         }
     }

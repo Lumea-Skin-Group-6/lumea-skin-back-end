@@ -5,6 +5,7 @@ using DAL.DTOs.ResponseModel;
 using Repository.HandleException;
 using Repository.Interfaces;
 using Service.Interfaces;
+using System;
 
 namespace Service.Services
 {
@@ -260,6 +261,60 @@ namespace Service.Services
         public List<Shift> GetShiftsByTherapistId(int therapistID)
         {
             return _shiftRepo.GetShiftsByTherapistId(therapistID);
+        }
+
+        public ResponseModel DeleteTherapistShift(int therapistID)
+        {
+            try
+            {
+                TherapistShift therapistShift = _shiftRepo.GetTherapistShift(therapistID);
+
+                if (therapistShift == null)
+                {
+                    throw new ErrorException(404, "Day not available!");
+                }
+
+                _shiftRepo.DeleteTherapistShift(therapistShift);
+                return new ResponseModel(200, "Delete Successfully!", "Day: " + therapistShift.Date);
+            }catch(ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Cannot find therapist shift!", errorData);
+            }
+        }
+
+        public ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID, DateTime Datetime)
+        {
+            try
+            {
+                if (Datetime < DateTime.UtcNow)
+                {
+                    throw new ErrorException(404, "Date regis can not less than current date!");
+                }
+
+                Employee employee = _employeeRepo.GetEmployeeByAccountId(TherapistID);
+
+                if (employee == null)
+                {
+                    throw new ErrorException(404, "Therapist not exist!");
+                }
+
+
+                TherapistShift therapistShift = _shiftRepo.GetTherapistShift(therapistShiftID);
+                therapistShift.therapist = employee;
+                therapistShift.therapist_id = employee.Id;
+                therapistShift.Date = Datetime;
+                _shiftRepo.UpdateTherapistShift(therapistShift);
+
+                return new ResponseModel(202, "Update successfully!", therapistShift);
+
+            }
+            catch (ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Can not update!", errorData);
+
+            }
         }
     }
 }

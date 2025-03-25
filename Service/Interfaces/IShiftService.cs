@@ -20,5 +20,7 @@ namespace Service.Interfaces
         public ResponseModel AddTherapistShift(int TherapistID, DateTime Datetime);
 
         List<Shift> GetShiftsByTherapistId(int therapistID);
+        ResponseModel DeleteTherapistShift(int therapistID);
+        ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID, DateTime Datetime);
     }
 }
