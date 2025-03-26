@@ -25,6 +25,7 @@ namespace DAL.Mappers
                 ImageUrl = model.ImageUrl,
                 RoleName = model.Role?.Name ?? "",
                 Status = model.Status,
+                TherapistID = model.Employee?.Id,
                 Expertises = model.Employee?
                 .TherapistExpertises?.Select(x => x.ToTherapistExpertiseResponseModel()) ?? []
             };
