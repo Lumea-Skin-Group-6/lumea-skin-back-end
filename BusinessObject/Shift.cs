@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BusinessObject
@@ -40,6 +41,7 @@ namespace BusinessObject
         [Column("status")]
         public string Status { get; set; }
 
+        [JsonIgnore]
         public ICollection<TherapistShift> TherapistShifts { get; set; }
     }
 
