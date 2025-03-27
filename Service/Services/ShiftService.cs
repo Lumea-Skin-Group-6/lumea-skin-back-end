@@ -384,7 +384,7 @@ namespace Service.Services
                 var errorData = new ErrorResponseModel(500, ex.Message);
                 return new ResponseModel(500, "An unexpected error occurred!", errorData);
             }
-        }
+        }///////////
 
     }
 }

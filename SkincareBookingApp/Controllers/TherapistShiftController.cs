@@ -26,7 +26,7 @@ namespace SkincareBookingApp.Controllers
             return Ok(therapistShift);
         }
 
-        [HttpPost("add-therapistshift/{therapistID}/{shitID}")]
+        [HttpPost("add-therapistshift/{therapistID}/{shiftID}")]
         [SwaggerOperation(Summary = "Therapist Regis Date to word")]
         public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromRoute]int shiftID, [FromBody] TherapistShiftDateRequest dateTime)
         {
