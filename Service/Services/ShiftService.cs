@@ -343,7 +343,7 @@ namespace Service.Services
 
                 Shift existShift = _shiftRepo.GetShiftById(shiftID);
 
-                if(existShift == null)
+                if (existShift == null)
                 {
                     throw new ErrorException(404, "You have to choose shift!");
                 }
@@ -384,7 +384,11 @@ namespace Service.Services
                 var errorData = new ErrorResponseModel(500, ex.Message);
                 return new ResponseModel(500, "An unexpected error occurred!", errorData);
             }
-        }///////////
+        }
 
+        public async Task AutoCheckSlotsWhenPassDay()
+        {
+            await _shiftRepo.AutoCheckSlotsWhenPassDay();
+        }
     }
 }

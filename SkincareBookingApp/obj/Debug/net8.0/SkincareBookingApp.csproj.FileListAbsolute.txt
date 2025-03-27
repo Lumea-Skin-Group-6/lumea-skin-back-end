@@ -584,3 +584,10 @@ C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.pdb
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.genruntimeconfig.cache
 C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\obj\Debug\net8.0\ref\SkincareBookingApp.dll
+<<<<<<< HEAD
+C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+=======
+>>>>>>> 8d71065c46a1dbf9e02d0ffd5d7787aaa346d733
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\VanHieu\Desktop\Semester8\PRN231\lumea-skin-back-end\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll

@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
 using DAL.DTOs.RequestModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
@@ -34,6 +35,7 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get all questions with answer successfully", questions);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetQuestionById(int id)
         {
@@ -45,6 +47,7 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get question successfully", question);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddQuestion([FromBody] QuestionCreateRequest request)
         {
@@ -54,6 +57,7 @@ namespace SkincareBookingApp.Controllers
                 : BadRequest(new { message = "Failed to add question." });
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuestion(int id, [FromBody] QuestionUpdateRequest request)
         {
@@ -68,6 +72,7 @@ namespace SkincareBookingApp.Controllers
                 : NotFound(new { message = "Question not found." });
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQuestion(int id)
         {
