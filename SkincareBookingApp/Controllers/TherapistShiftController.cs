@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL.DTOs.RequestModel;
+using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -25,11 +26,11 @@ namespace SkincareBookingApp.Controllers
             return Ok(therapistShift);
         }
 
-        [HttpPost("add-therapistshift/{therapistID}")]
+        [HttpPost("add-therapistshift/{therapistID}/{shitID}")]
         [SwaggerOperation(Summary = "Therapist Regis Date to word")]
-        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromQuery] List<DateTime> dateTime)
+        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromRoute]int shiftID, [FromBody] TherapistShiftDateRequest dateTime)
         {
-            var therapistShift = _shiftService.AddTherapistShift(therapistID, dateTime);
+            var therapistShift = _shiftService.AddTherapistShift(therapistID, shiftID, dateTime);
             return Ok(therapistShift);
         }
 
