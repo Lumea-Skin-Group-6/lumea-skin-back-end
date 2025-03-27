@@ -17,7 +17,7 @@ namespace Service.Interfaces
 
         List<TherapistShiftGroupedDto> GetAllTherapistShift();
 
-        public ResponseModel AddTherapistShift(int therapistID, List<DateTime> dateTimes);
+        public ResponseModel AddTherapistShift(int therapistID, int shiftID, TherapistShiftDateRequest dateimes);
         Task AutoCheckSlotsWhenPassDay();
         List<Shift> GetShiftsByTherapistId(int therapistID);
         public ResponseModel DeleteTherapistShift(int  therapistID);
