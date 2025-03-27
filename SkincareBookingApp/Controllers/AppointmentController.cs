@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
 using DAL.DTOs.RequestModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
@@ -20,6 +21,7 @@ namespace SkincareBookingApp.Controllers
             _appointmentService = appointmentService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateAppointment([FromBody] CreateAppointmentDTO appointmentDTO)
         {
@@ -29,6 +31,7 @@ namespace SkincareBookingApp.Controllers
                 : BadRequest(new { message = "Failed to add appointment." });
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAppointment(int id, [FromBody] UpdateAppointmentDTO appointment)
         {
@@ -43,6 +46,7 @@ namespace SkincareBookingApp.Controllers
                 : NotFound(new { message = "Appointment not found." });
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAppointmentById(int id)
         {
@@ -52,6 +56,7 @@ namespace SkincareBookingApp.Controllers
                 : NotFound(new { message = "Appointment not found." });
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllAppointments()
         {

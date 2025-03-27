@@ -76,5 +76,10 @@ namespace Repository.Repositories
             _context.TherapistShifts.Remove(therapistShift);
             _context.SaveChanges();
         }
+
+        public async Task AutoCheckSlotsWhenPassDay()
+        {
+            
+        }
     }
 }
