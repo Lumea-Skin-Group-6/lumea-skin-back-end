@@ -29,10 +29,23 @@ namespace SkincareBookingApp.Controllers
             return Ok(shift);
         }
 
-        [HttpPost("add-shift/{therapistShiftID}")]
-        public IActionResult AddShift([FromRoute] int therapistShiftID,[FromBody] ShiftRequestDTO shiftRequest)
+        [HttpPost("add-shift")]
+        public IActionResult AddShift([FromBody] ShiftRequestDTO shiftRequest)
         {
-            var response = _shiftService.AddShift(therapistShiftID, shiftRequest);
+            var response = _shiftService.AddShift(shiftRequest);
+
+            return StatusCode(response.StatusCode, new
+            {
+                message = response.Title,
+                data = response.Data
+            });
+        }
+
+        [HttpPost("add-shift-to-therapistshift/{therapistShiftID}")]
+        [SwaggerOperation(Summary = "add shift to therapist shift")]
+        public IActionResult AddShift([FromRoute]int therapistShiftID, [FromRoute]int shiftID)
+        {
+            var response = _shiftService.AddShiftToTherapistShift(therapistShiftID, shiftID);
 
             return StatusCode(response.StatusCode, new
             {

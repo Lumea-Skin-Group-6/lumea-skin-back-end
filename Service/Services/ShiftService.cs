@@ -21,14 +21,23 @@ namespace Service.Services
             _employeeRepo = employeeRepo;
         }
 
-        public ResponseModel AddShift(int id, ShiftRequestDTO shiftRequest)
+        public ResponseModel AddShift(ShiftRequestDTO shiftRequest)
         {
             try
             {
+                if(shiftRequest.StartTime <  DateTime.Now)
+                {
+                    throw new ErrorException(404, "Start time must be in the future!");
+                }
 
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
                     throw new ErrorException(404, "EndTime cannot be before StartTime.");
+                }
+
+                if (shiftRequest.MinStaff <= 0)
+                {
+                    throw new ErrorException(404, "MinStaff must have at least one person.");
                 }
 
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
@@ -36,19 +45,17 @@ namespace Service.Services
                     throw new ErrorException(404, "MaxStaff cannot be less than MinStaff.");
                 }
 
+                if (shiftRequest.MinTherapist <= 0)
+                {
+                    throw new ErrorException(404, "MinTherapist must have at least one person.");
+                }
+
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)
                 {
                     throw new ErrorException(404, "MaxTherapist cannot be less than MinTherapist.");
                 }
 
-                TherapistShift therapistShift = _shiftRepo.GetTherapistShift(id);
 
-                if (therapistShift == null)
-                {
-                    throw new ErrorException(404, "No one regis work date!");
-                }
-
-                
                 Shift shift = new Shift
                 {
                     Name = shiftRequest.Name,
@@ -62,11 +69,7 @@ namespace Service.Services
                 };
 
 
-
                 _shiftRepo.AddShift(shift);
-
-                therapistShift.shift_id = shift.Id;
-                _shiftRepo.UpdateTherapistShift(therapistShift);
 
 
                 ShiftResponseDTO responseDTO = new ShiftResponseDTO();
@@ -89,7 +92,34 @@ namespace Service.Services
 
         }
 
+        public ResponseModel AddShiftToTherapistShift(int id, int shiftID)
+        {
+            try
+            {
+                TherapistShift therapistShift = _shiftRepo.GetTherapistShift(id);
 
+                if (therapistShift == null)
+                {
+                    throw new ErrorException(404, "No one registered to work in this date!");
+                }
+                Shift shift = _shiftRepo.GetShiftById(shiftID);
+
+                if (therapistShift == null)
+                {
+                    throw new ErrorException(404, "Shift not available!");
+                }
+
+                therapistShift.shift_id = shift.Id;
+                _shiftRepo.UpdateTherapistShift(therapistShift);
+                return new ResponseModel(200, "Add Sfhit to TherapistShift successfully!!", therapistShift);
+            }
+            catch (ErrorException ex)
+            {
+                var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
+                return new ResponseModel(404, "Cannot Add!", errorData);
+            }
+
+        }
 
         public ResponseModel DeleteAsync(int id)
         {
@@ -180,9 +210,19 @@ namespace Service.Services
                     throw new ErrorException(404, "EndTime cannot be before StartTime.");
                 }
 
+                if (shiftRequest.MinStaff <= 0)
+                {
+                    throw new ErrorException(404, "MinStaff must have at least one person.");
+                }
+
                 if (shiftRequest.MaxStaff < shiftRequest.MinStaff)
                 {
                     throw new ErrorException(404, "MaxStaff cannot be less than MinStaff.");
+                }
+
+                if (shiftRequest.MinTherapist <= 0)
+                {
+                    throw new ErrorException(404, "MinTherapist must have at least one person.");
                 }
 
                 if (shiftRequest.MaxTherapist < shiftRequest.MinTherapist)

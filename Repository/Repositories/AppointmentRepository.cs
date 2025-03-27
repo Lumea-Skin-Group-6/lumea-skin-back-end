@@ -18,22 +18,30 @@ namespace Repository.Repositories
         public async Task<bool> IsSlotAvailableAsync(int therapistId, DateTime startTime, TimeSpan duration)
         {
             var endTime = startTime.Add(duration);
-            return !await _context.Slots.AnyAsync(s => s.employee_id == therapistId &&
-                                                       s.date.Date == startTime.Date &&
-                                                       s.time.CompareTo(startTime.ToString("HH:mm")) >= 0 &&
-                                                       s.time.CompareTo(endTime.ToString("HH:mm")) < 0 &&
-                                                       (s.status == "Booked" || s.status == "Closed"));
+
+            var slots = await _context.Slots
+                .Where(s => s.employee_id == therapistId && s.date.Date == startTime.Date)
+                .ToListAsync();
+
+            return !slots.Any(s =>
+                TimeSpan.Parse(s.time) >= startTime.TimeOfDay &&
+                TimeSpan.Parse(s.time) < endTime.TimeOfDay &&
+                (s.status.Equals("Booked") || s.status.Equals("Closed"))
+            );
         }
 
         public async Task BookSlotsAsync(int therapistId, DateTime startTime, TimeSpan duration)
         {
             var endTime = startTime.Add(duration);
-            var slotsToBook = await _context.Slots
-                .Where(s => s.employee_id == therapistId &&
-                            s.date.Date == startTime.Date &&
-                            s.time.CompareTo(startTime.ToString("HH:mm")) >= 0 &&
-                            s.time.CompareTo(endTime.ToString("HH:mm")) < 0)
-                .ToListAsync();
+            var slots = await _context.Slots
+                .Where(s => s.employee_id == therapistId && s.date.Date == startTime.Date)
+                .ToListAsync(); 
+
+            var slotsToBook = slots
+                .Where(s => TimeSpan.Parse(s.time) >= startTime.TimeOfDay &&
+                            TimeSpan.Parse(s.time) < endTime.TimeOfDay)
+                .ToList();
+
 
             foreach (var slot in slotsToBook)
             {

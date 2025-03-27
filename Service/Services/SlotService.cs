@@ -42,7 +42,7 @@ namespace Service.Services
                 List<TherapistShift> therapistShifts = _shiftRepository.GetAllTherapistShift();
                 List<Shift> shifts = _shiftRepository.GetAllShift();
 
-                // 👉 Lấy danh sách Slot đã tồn tại trong DB
+                //Lấy danh sách Slot đã tồn tại trong DB
                 List<Slot> existingSlots = _slotRepository.GetSlots();
 
                 List<Slot> slots = new List<Slot>();
@@ -54,9 +54,11 @@ namespace Service.Services
 
                     foreach (Shift shift in shifts)
                     {
+                        if (therapistshift.Date < DateTime.Today) continue;
+
                         if (therapistshift.shift_id == shift.Id && employee.Id == therapistshift.therapist_id)
                         {
-                            // 👉 Kiểm tra nếu Slot đã tồn tại
+                            //  Kiểm tra nếu Slot đã tồn tại
                             bool isDuplicate = existingSlots.Any(s =>
                                 s.employee_id == employee.Id &&
                                 s.date == therapistshift.Date &&
