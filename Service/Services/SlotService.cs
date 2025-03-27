@@ -42,7 +42,7 @@ namespace Service.Services
                 List<TherapistShift> therapistShifts = _shiftRepository.GetAllTherapistShift();
                 List<Shift> shifts = _shiftRepository.GetAllShift();
 
-                // 👉 Lấy danh sách Slot đã tồn tại trong DB
+                //Lấy danh sách Slot đã tồn tại trong DB
                 List<Slot> existingSlots = _slotRepository.GetSlots();
 
                 List<Slot> slots = new List<Slot>();

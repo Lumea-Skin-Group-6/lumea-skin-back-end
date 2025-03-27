@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL.DTOs.RequestModel;
+using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 

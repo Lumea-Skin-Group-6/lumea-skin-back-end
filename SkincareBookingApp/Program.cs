@@ -79,6 +79,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
 builder.Services.AddScoped<ISkinTypeServiceRepository, SkinTypeServiceRepository>();
 
+// Configuration for background method
+builder.Services.AddHostedService<ShiftHostedService>();
 
 //builder.Services.AddSingleton(new RedisCacheService(builder.Configuration["Redis:ConnectionString"]));
 
