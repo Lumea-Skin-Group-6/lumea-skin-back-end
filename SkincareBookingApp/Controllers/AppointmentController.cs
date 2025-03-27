@@ -63,6 +63,21 @@ namespace SkincareBookingApp.Controllers
             var appointments = await _appointmentService.GetAllAppointmentsAsync();
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "get Appointment list successfully.", appointments);
         }
+
+        [Authorize]
+        [HttpPost("appointment-cancellation")]
+        public async Task<IActionResult> CancelAppointment(int id)
+        {
+            var success = await _appointmentService.CancelAppointment(id);
+            if (success)
+            {
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Cancel appointment successfully", success);
+            }
+            else
+            {
+                return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Cancel appointment failed", success);
+            }
+        }
     }
 
 }

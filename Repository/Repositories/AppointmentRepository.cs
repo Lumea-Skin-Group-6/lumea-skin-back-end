@@ -15,7 +15,7 @@ namespace Repository.Repositories
         private readonly AppDbContext _context;
         public AppointmentRepository(AppDbContext context) => _context = context;
 
-        public async Task<bool> IsSlotAvailableAsync(int therapistId, DateTime startTime, TimeSpan duration)
+        public async Task<bool> IsSlotAvailableAsync(int? therapistId, DateTime startTime, TimeSpan duration)
         {
             var endTime = startTime.Add(duration);
 
@@ -30,7 +30,7 @@ namespace Repository.Repositories
             );
         }
 
-        public async Task BookSlotsAsync(int therapistId, DateTime startTime, TimeSpan duration)
+        public async Task BookSlotsAsync(int? therapistId, DateTime startTime, TimeSpan duration)
         {
             var endTime = startTime.Add(duration);
             var slots = await _context.Slots
@@ -145,6 +145,19 @@ namespace Repository.Repositories
                 .ToListAsync();
         }
 
+        public async Task<bool> CancelAppointment(int id)
+        {
+            var appointment = await _context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
 
+            if (appointment == null)
+                return false;
+            if (appointment.Status.Equals("Booked"))
+            {
+                appointment.Status = "Cancelled";
+                await _context.SaveChangesAsync();
+                return true;
+            }           
+            return false;
+        }
     }
 }

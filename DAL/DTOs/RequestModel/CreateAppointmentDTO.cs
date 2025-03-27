@@ -11,7 +11,6 @@ namespace DAL.DTOs.RequestModel
     public class CreateAppointmentDTO
     {
         public int AccountId { get; set; }
-        public decimal Amount { get; set; }
         public string? Note { get; set; }
         public List<AppointmentDetailDTO> Services { get; set; }
     }
@@ -29,7 +28,7 @@ namespace DAL.DTOs.RequestModel
     public class AppointmentDetailDTO
     {
         public int ServiceId { get; set; }
-        public int TherapistId { get; set; }
+        public int? TherapistId { get; set; }
         public decimal Price { get; set; }
         public ServiceType Type { get; set; }
         public TimeSpan Duration { get; set; }
