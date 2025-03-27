@@ -24,8 +24,8 @@ namespace Repository.Repositories
         {
             return await _context.Answers
                 .Select(t => new AnswerResponse
-                { 
-                    Id = t.Id, 
+                {
+                    Id = t.Id,
                     Content = t.content,
                     DryPoint = t.DryPoint,
                     OilyPoint = t.OilyPoint,
@@ -88,8 +88,10 @@ namespace Repository.Repositories
                 }
                 _context.Answers.Remove(answer);
                 await _context.SaveChangesAsync();
+            } else
+            {
+                throw new Exception("Answer not found!");
             }
-            throw new Exception("Answer not found!");
         }
     }
 }

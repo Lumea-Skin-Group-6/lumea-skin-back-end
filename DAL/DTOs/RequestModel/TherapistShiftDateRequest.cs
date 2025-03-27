@@ -8,6 +8,7 @@ namespace DAL.DTOs.RequestModel
 {
     public class TherapistShiftDateRequest
     {
+        public int ShiftId { get; set; }
         public List<DateTime> Dates {  get; set; }
     }
 }

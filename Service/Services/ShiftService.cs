@@ -326,11 +326,11 @@ namespace Service.Services
             }
         }
 
-        public ResponseModel AddTherapistShift(int therapistID, int shiftID, TherapistShiftDateRequest dateTimes)
+        public ResponseModel AddTherapistShift(int therapistID, TherapistShiftDateRequest request)
         {
             try
             {
-                if (dateTimes?.Dates == null || !dateTimes.Dates.Any())
+                if (request?.Dates == null || !request.Dates.Any())
                 {
                     throw new ErrorException(400, "DateTimes list cannot be empty!");
                 }
@@ -341,7 +341,7 @@ namespace Service.Services
                     throw new ErrorException(404, "Therapist does not exist!");
                 }
 
-                Shift existShift = _shiftRepo.GetShiftById(shiftID);
+                Shift existShift = _shiftRepo.GetShiftById(request.ShiftId);
 
                 if(existShift == null)
                 {
@@ -350,7 +350,7 @@ namespace Service.Services
 
                 List<TherapistShift> addedShifts = new List<TherapistShift>();
 
-                foreach (var dateTime in dateTimes.Dates)
+                foreach (var dateTime in request.Dates)
                 {
                     if (dateTime < DateTime.UtcNow)
                     {

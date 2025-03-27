@@ -17,7 +17,7 @@ namespace Service.Interfaces
 
         List<TherapistShiftGroupedDto> GetAllTherapistShift();
 
-        public ResponseModel AddTherapistShift(int therapistID, int shiftID, TherapistShiftDateRequest dateTimes);
+        public ResponseModel AddTherapistShift(int therapistID, TherapistShiftDateRequest dateTimes);
 
 
         List<Shift> GetShiftsByTherapistId(int therapistID);
