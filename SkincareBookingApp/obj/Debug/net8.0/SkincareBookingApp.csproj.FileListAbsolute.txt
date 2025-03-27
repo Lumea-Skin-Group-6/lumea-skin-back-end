@@ -584,3 +584,5 @@ C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\refint\SkincareB
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.pdb
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\SkincareBookingApp.genruntimeconfig.cache
 C:\Users\huvo2\source\repos\SkincareBookingApp\obj\Debug\net8.0\ref\SkincareBookingApp.dll
+C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\huvo2\source\repos\SkincareBookingApp\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll

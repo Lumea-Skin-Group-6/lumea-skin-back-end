@@ -336,5 +336,9 @@ namespace Service.Services
             }
         }
 
+        public async Task AutoCheckSlotsWhenPassDay()
+        {
+            await _shiftRepo.AutoCheckSlotsWhenPassDay();
+        }
     }
 }
