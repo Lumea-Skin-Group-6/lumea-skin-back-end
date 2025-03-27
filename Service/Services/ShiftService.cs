@@ -25,11 +25,6 @@ namespace Service.Services
         {
             try
             {
-                if(shiftRequest.StartTime <  DateTime.Now)
-                {
-                    throw new ErrorException(404, "Start time must be in the future!");
-                }
-
                 if (shiftRequest.EndTime < shiftRequest.StartTime)
                 {
                     throw new ErrorException(404, "EndTime cannot be before StartTime.");
