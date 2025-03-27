@@ -3,22 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\appointmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\controllers\\shiftscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:controllers\\shiftscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|c:\\users\\huvo2\\source\\repos\\skincarebookingapp\\controllers\\slotcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8390494E-4A8A-4C0D-AEDA-C6C4EC2F57B7}|SkincareBookingApp.csproj|solutionrelative:controllers\\slotcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6728DDF3-9B8A-4DE3-86CB-9B7831F873F2}|..\\BusinessObject\\BusinessObject.csproj|c:\\users\\huvo2\\source\\repos\\businessobject\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\slotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dtos\\requestmodel\\createappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\services\\shifthostedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\slotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -129,79 +125,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AppointmentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\AppointmentRepository.cs",
-              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\AppointmentRepository.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\AppointmentRepository.cs",
-              "RelativeToolTip": "..\\Repository\\Repositories\\AppointmentRepository.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAYwCYAAAAAAAAA",
+              "Title": "ShiftsController.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\ShiftsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ShiftsController.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\ShiftsController.cs",
+              "RelativeToolTip": "Controllers\\ShiftsController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwCAAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T08:32:31.559Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAppointmentService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\IAppointmentService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Interfaces\\IAppointmentService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\IAppointmentService.cs",
-              "RelativeToolTip": "..\\Service\\Interfaces\\IAppointmentService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T08:26:05.473Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Appointment.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Appointment.cs",
-              "RelativeDocumentMoniker": "..\\BusinessObject\\Appointment.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\BusinessObject\\Appointment.cs",
-              "RelativeToolTip": "..\\BusinessObject\\Appointment.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAvwBEAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T07:15:55.083Z",
+              "WhenOpened": "2025-03-27T09:38:47.602Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AppointmentService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\AppointmentService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Services\\AppointmentService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\AppointmentService.cs",
-              "RelativeToolTip": "..\\Service\\Services\\AppointmentService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
+              "Title": "SlotController.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\SlotController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SlotController.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\SkincareBookingApp\\Controllers\\SlotController.cs",
+              "RelativeToolTip": "Controllers\\SlotController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-22T03:27:07.678Z",
+              "WhenOpened": "2025-03-27T09:38:45.235Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ShiftHostedService.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ShiftHostedService.cs",
-              "RelativeDocumentMoniker": "..\\Service\\Services\\ShiftHostedService.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\ShiftHostedService.cs",
-              "RelativeToolTip": "..\\Service\\Services\\ShiftHostedService.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAQwCIAAABCAAAA",
+              "DocumentIndex": 2,
+              "Title": "SlotService.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\SlotService.cs",
+              "RelativeDocumentMoniker": "..\\Service\\Services\\SlotService.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\SlotService.cs",
+              "RelativeToolTip": "..\\Service\\Services\\SlotService.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAA1wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T06:27:35.704Z",
+              "WhenOpened": "2025-03-27T09:34:28.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CreateAppointmentDTO.cs",
-              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\CreateAppointmentDTO.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\CreateAppointmentDTO.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\CreateAppointmentDTO.cs",
-              "RelativeToolTip": "..\\DAL\\DTOs\\RequestModel\\CreateAppointmentDTO.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAA9wCMAAABGAAAA",
+              "DocumentIndex": 3,
+              "Title": "SlotRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\SlotRepository.cs",
+              "RelativeDocumentMoniker": "..\\Repository\\Repositories\\SlotRepository.cs",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\SlotRepository.cs",
+              "RelativeToolTip": "..\\Repository\\Repositories\\SlotRepository.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T07:01:59.205Z",
+              "WhenOpened": "2025-03-27T09:34:06.858Z",
               "EditorCaption": ""
             }
           ]
