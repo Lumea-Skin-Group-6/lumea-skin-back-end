@@ -63,6 +63,7 @@ builder.Services.AddScoped<ISkinTypeRepository, SkinTypeRepository>();
 builder.Services.AddScoped<ISkinTypeService, SkinTypeServiceService>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IAppointmentDetailDateRepository, AppointmentDetailDateRepository>();
 
 
 builder.Services.AddScoped<ISlotRepository, SlotRepository>();

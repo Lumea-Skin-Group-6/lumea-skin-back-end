@@ -20,7 +20,7 @@ namespace BusinessObject
         [Column("appointment_detail_id")] public int AppointmentDetailId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("appointment_detail_id")] public AppointmentDetail AppointmentDetail { get; set; }
+        public AppointmentDetail AppointmentDetail { get; set; }
 
         [Column("date")] public DateTime Date { get; set; }
     }
