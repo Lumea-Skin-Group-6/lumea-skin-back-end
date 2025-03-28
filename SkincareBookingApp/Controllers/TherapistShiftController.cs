@@ -29,7 +29,7 @@ namespace SkincareBookingApp.Controllers
 
         [HttpPost("add-therapistshift/{therapistID}/{shiftID}")]
         [SwaggerOperation(Summary = "Therapist Regis Date to word")]
-        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromRoute] int shiftID, [FromQuery] TherapistShiftDateRequest dateTime)
+        public IActionResult AddTherapistShift([FromRoute] int therapistID, [FromRoute] int shiftID, [FromBody] TherapistShiftDateRequest dateTime)
         {
             var therapistShift = _shiftService.AddTherapistShift(therapistID, shiftID,  dateTime);
             return Ok(therapistShift);
