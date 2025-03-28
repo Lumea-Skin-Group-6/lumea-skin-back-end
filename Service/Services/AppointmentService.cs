@@ -159,6 +159,11 @@ namespace Service.Services
         {
             return await _appointmentRepo.CancelAppointment(id);
         }
+
+        public async Task<List<Appointment>> GetAppointmentHistoryAsync(int userId)
+        {
+            return await _appointmentRepo.GetAppointmentHistoryByUserIdAsync(userId);
+        }
     }
 
 }
