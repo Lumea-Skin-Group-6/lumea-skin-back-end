@@ -103,5 +103,13 @@ namespace Repository.Repositories
                             && ts.therapist.Type == "Staff")
                 .Count();
         }
+
+        public TherapistShift GetTherapistShiftByDate(DateTime date)
+        {
+            return _context.TherapistShifts
+                    .FirstOrDefault(ts => ts.Date.Date.Date == date.Date.Date);
+
+
+        }
     }
 }
