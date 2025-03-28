@@ -1,6 +1,7 @@
 ﻿using BusinessObject;
 using DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace Repository.Repositories
             var slots = await _context.Slots
                 .Where(s => s.employee_id == therapistId && s.date.Date == startTime.Date)
                 .ToListAsync();
-
+            if (slots.IsNullOrEmpty())
+            {
+                return false;
+            }
             return !slots.Any(s =>
                 TimeSpan.Parse(s.time) >= startTime.TimeOfDay &&
                 TimeSpan.Parse(s.time) < endTime.TimeOfDay &&
