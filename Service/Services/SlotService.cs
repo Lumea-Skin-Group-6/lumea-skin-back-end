@@ -129,7 +129,7 @@ namespace Service.Services
 
             while (startTime <= endTime)
             {
-                times.Add(startTime.ToString("HH:mm"));
+                times.Add(startTime.ToString("HH:mm:ss"));
                 startTime = startTime.AddMinutes(30);
             }
 
