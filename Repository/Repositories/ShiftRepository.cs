@@ -86,5 +86,26 @@ namespace Repository.Repositories
             //    .Where(s => s.date.Date <= vietnamTime.Date)
             //    .ToListAsync();
         }
+
+        public int GetTherapistCountByShiftAndDate(int shiftId, DateTime date)
+        {
+            return _context.TherapistShifts
+                .Include(ts => ts.therapist)
+                .Where(ts => ts.shift_id == shiftId
+                            && ts.Date.Date.Date == date.Date.Date
+                            && ts.therapist.Type == "Therapist")
+                .Count();
+        }
+
+        // Đếm số lượng Staff đã đăng ký trong ca và ngày
+        public int GetStaffCountByShiftAndDate(int shiftId, DateTime date)
+        {
+            return _context.TherapistShifts
+                .Include(ts => ts.therapist)
+                .Where(ts => ts.shift_id == shiftId
+                            && ts.Date.Date.Date == date.Date.Date
+                            && ts.therapist.Type == "Staff")
+                .Count();
+        }
     }
 }
