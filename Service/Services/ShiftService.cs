@@ -253,7 +253,7 @@ namespace Service.Services
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
+                return new ResponseModel(200, "Update successfully!", responseDTO);
             }
             catch (ErrorException ex)
             {
@@ -335,14 +335,15 @@ namespace Service.Services
                     throw new ErrorException(400, "DateTimes list cannot be empty!");
                 }
 
+                // Lấy thông tin Therapist
                 Employee employee = _employeeRepo.GetEmployeeByAccountId(therapistID);
                 if (employee == null)
                 {
                     throw new ErrorException(404, "Therapist does not exist!");
                 }
 
+                // Lấy thông tin Shift
                 Shift existShift = _shiftRepo.GetShiftById(shiftID);
-
                 if (existShift == null)
                 {
                     throw new ErrorException(404, "You have to choose shift!");
@@ -357,6 +358,30 @@ namespace Service.Services
                         throw new ErrorException(400, "Date cannot be earlier than the current date!");
                     }
 
+
+                    // Lấy danh sách tất cả các shift trong cùng ngày
+                    List<Shift> allShiftsInDay = _shiftRepo.GetAllShift();
+
+                    // Kiểm tra giới hạn theo từng ca
+                    foreach (var shift in allShiftsInDay)
+                    {
+                        int currentTherapistCount = _shiftRepo.GetTherapistCountByShiftAndDate(shift.Id, dateTime);
+                        int currentStaffCount = _shiftRepo.GetStaffCountByShiftAndDate(shift.Id, dateTime);
+
+                        // Kiểm tra giới hạn Therapist trong từng ca
+                        if (employee.Type == "Therapist" && currentTherapistCount >= shift.MaxTherapist && shift.Id == shiftID)
+                        {
+                            throw new ErrorException(400, $"Cannot register shift on {dateTime:yyyy-MM-dd} for {shift.Name}, Therapist limit reached!");
+                        }
+
+                        // Kiểm tra giới hạn Staff trong từng ca
+                        if (employee.Type == "Staff" && currentStaffCount >= shift.MaxStaff && shift.Id == shiftID)
+                        {
+                            throw new ErrorException(400, $"Cannot register shift on {dateTime:yyyy-MM-dd} for {shift.Name}, Staff limit reached!");
+                        }
+                    }
+
+                    // Nếu chưa vượt quá giới hạn, thêm TherapistShift
                     TherapistShift therapistShift = new TherapistShift
                     {
                         therapist = employee,
@@ -364,7 +389,6 @@ namespace Service.Services
                         Date = dateTime,
                         shift_id = existShift.Id,
                         shift = existShift,
-
                     };
 
                     _shiftRepo.AddTherapistShift(therapistShift);
@@ -380,13 +404,14 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                // Catch any unexpected exceptions
                 var errorData = new ErrorResponseModel(500, ex.Message);
                 return new ResponseModel(500, "An unexpected error occurred!", errorData);
             }
         }
 
-        public async Task AutoCheckSlotsWhenPassDay()
+    
+
+    public async Task AutoCheckSlotsWhenPassDay()
         {
             await _shiftRepo.AutoCheckSlotsWhenPassDay();
         }
