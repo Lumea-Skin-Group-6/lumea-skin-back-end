@@ -60,6 +60,7 @@ namespace Service.Services
                     Price = serviceDto.Price,
                     Type = serviceDto.Type,
                     Status = "Scheduled",
+                    Duration = serviceDto.Duration,
                     AppointmentDetailDates = new List<AppointmentDetailDate>()
                 };
 
