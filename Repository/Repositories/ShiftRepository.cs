@@ -80,7 +80,11 @@ namespace Repository.Repositories
 
         public async Task AutoCheckSlotsWhenPassDay()
         {
-            
+            //TimeZoneInfo vietnamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            //DateTime vietnamTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, vietnamTimeZone);
+            //var slots = await _context.Slots
+            //    .Where(s => s.date.Date <= vietnamTime.Date)
+            //    .ToListAsync();
         }
 
         public int GetTherapistCountByShiftAndDate(int shiftId, DateTime date)
