@@ -6,6 +6,9 @@
       "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\shiftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D4B0A809-9E36-4D22-9948-73F0CD6197CB}|..\\Repository\\Repository.csproj|c:\\users\\huvo2\\source\\repos\\repository\\repositories\\appointmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -13,9 +16,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{4DCDE539-B8D9-4201-A1F5-189B5B89523E}|..\\DAL\\DAL.csproj|c:\\users\\huvo2\\source\\repos\\dal\\dtos\\requestmodel\\createappointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C2259F5-508D-44F1-B4CD-8F4F9FE4BFC3}|..\\Service\\Service.csproj|c:\\users\\huvo2\\source\\repos\\service\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,9 +33,9 @@
               "Title": "ShiftRepository.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\ShiftRepository.cs",
               "RelativeDocumentMoniker": "..\\Repository\\Repositories\\ShiftRepository.cs",
-              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\ShiftRepository.cs*",
-              "RelativeToolTip": "..\\Repository\\Repositories\\ShiftRepository.cs*",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAcwE8AAAAAAAAA",
+              "ToolTip": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\ShiftRepository.cs",
+              "RelativeToolTip": "..\\Repository\\Repositories\\ShiftRepository.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAAAFYAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-28T07:08:09.216Z",
               "EditorCaption": ""
@@ -138,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "IAppointmentService.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Interfaces\\IAppointmentService.cs",
               "RelativeDocumentMoniker": "..\\Service\\Interfaces\\IAppointmentService.cs",
@@ -151,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CreateAppointmentDTO.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\DAL\\DTOs\\RequestModel\\CreateAppointmentDTO.cs",
               "RelativeDocumentMoniker": "..\\DAL\\DTOs\\RequestModel\\CreateAppointmentDTO.cs",
@@ -164,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AppointmentService.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Service\\Services\\AppointmentService.cs",
               "RelativeDocumentMoniker": "..\\Service\\Services\\AppointmentService.cs",
@@ -177,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AppointmentRepository.cs",
               "DocumentMoniker": "C:\\Users\\huvo2\\source\\repos\\Repository\\Repositories\\AppointmentRepository.cs",
               "RelativeDocumentMoniker": "..\\Repository\\Repositories\\AppointmentRepository.cs",
