@@ -133,6 +133,30 @@ namespace Repository.Repositories
             return existingAppointment;
         }
 
+        public async Task ReleaseSlotAsync(int? therapistId, DateTime startTime, TimeSpan duration)
+        {
+            if (therapistId == null) return;
+
+            var endTime = startTime.Add(duration);
+
+            var slots = await _context.Slots
+                .Where(s => s.employee_id == therapistId && s.date.Date == startTime.Date)
+                .ToListAsync();
+
+            var slotsToRelease = slots
+                .Where(s => TimeSpan.Parse(s.time) >= startTime.TimeOfDay &&
+                            TimeSpan.Parse(s.time) < endTime.TimeOfDay &&
+                            s.status == "Booked") // Only release booked slots
+                .ToList();
+
+            foreach (var slot in slotsToRelease)
+            {
+                slot.status = "Available"; // Reset slot status
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<Appointment?> GetAppointmentByIdAsync(int id)
         {
             return await _context.Appointments

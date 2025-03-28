@@ -18,11 +18,23 @@ namespace DAL.DTOs.RequestModel
     public class UpdateAppointmentDTO
     {
         public int Id { get; set; }
-        public decimal Amount { get; set; }
         public string? Note { get; set; }
         public string Status { get; set; }
+        public List<UpdateAppointmentDetailDTO> Services { get; set; }
+    }
+
+    public class UpdateAppointmentDetailDTO
+    {
+        public int Id { get; set; } // For existing details
+        public int? TherapistId { get; set; }
+        public string Status { get; set; }
+        public TimeSpan Duration { get; set; }
+        public List<UpdateAppointmentDetailDateDTO> AppointmentDates { get; set; }
+    }
+
+    public class UpdateAppointmentDetailDateDTO
+    {
         public DateTime Date { get; set; }
-        public List<AppointmentDetailDTO> Services { get; set; }
     }
 
     public class AppointmentDetailDTO
