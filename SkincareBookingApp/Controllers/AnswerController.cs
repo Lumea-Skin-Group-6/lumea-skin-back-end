@@ -1,5 +1,6 @@
 ﻿using BusinessObject;
 using DAL.DTOs.RequestModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
@@ -20,6 +21,7 @@ namespace SkincareBookingApp.Controllers
             _answerService = answerService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllAnswers()
         {
@@ -27,6 +29,7 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get all answers successfully", answers);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAnswerById(int id)
         {
@@ -35,6 +38,7 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Get answer successfully", answer);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAnswer([FromBody] AnswerCreateRequest request)
         {
@@ -44,6 +48,7 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Add answer successfully", answer);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTag(int id, [FromBody] AnswerUpdateRequest request)
         {
@@ -54,6 +59,7 @@ namespace SkincareBookingApp.Controllers
             return CustomSuccessHandler.ResponseBuilder(HttpStatusCode.OK, "Update answer successfully", answer);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTag(int id)
         {

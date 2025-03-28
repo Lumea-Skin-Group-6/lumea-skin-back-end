@@ -338,7 +338,7 @@ namespace Service.Services
 
                 Shift existShift = _shiftRepo.GetShiftById(request.ShiftId);
 
-                if(existShift == null)
+                if (existShift == null)
                 {
                     throw new ErrorException(404, "You have to choose shift!");
                 }
@@ -381,5 +381,9 @@ namespace Service.Services
             }
         }
 
+        public async Task AutoCheckSlotsWhenPassDay()
+        {
+            await _shiftRepo.AutoCheckSlotsWhenPassDay();
+        }
     }
 }

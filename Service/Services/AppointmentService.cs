@@ -20,10 +20,10 @@ namespace Service.Services
         {
             TimeZoneInfo vietnamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             DateTime vietnamTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, vietnamTimeZone);
+            decimal amount = 0;
             var appointment = new Appointment
             {
                 AccountId = dto.AccountId,
-                Amount = dto.Amount,
                 Note = dto.Note,
                 Status = "Booked",
                 Date = DateTime.UtcNow,
@@ -32,20 +32,24 @@ namespace Service.Services
 
             foreach (var serviceDto in dto.Services)
             {
-                foreach (var dateDto in serviceDto.AppointmentDates)
+                if (serviceDto.TherapistId != null)
                 {
-                    bool isAvailable = await _appointmentRepo.IsSlotAvailableAsync(serviceDto.TherapistId, dateDto.Date, serviceDto.Duration);
-                    if (!isAvailable)
+                    foreach (var dateDto in serviceDto.AppointmentDates)
                     {
-                        return null;
+                        bool isAvailable = await _appointmentRepo.IsSlotAvailableAsync(serviceDto.TherapistId, dateDto.Date, serviceDto.Duration);
+                        if (!isAvailable)
+                        {
+                            return null;
+                        }
                     }
-                }
+                }              
             }
 
             foreach (var serviceDto in dto.Services)
             {
+                amount = amount + serviceDto.Price;
                 var appointmentDetail = new AppointmentDetail
-                {
+                {                
                     ServiceId = serviceDto.ServiceId,
                     TherapistId = serviceDto.TherapistId,
                     Price = serviceDto.Price,
@@ -56,12 +60,16 @@ namespace Service.Services
 
                 foreach (var dateDto in serviceDto.AppointmentDates)
                 {
-                    await _appointmentRepo.BookSlotsAsync(serviceDto.TherapistId, dateDto.Date, serviceDto.Duration);
+                    if (serviceDto.TherapistId != null)
+                    {
+                        await _appointmentRepo.BookSlotsAsync(serviceDto.TherapistId, dateDto.Date, serviceDto.Duration);
+                    }                   
                     appointmentDetail.AppointmentDetailDates.Add(new AppointmentDetailDate { Date = dateDto.Date });
                 }
 
                 appointment.AppointmentDetails.Add(appointmentDetail);
             }
+            appointment.Amount = amount;
 
             var addedAppointment = await _appointmentRepo.AddAppointmentAsync(appointment);
             appointment.Date = vietnamTime;
@@ -145,6 +153,11 @@ namespace Service.Services
                 appointment.Date = vietnamTime;
             }
             return appointmentList;
+        }
+
+        public async Task<bool> CancelAppointment(int id)
+        {
+            return await _appointmentRepo.CancelAppointment(id);
         }
     }
 

@@ -15,25 +15,33 @@ namespace Repository.Repositories
         private readonly AppDbContext _context;
         public AppointmentRepository(AppDbContext context) => _context = context;
 
-        public async Task<bool> IsSlotAvailableAsync(int therapistId, DateTime startTime, TimeSpan duration)
+        public async Task<bool> IsSlotAvailableAsync(int? therapistId, DateTime startTime, TimeSpan duration)
         {
             var endTime = startTime.Add(duration);
-            return !await _context.Slots.AnyAsync(s => s.employee_id == therapistId &&
-                                                       s.date.Date == startTime.Date &&
-                                                       s.time.CompareTo(startTime.ToString("HH:mm")) >= 0 &&
-                                                       s.time.CompareTo(endTime.ToString("HH:mm")) < 0 &&
-                                                       (s.status == "Booked" || s.status == "Closed"));
+
+            var slots = await _context.Slots
+                .Where(s => s.employee_id == therapistId && s.date.Date == startTime.Date)
+                .ToListAsync();
+
+            return !slots.Any(s =>
+                TimeSpan.Parse(s.time) >= startTime.TimeOfDay &&
+                TimeSpan.Parse(s.time) < endTime.TimeOfDay &&
+                (s.status.Equals("Booked") || s.status.Equals("Closed"))
+            );
         }
 
-        public async Task BookSlotsAsync(int therapistId, DateTime startTime, TimeSpan duration)
+        public async Task BookSlotsAsync(int? therapistId, DateTime startTime, TimeSpan duration)
         {
             var endTime = startTime.Add(duration);
-            var slotsToBook = await _context.Slots
-                .Where(s => s.employee_id == therapistId &&
-                            s.date.Date == startTime.Date &&
-                            s.time.CompareTo(startTime.ToString("HH:mm")) >= 0 &&
-                            s.time.CompareTo(endTime.ToString("HH:mm")) < 0)
-                .ToListAsync();
+            var slots = await _context.Slots
+                .Where(s => s.employee_id == therapistId && s.date.Date == startTime.Date)
+                .ToListAsync(); 
+
+            var slotsToBook = slots
+                .Where(s => TimeSpan.Parse(s.time) >= startTime.TimeOfDay &&
+                            TimeSpan.Parse(s.time) < endTime.TimeOfDay)
+                .ToList();
+
 
             foreach (var slot in slotsToBook)
             {
@@ -137,6 +145,19 @@ namespace Repository.Repositories
                 .ToListAsync();
         }
 
+        public async Task<bool> CancelAppointment(int id)
+        {
+            var appointment = await _context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
 
+            if (appointment == null)
+                return false;
+            if (appointment.Status.Equals("Booked"))
+            {
+                appointment.Status = "Cancelled";
+                await _context.SaveChangesAsync();
+                return true;
+            }           
+            return false;
+        }
     }
 }

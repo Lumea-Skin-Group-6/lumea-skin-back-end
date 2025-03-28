@@ -9,12 +9,13 @@ namespace Repository.Interfaces
 {
     public interface IAppointmentRepository
     {
-        Task<bool> IsSlotAvailableAsync(int therapistId, DateTime startTime, TimeSpan duration);
-        Task BookSlotsAsync(int therapistId, DateTime startTime, TimeSpan duration);
+        Task<bool> IsSlotAvailableAsync(int? therapistId, DateTime startTime, TimeSpan duration);
+        Task BookSlotsAsync(int? therapistId, DateTime startTime, TimeSpan duration);
         Task<Appointment?> AddAppointmentAsync(Appointment appointment);
         Task<Appointment?> UpdateAppointmentAsync(Appointment appointment);
         Task<Appointment?> GetAppointmentByIdAsync(int id);
         Task<IEnumerable<Appointment>> GetAllAppointmentAsync();
+        Task<bool> CancelAppointment(int id); 
 
     }
 }

@@ -58,25 +58,30 @@ namespace Service.Services
 
                         if (therapistshift.shift_id == shift.Id && employee.Id == therapistshift.therapist_id)
                         {
-                            //  Kiểm tra nếu Slot đã tồn tại
-                            bool isDuplicate = existingSlots.Any(s =>
-                                s.employee_id == employee.Id &&
-                                s.date == therapistshift.Date &&
-                                s.time == shift.StartTime.ToLongTimeString()
-                            );
+                            List<string> shiftTimes = GenerateShiftTimes(shift);
 
-                            if (!isDuplicate) // Chỉ thêm nếu chưa tồn tại
+                            foreach (string time in shiftTimes)
                             {
-                                Slot newSlot = new Slot
-                                {
-                                    employee_id = employee.Id,
-                                    date = therapistshift.Date,
-                                    time = shift.StartTime.ToLongTimeString(),
-                                    status = "Available"
-                                };
+                                //  Kiểm tra nếu Slot đã tồn tại
+                                bool isDuplicate = existingSlots.Any(s =>
+                                    s.employee_id == employee.Id &&
+                                    s.date == therapistshift.Date &&
+                                    s.time == time
+                                );
 
-                                _slotRepository.AddSlot(newSlot);
-                                slots.Add(newSlot);
+                                if (!isDuplicate) // Chỉ thêm nếu chưa tồn tại
+                                {
+                                    Slot newSlot = new Slot
+                                    {
+                                        employee_id = employee.Id,
+                                        date = therapistshift.Date,
+                                        time = time,
+                                        status = "Available"
+                                    };
+
+                                    _slotRepository.AddSlot(newSlot);
+                                    slots.Add(newSlot);
+                                }
                             }
                         }
                     }
@@ -95,6 +100,42 @@ namespace Service.Services
                 return new ResponseModel(404, "Failed", errorData);
             }
         }
+
+         private List<string> GenerateShiftTimes(Shift shift)
+        {
+            List<string> times = new List<string>();
+            DateTime startTime, endTime;
+
+            switch (shift.Name)
+            {
+                case "Sáng":
+                    startTime = DateTime.Parse("07:00");
+                    endTime = DateTime.Parse("10:30");
+                    break;
+
+                case "Trưa":
+                    startTime = DateTime.Parse("13:00");
+                    endTime = DateTime.Parse("15:30");
+                    break;
+
+                case "Tối":
+                    startTime = DateTime.Parse("17:00");
+                    endTime = DateTime.Parse("20:30");
+                    break;
+
+                default:
+                    throw new ArgumentException("Invalid shift name");
+            }
+
+            while (startTime <= endTime)
+            {
+                times.Add(startTime.ToString("HH:mm"));
+                startTime = startTime.AddMinutes(30);
+            }
+
+            return times;
+        }
+
 
     }
 }
