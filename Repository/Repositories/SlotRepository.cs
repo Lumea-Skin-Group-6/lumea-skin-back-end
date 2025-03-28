@@ -33,7 +33,7 @@ namespace Repository.Repositories
 
             var freeSlots = await _context.Slots
                 .Where(s => s.status == "Available" &&
-                            s.date >= startOfWeek && s.date <= endOfWeek &&
+                            s.date.Date >= startOfWeek && s.date.Date <= endOfWeek &&
                             s.employee_id == employeeId && s.employee.Type == "Therapist")
                 .ToListAsync();
 
