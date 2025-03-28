@@ -358,6 +358,12 @@ namespace Service.Services
                         throw new ErrorException(400, "Date cannot be earlier than the current date!");
                     }
 
+                    TherapistShift therapistShift1 = _shiftRepo.GetTherapistShiftByDate(dateTime);
+
+                    if (therapistShift1 != null && therapistShift1.shift_id == shiftID && therapistShift1.therapist.AccountId == therapistID)
+                    {
+                        throw new ErrorException(400, "You have already registered for this date and shift!");
+                    }
 
                     // Lấy danh sách tất cả các shift trong cùng ngày
                     List<Shift> allShiftsInDay = _shiftRepo.GetAllShift();
@@ -400,7 +406,7 @@ namespace Service.Services
             catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ResponseModel(404, "Cannot add shifts!", errorData);
+                return new ResponseModel(404, "Cannot register date!", errorData);
             }
             catch (Exception ex)
             {

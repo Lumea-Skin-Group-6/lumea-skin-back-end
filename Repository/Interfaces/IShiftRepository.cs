@@ -23,5 +23,7 @@ namespace Repository.Interfaces
         Task AutoCheckSlotsWhenPassDay();
         public int GetTherapistCountByShiftAndDate(int shiftId, DateTime date);
         public int GetStaffCountByShiftAndDate(int shiftId, DateTime date);
+
+        public TherapistShift GetTherapistShiftByDate(DateTime date);
     }
 }
