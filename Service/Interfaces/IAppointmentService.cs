@@ -15,5 +15,6 @@ namespace Service.Interfaces
         Task<Appointment?> GetAppointmentByIdAsync(int id);
         Task<IEnumerable<Appointment>> GetAllAppointmentsAsync();
         Task<bool> CancelAppointment(int id);
+        Task<List<Appointment>> GetAppointmentHistoryAsync(int userId);
     }
 }

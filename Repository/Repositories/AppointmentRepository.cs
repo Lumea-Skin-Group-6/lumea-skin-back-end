@@ -163,5 +163,15 @@ namespace Repository.Repositories
             }           
             return false;
         }
+        public async Task<List<Appointment>> GetAppointmentHistoryByUserIdAsync(int userId)
+        {
+            return await _context.Appointments
+                .Where(a => a.AccountId == userId)
+                .Include(a => a.AppointmentDetails)
+                .ThenInclude(d => d.AppointmentDetailDates)
+                .OrderByDescending(a => a.Date)
+                .ToListAsync();
+        }
+
     }
 }
