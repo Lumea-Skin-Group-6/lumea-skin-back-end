@@ -21,5 +21,9 @@ namespace Repository.Interfaces
         List<Shift> GetShiftsByTherapistId(int id);
         void DeleteTherapistShift(TherapistShift id);
         Task AutoCheckSlotsWhenPassDay();
+        public int GetTherapistCountByShiftAndDate(int shiftId, DateTime date);
+        public int GetStaffCountByShiftAndDate(int shiftId, DateTime date);
+
+        public TherapistShift GetTherapistShiftByDate(DateTime date);
     }
 }

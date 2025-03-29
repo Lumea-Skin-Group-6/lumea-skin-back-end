@@ -246,8 +246,9 @@ namespace Service.Services
                 responseDTO.MaxTherapist = shift.MaxTherapist;
                 responseDTO.Status = shift.Status;
 
-                return new ResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
-            } catch (ErrorException ex)
+                return new ResponseModel(200, "Update successfully!", responseDTO);
+            }
+            catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot Update!", errorData);
@@ -325,6 +326,7 @@ namespace Service.Services
                     throw new ErrorException(400, "DateTimes list cannot be empty!");
                 }
 
+                // Lấy thông tin Therapist
                 Employee employee = _employeeRepo.GetEmployeeByAccountId(therapistID);
                 if (employee == null)
                 {
@@ -347,6 +349,36 @@ namespace Service.Services
                         throw new ErrorException(400, "Date cannot be earlier than the current date!");
                     }
 
+                    TherapistShift therapistShift1 = _shiftRepo.GetTherapistShiftByDate(dateTime);
+
+                    if (therapistShift1 != null && therapistShift1.shift_id == request.ShiftId && therapistShift1.therapist.AccountId == therapistID)
+                    {
+                        throw new ErrorException(400, "You have already registered for this date and shift!");
+                    }
+
+                    // Lấy danh sách tất cả các shift trong cùng ngày
+                    List<Shift> allShiftsInDay = _shiftRepo.GetAllShift();
+
+                    // Kiểm tra giới hạn theo từng ca
+                    foreach (var shift in allShiftsInDay)
+                    {
+                        int currentTherapistCount = _shiftRepo.GetTherapistCountByShiftAndDate(shift.Id, dateTime);
+                        int currentStaffCount = _shiftRepo.GetStaffCountByShiftAndDate(shift.Id, dateTime);
+
+                        // Kiểm tra giới hạn Therapist trong từng ca
+                        if (employee.Type == "Therapist" && currentTherapistCount >= shift.MaxTherapist && shift.Id == request.ShiftId)
+                        {
+                            throw new ErrorException(400, $"Cannot register shift on {dateTime:yyyy-MM-dd} for {shift.Name}, Therapist limit reached!");
+                        }
+
+                        // Kiểm tra giới hạn Staff trong từng ca
+                        if (employee.Type == "Staff" && currentStaffCount >= shift.MaxStaff && shift.Id == request.ShiftId)
+                        {
+                            throw new ErrorException(400, $"Cannot register shift on {dateTime:yyyy-MM-dd} for {shift.Name}, Staff limit reached!");
+                        }
+                    }
+
+                    // Nếu chưa vượt quá giới hạn, thêm TherapistShift
                     TherapistShift therapistShift = new TherapistShift
                     {
                         therapist = employee,
@@ -354,7 +386,6 @@ namespace Service.Services
                         Date = dateTime,
                         shift_id = existShift.Id,
                         shift = existShift,
-
                     };
 
                     _shiftRepo.AddTherapistShift(therapistShift);
@@ -365,16 +396,18 @@ namespace Service.Services
             } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
-                return new ResponseModel(404, "Cannot add shifts!", errorData);
-            } catch (Exception ex)
+                return new ResponseModel(404, "Cannot register date!", errorData);
+            }
+            catch (Exception ex)
             {
-                // Catch any unexpected exceptions
                 var errorData = new ErrorResponseModel(500, ex.Message);
                 return new ResponseModel(500, "An unexpected error occurred!", errorData);
             }
         }
 
-        public async Task AutoCheckSlotsWhenPassDay()
+    
+
+    public async Task AutoCheckSlotsWhenPassDay()
         {
             await _shiftRepo.AutoCheckSlotsWhenPassDay();
         }

@@ -15,7 +15,8 @@ namespace Repository.Interfaces
         Task<Appointment?> UpdateAppointmentAsync(Appointment appointment);
         Task<Appointment?> GetAppointmentByIdAsync(int id);
         Task<IEnumerable<Appointment>> GetAllAppointmentAsync();
-        Task<bool> CancelAppointment(int id); 
-
+        Task<bool> CancelAppointment(int id);
+        Task<List<Appointment>> GetAppointmentHistoryByUserIdAsync(int userId);
+        Task ReleaseSlotAsync(int? therapistId, DateTime startTime, TimeSpan duration);
     }
 }

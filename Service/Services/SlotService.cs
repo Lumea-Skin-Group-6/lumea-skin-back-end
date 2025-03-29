@@ -110,17 +110,17 @@ namespace Service.Services
             {
                 case "Sáng":
                     startTime = DateTime.Parse("07:00");
-                    endTime = DateTime.Parse("10:30");
+                    endTime = DateTime.Parse("12:00");
                     break;
 
                 case "Trưa":
                     startTime = DateTime.Parse("13:00");
-                    endTime = DateTime.Parse("15:30");
+                    endTime = DateTime.Parse("17:00");
                     break;
 
                 case "Tối":
                     startTime = DateTime.Parse("17:00");
-                    endTime = DateTime.Parse("20:30");
+                    endTime = DateTime.Parse("22:00");
                     break;
 
                 default:
@@ -129,7 +129,7 @@ namespace Service.Services
 
             while (startTime <= endTime)
             {
-                times.Add(startTime.ToString("HH:mm"));
+                times.Add(startTime.ToString("HH:mm:ss"));
                 startTime = startTime.AddMinutes(30);
             }
 
