@@ -20,8 +20,9 @@ namespace Service.Interfaces
         public ResponseModel AddTherapistShift(int therapistID, TherapistShiftDateRequest dateTimes);
         Task AutoCheckSlotsWhenPassDay();
         List<Shift> GetShiftsByTherapistId(int therapistID);
-        public ResponseModel DeleteTherapistShift(int  therapistID);
-        public ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID,  DateTime Datetime);
+        Task<List<TherapistShiftResponse>> GetTherapistShifts();
+        public ResponseModel DeleteTherapistShift(int therapistID);
+        public ResponseModel UpdateTherapistShift(int TherapistID, int therapistShiftID, DateTime Datetime);
 
         public ResponseModel AddShiftToTherapistShift(int id, int shiftID);
     }

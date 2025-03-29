@@ -1,5 +1,8 @@
 ﻿using DAL.DTOs.RequestModel;
+using DAL.DTOs.ResponseModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Service.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,20 +12,29 @@ namespace SkincareBookingApp.Controllers
     [ApiController]
     [Route("api/TherapistShift")]
     [ApiExplorerSettings(GroupName = "TherapistShift")]
-    public class TherapistShiftController : Controller
+    public class TherapistShiftsController : ODataController
     {
         private readonly IShiftService _shiftService;
 
-        public TherapistShiftController(IShiftService shiftService)
+        public TherapistShiftsController(IShiftService shiftService)
         {
             _shiftService = shiftService;
         }
 
-        [HttpGet]
-        [SwaggerOperation(Summary = "get all TherapistShift")]
+        [HttpGet("grouped")]
+        [SwaggerOperation(Summary = "Get all TherapistShift Grouped by date")]
         public IActionResult GetAllTherapistShift()
         {
             var therapistShift = _shiftService.GetAllTherapistShift();
+            return Ok(therapistShift);
+        }
+
+        [EnableQuery]
+        [HttpGet]
+        [SwaggerOperation(Summary = "Get all TherapistShift")]
+        public async Task<ActionResult<IEnumerable<TherapistShiftResponse>>> GetTherapistShifts()
+        {
+            var therapistShift = await _shiftService.GetTherapistShifts();
             return Ok(therapistShift);
         }
 

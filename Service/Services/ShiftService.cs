@@ -2,6 +2,7 @@
 using DAL.DTO;
 using DAL.DTOs.RequestModel;
 using DAL.DTOs.ResponseModel;
+using DAL.Mappers;
 using Repository.HandleException;
 using Repository.Interfaces;
 using Service.Interfaces;
@@ -13,12 +14,13 @@ namespace Service.Services
     {
         private readonly IShiftRepository _shiftRepo;
         private readonly IEmployeeRepository _employeeRepo;
+        private readonly ITherapistRepository _therapistRepo;
 
-
-        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo)
+        public ShiftService(IShiftRepository shiftRepo, IEmployeeRepository employeeRepo, ITherapistRepository therapistRepo)
         {
             _shiftRepo = shiftRepo;
             _employeeRepo = employeeRepo;
+            _therapistRepo = therapistRepo;
         }
 
         public ResponseModel AddShift(ShiftRequestDTO shiftRequest)
@@ -78,8 +80,7 @@ namespace Service.Services
                 responseDTO.Status = shift.Status;
 
                 return new ResponseModel(200, "Add Successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot Add!", errorData);
@@ -107,8 +108,7 @@ namespace Service.Services
                 therapistShift.shift_id = shift.Id;
                 _shiftRepo.UpdateTherapistShift(therapistShift);
                 return new ResponseModel(200, "Add Sfhit to TherapistShift successfully!!", therapistShift);
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot Add!", errorData);
@@ -129,8 +129,7 @@ namespace Service.Services
 
                 _shiftRepo.DeleteAsync(shift);
                 return new ResponseModel(200, "Delete Successfully!", "This is shift " + shift.Name);
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot find Shift!", errorData);
@@ -180,8 +179,7 @@ namespace Service.Services
                 responseDTO.Status = shift.Status;
 
                 return new ResponseModel(200, "Shift " + shift.Name, responseDTO);
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot find Shift!", errorData);
@@ -249,13 +247,11 @@ namespace Service.Services
                 responseDTO.Status = shift.Status;
 
                 return new ResponseModel(200, "Update successfully!", responseDTO); // Trả về 200 OK kèm dữ liệu
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot Update!", errorData);
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 var errorData = new ErrorResponseModel(500, "Lỗi hệ thống");
                 return new ResponseModel(500, "Cannot Update!", errorData);
@@ -280,7 +276,7 @@ namespace Service.Services
 
                 _shiftRepo.DeleteTherapistShift(therapistShift);
                 return new ResponseModel(200, "Delete Successfully!", "Day: " + therapistShift.Date);
-            }catch(ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot find therapist shift!", errorData);
@@ -312,8 +308,7 @@ namespace Service.Services
 
                 return new ResponseModel(202, "Update successfully!", therapistShift);
 
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Can not update!", errorData);
@@ -367,13 +362,11 @@ namespace Service.Services
                 }
 
                 return new ResponseModel(202, "Add successfully!", addedShifts);
-            }
-            catch (ErrorException ex)
+            } catch (ErrorException ex)
             {
                 var errorData = new ErrorResponseModel(ex.ErrorCode, ex.Message);
                 return new ResponseModel(404, "Cannot add shifts!", errorData);
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 // Catch any unexpected exceptions
                 var errorData = new ErrorResponseModel(500, ex.Message);
@@ -384,6 +377,12 @@ namespace Service.Services
         public async Task AutoCheckSlotsWhenPassDay()
         {
             await _shiftRepo.AutoCheckSlotsWhenPassDay();
+        }
+
+        public async Task<List<TherapistShiftResponse>> GetTherapistShifts()
+        {
+            var therapistShift = await _therapistRepo.GetTherapistShiftsAsync();
+            return therapistShift.Select(x => x.ToResponse()).ToList();
         }
     }
 }

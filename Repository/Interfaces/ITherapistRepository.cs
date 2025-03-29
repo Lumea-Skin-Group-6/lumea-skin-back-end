@@ -16,6 +16,6 @@ namespace Repository.Interfaces
         Task<Account> DeleteAsync(int id);
 
         Task<IEnumerable<Account>> GetAllTherapistByListExpertiseID(ICollection<int> expertiseID);
-
+        Task<IEnumerable<TherapistShift>> GetTherapistShiftsAsync();
     }
 }

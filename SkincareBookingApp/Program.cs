@@ -13,6 +13,7 @@ using Service.Interfaces;
 using Service.Services;
 using SkincareBookingApp.Helpers;
 using DAL.DTOs.ResponseModel;
+using BusinessObject;
 
 var builder = WebApplication.CreateBuilder(args);
 var modelBuilder = new ODataConventionModelBuilder();
@@ -21,14 +22,17 @@ modelBuilder.EntitySet<ServiceResponseModel>("Services");
 modelBuilder.EntitySet<AccountResponseModel>("Accounts");
 modelBuilder.EntitySet<SkinTypeResponseModel>("SkinTypes");
 modelBuilder.EntitySet<TherapistResponseModel>("Therapists");
+modelBuilder.EntitySet<TherapistShiftResponse>("TherapistShifts");
+modelBuilder.EntityType<TherapistShiftResponse>().HasKey(x => x.TherapistShiftId);
+modelBuilder.EntitySet<Shift>("Shifts");
 
 builder.Services.AddControllers().AddOData(options =>
     options.Select().Filter().OrderBy()
         .Expand().Count().SetMaxTop(null)
         .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
 
-var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
-shiftEntity.HasKey(a => a.Name);
+//var shiftEntity = modelBuilder.EntitySet<ShiftResponseDTO>("Shifts").EntityType;
+//shiftEntity.HasKey(a => a.Name);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

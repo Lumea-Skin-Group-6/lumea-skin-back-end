@@ -87,6 +87,10 @@ namespace Repository.Repositories
               .FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<TherapistShift>> GetTherapistShiftsAsync()
+        {
+            return await _context.TherapistShifts.ToListAsync();
+        }
 
         public async Task<Account> UpdateAsync(Account account)
         {
